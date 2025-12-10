@@ -46,6 +46,7 @@ function checkScreenSize() {
 // Initialize app
 document.addEventListener('DOMContentLoaded', function() {
     detectDevice();
+    loadTranslations();
     checkLoginStatus();
 });
 
@@ -53,6 +54,51 @@ document.addEventListener('DOMContentLoaded', function() {
 window.addEventListener('resize', function() {
     checkScreenSize();
 });
+
+// Load translations script
+function loadTranslations() {
+    const script = document.createElement('script');
+    script.src = 'translations.js';
+    script.onload = function() {
+        updateTranslations();
+    };
+    document.head.appendChild(script);
+}
+
+// Update all translations on page
+function updateTranslations() {
+    if (typeof translations === 'undefined') {
+        console.log('Translations not loaded yet');
+        return;
+    }
+    
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        const keys = key.split('.');
+        let value = translations[currentLanguage];
+        
+        for (let k of keys) {
+            if (value && value[k]) {
+                value = value[k];
+            } else {
+                console.warn('Translation key not found:', key);
+                return;
+            }
+        }
+        
+        if (value) {
+            el.textContent = value;
+        }
+    });
+    
+    // Update selected language button
+    document.querySelectorAll('.lang-btn-float').forEach(btn => {
+        btn.classList.remove('selected');
+        if (btn.getAttribute('data-lang') === currentLanguage) {
+            btn.classList.add('selected');
+        }
+    });
+}
 
 // Check if user is logged in
 function checkLoginStatus() {
@@ -68,7 +114,9 @@ function checkLoginStatus() {
         
         showMainApp();
     } else {
+        currentLanguage = savedLang || 'de';
         showLoginPage();
+        updateTranslations();
     }
 }
 

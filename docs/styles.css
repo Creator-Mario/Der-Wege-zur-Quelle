@@ -1,4 +1,4 @@
-/* Spiritual Bible Study App - Enhanced Professional Design */
+/* Spiritual Bible Study App - Full-Width Floating Design */
 /* Color Scheme: Himmelblau, Goldgelb, Beige, Braun */
 :root {
     --sky-blue: #87CEEB;
@@ -6,6 +6,7 @@
     --beige: #F5F5DC;
     --brown: #8B4513;
     --dark-brown: #654321;
+    --purple: #8B5CF6;
     --white: #FFFFFF;
     --light-gray: #F8F9FA;
     --gray: #6C757D;
@@ -25,7 +26,7 @@ html {
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
+    line-height: 1.7;
     color: var(--text-dark);
     background: linear-gradient(135deg, var(--beige) 0%, var(--light-gray) 100%);
     min-height: 100vh;
@@ -38,41 +39,57 @@ body {
     padding: 0 20px;
 }
 
-/* ================== LOGIN PAGE - SINGLE SCREEN NO SCROLL ================== */
+/* ================== LOGIN PAGE - FULL WIDTH FLOATING ================== */
 .login-page {
     display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
-    max-height: 100vh;
+    min-height: 100vh;
     z-index: 10000;
     background: linear-gradient(135deg, 
         #87CEEB 0%, 
         #F5F5DC 50%,
         #DAA520 100%
     );
-    overflow: hidden; /* NO SCROLLING! */
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 40px 20px;
 }
 
 .login-page.active {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: block;
     animation: fadeIn 0.8s ease;
 }
 
-.login-container {
-    width: 100%;
-    max-width: 1100px;
-    height: 100%;
-    max-height: 100vh;
-    padding: 15px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* Background Logo Watermark */
+.background-logo-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.background-logo {
+    width: 70vw;
+    max-width: 800px;
+    height: auto;
+    opacity: 0.08;
+    filter: blur(2px);
+    animation: slowRotate 60s linear infinite, logoFade 4s ease-in-out infinite alternate;
+}
+
+@keyframes slowRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes logoFade {
+    from { opacity: 0.05; }
+    to { opacity: 0.12; }
 }
 
 .spiritual-background {
@@ -100,848 +117,174 @@ body {
     animation: rotate 30s linear infinite;
 }
 
-.login-card {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 15px;
-    box-shadow: 
-        0 10px 40px rgba(0, 0, 0, 0.15),
-        0 0 60px rgba(218, 165, 32, 0.2);
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    max-height: calc(100vh - 30px);
-    display: flex;
-    flex-direction: column;
-    padding: 15px 20px;
-    overflow: hidden; /* NO OVERFLOW! */
-}
-
-/* Header: Logo + Title + Language Flags in ONE ROW */
-.page-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    flex-shrink: 0;
-}
-
-.logo-title-group {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    flex: 1;
-}
-
-.main-logo {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    border: 3px solid var(--gold);
-    box-shadow: 
-        0 0 20px rgba(218, 165, 32, 0.4),
-        0 0 40px rgba(135, 206, 235, 0.2);
-    animation: logoGlow 3s ease-in-out infinite;
-    flex-shrink: 0;
-}
-
-.title-group {
-    flex: 1;
-}
-
-.app-title {
-    font-size: 1.3rem;
-    color: var(--brown);
-    margin: 0;
-    font-weight: 700;
-    line-height: 1.2;
-}
-
-.app-claim {
-    font-size: 0.85rem;
-    color: var(--gray);
-    font-style: italic;
-    margin: 3px 0 0 0;
-}
-
-.language-selection-compact {
-    display: flex;
-    gap: 8px;
-    flex-shrink: 0;
-}
-
-.lang-btn-compact {
-    background: white;
-    border: 2px solid var(--gold);
-    border-radius: 8px;
-    padding: 8px 12px;
-    font-size: 1.5rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.lang-btn-compact:hover {
-    background: var(--gold);
-    transform: scale(1.1);
-}
-
-/* Main Content Grid: Content | Login */
-.main-content-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 20px;
-    flex: 1;
-    overflow: hidden;
-    min-height: 0;
-}
-
-/* Left: Compact Content Section */
-.content-section {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    overflow-y: auto;
-    padding-right: 10px;
-}
-
-.welcome-compact {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(245, 245, 220, 0.7));
-    border: 2px solid var(--gold);
-    border-radius: 10px;
-    padding: 12px;
-}
-
-.welcome-compact h2 {
-    font-size: 1.1rem;
-    color: var(--brown);
-    margin: 0 0 8px 0;
-}
-
-.welcome-compact p {
-    font-size: 0.9rem;
-    line-height: 1.4;
-    color: var(--text-dark);
-    margin: 0;
-}
-
-.verse-compact {
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(218, 165, 32, 0.15));
-    border: 2px solid #8B5CF6;
-    border-radius: 10px;
-    padding: 12px;
-    text-align: center;
-}
-
-.verse-icon {
-    font-size: 1.8rem;
-    color: #8B5CF6;
-    display: block;
-    margin-bottom: 8px;
-    animation: holypulse 3s ease-in-out infinite;
-}
-
-.verse-text {
-    font-size: 0.85rem;
-    line-height: 1.4;
-    color: var(--text-dark);
-    font-style: italic;
-    margin: 0 0 8px 0;
-}
-
-.verse-ref {
-    font-size: 0.8rem;
-    color: #8B5CF6;
-    font-weight: 600;
-    margin: 0;
-}
-
-/* Right: Login Section */
-.login-section {
-    background: rgba(255, 255, 255, 0.95);
-    border: 2px solid var(--sky-blue);
-    border-radius: 10px;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-}
-
-.login-tabs {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 12px;
-    flex-shrink: 0;
-}
-
-.tab-btn {
-    flex: 1;
-    padding: 8px;
-    border: 2px solid var(--sky-blue);
-    background: white;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.tab-btn:hover {
-    background: var(--sky-blue);
-    color: white;
-}
-
-.tab-btn.active {
-    background: var(--sky-blue);
-    color: white;
-}
-
-.login-tab-content {
-    display: none;
-    flex: 1;
-    overflow-y: auto;
-}
-
-.login-tab-content.active {
-    display: flex;
-    flex-direction: column;
-}
-
-.form-group {
-    margin-bottom: 12px;
-}
-
-.form-group label {
-    display: block;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--text-dark);
-    margin-bottom: 5px;
-}
-
-.form-group input {
-    width: 100%;
-    padding: 10px;
-    border: 2px solid var(--beige);
-    border-radius: 8px;
-    font-size: 0.9rem;
-    transition: border-color 0.3s ease;
-}
-
-.form-group input:focus {
-    outline: none;
-    border-color: var(--sky-blue);
-}
-
-.btn-login {
-    width: 100%;
-    padding: 12px;
-    background: linear-gradient(135deg, var(--sky-blue), var(--gold));
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 10px;
-}
-
-.btn-login:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(135, 206, 235, 0.4);
-}
-
-/* Footer */
-.page-footer {
-    text-align: center;
-    padding: 8px 0 0 0;
-    border-top: 1px solid rgba(218, 165, 32, 0.3);
-    margin-top: 10px;
-    flex-shrink: 0;
-}
-
-.page-footer p {
-    font-size: 0.75rem;
-    color: var(--gray);
-    margin: 0;
-}
-
-/* ========== RESPONSIVE: MOBILE ========== */
-@media (max-width: 768px) {
-    .login-card {
-        padding: 12px 15px;
-        max-height: calc(100vh - 20px);
-    }
-    
-    .page-header {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 12px;
-    }
-    
-    .logo-title-group {
-        flex-direction: column;
-        text-align: center;
-        gap: 8px;
-    }
-    
-    .main-logo {
-        width: 70px;
-        height: 70px;
-    }
-    
-    .app-title {
-        font-size: 1.1rem;
-    }
-    
-    .app-claim {
-        font-size: 0.75rem;
-    }
-    
-    .language-selection-compact {
-        justify-content: center;
-    }
-    
-    .lang-btn-compact {
-        padding: 6px 10px;
-        font-size: 1.3rem;
-    }
-    
-    .main-content-grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-    
-    .content-section {
-        max-height: 35vh;
-    }
-    
-    .welcome-compact {
-        padding: 10px;
-    }
-    
-    .welcome-compact h2 {
-        font-size: 1rem;
-    }
-    
-    .welcome-compact p {
-        font-size: 0.85rem;
-    }
-    
-    .verse-compact {
-        padding: 10px;
-    }
-    
-    .verse-text {
-        font-size: 0.8rem;
-    }
-    
-    .login-section {
-        padding: 12px;
-    }
-    
-    .tab-btn {
-        padding: 6px;
-        font-size: 0.85rem;
-    }
-    
-    .form-group label {
-        font-size: 0.8rem;
-    }
-    
-    .form-group input {
-        padding: 8px;
-        font-size: 0.85rem;
-    }
-    
-    .btn-login {
-        padding: 10px;
-        font-size: 0.9rem;
-    }
-    
-    .page-footer p {
-        font-size: 0.7rem;
-    }
-}
-
-/* Animations */
-@keyframes logoGlow {
-    0%, 100% {
-        box-shadow: 
-            0 0 20px rgba(218, 165, 32, 0.4),
-            0 0 40px rgba(135, 206, 235, 0.2);
-    }
-    50% {
-        box-shadow: 
-            0 0 30px rgba(218, 165, 32, 0.6),
-            0 0 60px rgba(135, 206, 235, 0.3);
-    }
-}
-
-@keyframes holypulse {
-    0%, 100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-    50% {
-        transform: scale(1.1);
-        opacity: 0.8;
-    }
-}
-
 @keyframes rotate {
-    from {
-        transform: translate(-50%, -50%) rotate(0deg);
-    }
-    to {
-        transform: translate(-50%, -50%) rotate(360deg);
-    }
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-/* Remove old styles that are no longer needed */
-
-.light-rays {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 150%;
-    height: 100%;
-    background: radial-gradient(
-        ellipse at top,
-        rgba(255, 255, 255, 0.3) 0%,
-        transparent 70%
-    );
-    animation: pulse 4s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 0.8; }
-}
-
-.floating-elements {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
-
-.dove, .cross {
-    position: absolute;
-    opacity: 0.1;
-    animation: float 20s ease-in-out infinite;
-}
-
-.dove {
-    top: 10%;
-    left: 10%;
-    width: 80px;
-    height: 80px;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 30 Q30 50 50 70 Q70 50 50 30" fill="white" opacity="0.3"/></svg>');
-    animation-delay: 0s;
-}
-
-.cross {
-    bottom: 15%;
-    right: 15%;
-    width: 60px;
-    height: 60px;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 10 L50 90 M20 50 L80 50" stroke="white" stroke-width="8" opacity="0.3"/></svg>');
-    animation-delay: 5s;
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    25% { transform: translateY(-20px) rotate(5deg); }
-    50% { transform: translateY(-40px) rotate(0deg); }
-    75% { transform: translateY(-20px) rotate(-5deg); }
-}
-
-.login-card {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-radius: 30px;
-    padding: 40px;
-    box-shadow: 
-        0 20px 60px rgba(0, 0, 0, 0.3),
-        0 0 100px rgba(218, 165, 32, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+/* Floating Content Wrapper */
+.floating-content-wrapper {
     position: relative;
-    z-index: 1;
-    border: 2px solid rgba(218, 165, 32, 0.3);
+    z-index: 10;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
 }
 
-.logo-container {
-    text-align: center;
-    margin-bottom: 25px;
-}
-
-.main-logo {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
+/* Floating Sections - Full Width */
+.floating-section {
+    width: 90%;
+    max-width: 1200px;
+    padding: 30px 40px;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
     box-shadow: 
-        0 10px 30px rgba(218, 165, 32, 0.4),
-        0 0 60px rgba(135, 206, 235, 0.3);
-    border: 4px solid var(--gold);
-    background: var(--white);
-    padding: 10px;
-    animation: logoGlow 3s ease-in-out infinite;
-    transition: transform 0.3s ease;
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        0 0 20px rgba(218, 165, 32, 0.15);
+    animation: float Animation 0.8s ease;
+    transition: all 0.3s ease;
 }
 
-.main-logo:hover {
-    transform: scale(1.05);
+.floating-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.15),
+        0 0 30px rgba(218, 165, 32, 0.25);
 }
 
-@keyframes logoGlow {
-    0%, 100% { 
-        box-shadow: 
-            0 10px 30px rgba(218, 165, 32, 0.4),
-            0 0 60px rgba(135, 206, 235, 0.3);
+@keyframes floatAnimation {
+    from { 
+        opacity: 0;
+        transform: translateY(30px);
     }
-    50% { 
-        box-shadow: 
-            0 10px 50px rgba(218, 165, 32, 0.7),
-            0 0 100px rgba(135, 206, 235, 0.6);
+    to { 
+        opacity: 1;
+        transform: translateY(0);
     }
-}
-
-.app-title {
-    font-size: 1.8rem;
-    font-weight: 800;
-    text-align: center;
-    background: linear-gradient(135deg, var(--brown) 0%, var(--gold) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 10px;
-    text-shadow: 0 2px 10px rgba(218, 165, 32, 0.2);
-}
-
-/* Grid Layout for Desktop */
-.content-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-    margin-bottom: 20px;
-}
-
-@media (min-width: 769px) {
-    .content-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-.login-lang-section {
-    grid-column: 1;
-}
-
-@media (min-width: 769px) {
-    .login-lang-section {
-        grid-column: 1;
-    }
-}
-
-.app-claim {
-    text-align: center;
-    font-style: italic;
-    color: var(--gray);
-    margin-bottom: 30px;
-    font-size: 1rem;
-    line-height: 1.5;
 }
 
 /* Welcome Section */
 .welcome-section {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 245, 220, 0.9) 100%);
-    padding: 25px;
-    border-radius: 20px;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(245, 245, 220, 0.8) 100%
+    );
     border: 3px solid var(--gold);
-    box-shadow: 
-        0 10px 30px rgba(218, 165, 32, 0.2),
-        inset 0 0 50px rgba(255, 255, 255, 0.5);
 }
 
-.welcome-title {
+.floating-title {
+    font-size: 2.5rem;
+    color: var(--brown);
     text-align: center;
-    font-size: 1.5rem;
-    font-weight: 800;
-    background: linear-gradient(135deg, var(--brown) 0%, var(--gold) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 15px;
-    text-shadow: 0 2px 10px rgba(218, 165, 32, 0.3);
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.welcome-text {
+.floating-text {
+    font-size: 1.1rem;
     text-align: center;
     color: var(--text-dark);
-    font-size: 0.95rem;
     line-height: 1.8;
-    margin-bottom: 0;
 }
 
 /* Bible Verse Section */
-.bible-verse-section {
+.verse-section {
     background: linear-gradient(135deg, 
         rgba(139, 92, 246, 0.15) 0%,
         rgba(218, 165, 32, 0.15) 100%
     );
-    padding: 25px;
-    border-radius: 20px;
-    border: 3px solid var(--gold);
-    position: relative;
-    box-shadow: 
-        0 15px 40px rgba(139, 92, 246, 0.3),
-        inset 0 0 60px rgba(255, 255, 255, 0.4);
+    border: 3px solid var(--purple);
     text-align: center;
 }
 
-.verse-icon {
-    font-size: 2.5rem;
-    color: var(--gold);
+.verse-icon-large {
+    font-size: 3rem;
+    color: var(--purple);
     margin-bottom: 15px;
-    text-shadow: 0 0 20px rgba(218, 165, 32, 0.6);
-    animation: holyPulse 3s ease-in-out infinite;
+    animation: holyCrossPulse 3s ease-in-out infinite;
 }
 
-@keyframes holyPulse {
-    0%, 100% {
+@keyframes holyCrossPulse {
+    0%, 100% { 
         transform: scale(1);
-        opacity: 0.9;
+        text-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
     }
-    50% {
+    50% { 
         transform: scale(1.1);
-        opacity: 1;
+        text-shadow: 0 0 20px rgba(139, 92, 246, 0.8);
     }
 }
 
-.bible-verse {
-    font-size: 1rem;
+.floating-verse {
+    font-size: 1.2rem;
     font-style: italic;
-    line-height: 1.8;
-    color: var(--text-dark);
-    margin-bottom: 12px;
-    font-weight: 500;
-}
-
-.bible-reference {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: var(--gold);
-    text-shadow: 0 1px 3px rgba(218, 165, 32, 0.5);
-}
-
-/* Invitation Section */
-.invitation-section {
-    background: linear-gradient(135deg, 
-        rgba(135, 206, 235, 0.2) 0%,
-        rgba(109, 179, 232, 0.2) 100%
-    );
-    padding: 25px;
-    border-radius: 20px;
-    border: 3px solid var(--sky-blue);
-    box-shadow: 
-        0 10px 30px rgba(135, 206, 235, 0.3),
-        inset 0 0 50px rgba(255, 255, 255, 0.4);
-}
-
-.invitation-title {
-    text-align: center;
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--text-dark);
-    margin-bottom: 12px;
-}
-
-.invitation-text {
-    text-align: center;
-    color: var(--text-dark);
-    font-size: 0.95rem;
-    line-height: 1.8;
-}
-    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
-}
-
-.bible-reference {
-    font-weight: 700;
     color: var(--brown);
-    font-size: 1.1rem;
-    margin-top: 15px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-/* Invitation Section */
-.invitation-section {
-    background: linear-gradient(135deg, 
-        rgba(135, 206, 235, 0.2) 0%,
-        rgba(245, 245, 220, 0.3) 100%
-    );
-    padding: 35px;
-    border-radius: 20px;
-    margin-bottom: 30px;
-    border: 3px solid var(--sky-blue);
-    box-shadow: 
-        0 15px 40px rgba(135, 206, 235, 0.3),
-        inset 0 0 50px rgba(255, 255, 255, 0.5);
-}
-
-.invitation-title {
-    text-align: center;
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: var(--brown);
-    margin-bottom: 20px;
-    text-shadow: 0 2px 10px rgba(218, 165, 32, 0.2);
-}
-
-.invitation-text {
-    text-align: center;
-    color: var(--text-dark);
-    font-size: 1.05rem;
     line-height: 1.8;
-    margin-bottom: 0;
+    margin-bottom: 15px;
 }
 
-.language-selection {
-    margin-bottom: 30px;
-    padding-bottom: 30px;
-    border-bottom: 2px solid var(--beige);
-}
-
-.language-selection h3 {
-    text-align: center;
-    color: var(--brown);
-    font-size: 1.1rem;
-    margin-bottom: 20px;
-    font-weight: 600;
-}
-
-.language-buttons {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.lang-btn {
-    background: linear-gradient(135deg, var(--white) 0%, var(--beige) 100%);
-    border: 3px solid var(--beige);
-    padding: 15px 25px;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    min-width: 120px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.lang-btn:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(218, 165, 32, 0.3);
-    border-color: var(--gold);
-    background: linear-gradient(135deg, var(--white) 0%, var(--gold) 100%);
-}
-
-.lang-btn.selected {
-    background: linear-gradient(135deg, var(--gold) 0%, var(--brown) 100%);
-    border-color: var(--brown);
-    color: var(--white);
-    box-shadow: 0 8px 30px rgba(218, 165, 32, 0.5);
-}
-
-.lang-flag {
-    font-size: 2.5rem;
-}
-
-.lang-name {
+.verse-reference {
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: 600;
+    color: var(--purple);
 }
 
-.lang-btn.selected .lang-name {
-    color: var(--white);
-}
-
-.login-form {
-    margin-bottom: 25px;
+/* Login Form Section */
+.login-form-section {
+    width: 500px;
+    max-width: 90%;
+    background: linear-gradient(135deg, 
+        rgba(135, 206, 235, 0.2) 0%,
+        rgba(255, 255, 255, 0.9) 100%
+    );
+    border: 2px solid var(--sky-blue);
 }
 
 /* Login Tabs */
 .login-tabs {
     display: flex;
     gap: 10px;
-    margin-bottom: 25px;
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: 15px;
-    padding: 5px;
+    margin-bottom: 20px;
 }
 
 .tab-btn {
     flex: 1;
     padding: 12px 20px;
-    background: transparent;
-    color: var(--brown);
-    border: none;
-    border-radius: 12px;
-    font-size: 1.1rem;
+    background: rgba(255, 255, 255, 0.7);
+    border: 2px solid var(--gold);
+    border-radius: 10px;
+    font-size: 1rem;
     font-weight: 600;
+    color: var(--brown);
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
+.tab-btn:hover {
+    background: var(--gold);
+    color: white;
+    transform: translateY(-2px);
+}
+
 .tab-btn.active {
-    background: linear-gradient(135deg, var(--sky-blue), var(--gold));
-    color: var(--white);
-    box-shadow: 0 4px 15px rgba(135, 206, 235, 0.4);
+    background: var(--gold);
+    color: white;
+    box-shadow: 0 4px 15px rgba(218, 165, 32, 0.4);
 }
 
-.tab-btn:hover:not(.active) {
-    background: rgba(255, 255, 255, 0.7);
-}
-
+/* Login Tab Content */
 .login-tab-content {
     display: none;
 }
 
 .login-tab-content.active {
     display: block;
-    animation: fadeInUp 0.5s ease;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.login-form h3 {
-    text-align: center;
-    color: var(--brown);
-    margin-bottom: 20px;
-    font-size: 1.4rem;
-    text-shadow: 0 2px 4px rgba(139, 69, 19, 0.1);
+    animation: fadeIn 0.4s ease;
 }
 
 .form-group {
@@ -951,1057 +294,149 @@ body {
 .form-group label {
     display: block;
     margin-bottom: 8px;
-    color: var(--brown);
     font-weight: 600;
+    color: var(--brown);
 }
 
 .form-group input {
     width: 100%;
     padding: 12px 15px;
     border: 2px solid var(--beige);
-    border-radius: 10px;
+    border-radius: 8px;
     font-size: 1rem;
     transition: all 0.3s ease;
-    background: var(--white);
+    background: rgba(255, 255, 255, 0.9);
 }
 
 .form-group input:focus {
     outline: none;
     border-color: var(--gold);
-    box-shadow: 0 0 0 4px rgba(218, 165, 32, 0.1);
+    box-shadow: 0 0 10px rgba(218, 165, 32, 0.3);
 }
 
 .btn-login {
     width: 100%;
-    padding: 15px;
+    padding: 14px 20px;
     background: linear-gradient(135deg, var(--gold) 0%, var(--brown) 100%);
-    color: var(--white);
+    color: white;
     border: none;
-    border-radius: 15px;
-    font-size: 1.2rem;
-    font-weight: 700;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 6px 20px rgba(218, 165, 32, 0.4);
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(218, 165, 32, 0.3);
 }
 
 .btn-login:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(218, 165, 32, 0.6);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(218, 165, 32, 0.5);
 }
 
-.login-note {
-    text-align: center;
-    font-size: 0.85rem;
-    color: var(--gray);
-    font-style: italic;
-    margin-top: 15px;
+/* Language Selection - Fixed Bottom Right */
+.language-selection-floating {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    gap: 10px;
+    z-index: 1000;
 }
 
-.copyright-footer {
+.lang-btn-float {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 3px solid var(--gold);
+    border-radius: 50%;
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.lang-btn-float:hover {
+    transform: scale(1.15) rotate(5deg);
+    box-shadow: 0 6px 20px rgba(218, 165, 32, 0.4);
+}
+
+.lang-btn-float.selected {
+    background: var(--gold);
+    border-color: var(--brown);
+    box-shadow: 0 0 20px rgba(218, 165, 32, 0.6);
+}
+
+/* Footer */
+.floating-footer {
     text-align: center;
-    padding-top: 20px;
-    border-top: 2px solid var(--beige);
+    color: var(--brown);
     font-size: 0.9rem;
-    color: var(--gray);
+    margin-top: 30px;
+    opacity: 0.8;
 }
 
-.copyright-footer p {
-    margin: 5px 0;
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
-/* ================== MAIN APP ================== */
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .login-page {
+        padding: 20px 10px;
+    }
+    
+    .floating-section {
+        width: 95%;
+        padding: 20px 25px;
+    }
+    
+    .floating-title {
+        font-size: 1.8rem;
+    }
+    
+    .floating-text {
+        font-size: 1rem;
+    }
+    
+    .floating-verse {
+        font-size: 1.05rem;
+    }
+    
+    .verse-icon-large {
+        font-size: 2.5rem;
+    }
+    
+    .login-form-section {
+        width: 95%;
+    }
+    
+    .background-logo {
+        width: 90vw;
+    }
+    
+    .language-selection-floating {
+        bottom: 15px;
+        right: 15px;
+        gap: 8px;
+    }
+    
+    .lang-btn-float {
+        width: 45px;
+        height: 45px;
+        font-size: 1.5rem;
+    }
+}
+
+/* Main App Styles (keeping existing) */
 .main-app {
     display: none;
 }
 
 .main-app.active {
     display: block;
-    animation: fadeIn 0.5s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-/* Header */
-.header {
-    background: linear-gradient(135deg, var(--sky-blue) 0%, #6DB3E8 100%);
-    color: var(--white);
-    padding: 20px 0;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.logo-section {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    margin-bottom: 15px;
-}
-
-.header-logo {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    border: 3px solid var(--white);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.branding h1 {
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin-bottom: 5px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.claim {
-    font-size: 0.95rem;
-    font-style: italic;
-    opacity: 0.95;
-}
-
-.nav {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    align-items: center;
-}
-
-.nav-btn {
-    background: rgba(255, 255, 255, 0.2);
-    border: 2px solid var(--white);
-    color: var(--white);
-    padding: 8px 20px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.nav-btn:hover {
-    background: var(--white);
-    color: var(--sky-blue);
-    transform: translateY(-2px);
-}
-
-.user-menu {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.user-name {
-    font-weight: 600;
-    padding: 8px 15px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 20px;
-}
-
-.btn-logout {
-    background: var(--brown);
-    border: 2px solid var(--white);
-    color: var(--white);
-    padding: 8px 20px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.btn-logout:hover {
-    background: var(--dark-brown);
-    transform: translateY(-2px);
-}
-
-/* Main Content */
-.main {
-    padding: 40px 0;
-    min-height: calc(100vh - 300px);
-}
-
-.view {
-    display: none;
-}
-
-.view.active {
-    display: block;
-    animation: slideIn 0.4s ease;
-}
-
-@keyframes slideIn {
-    from { 
-        opacity: 0; 
-        transform: translateY(20px); 
-    }
-    to { 
-        opacity: 1; 
-        transform: translateY(0); 
-    }
-}
-
-/* Hero Section */
-.hero {
-    text-align: center;
-    padding: 60px 20px;
-    background: linear-gradient(135deg, var(--white) 0%, var(--beige) 100%);
-    border-radius: 30px;
-    box-shadow: 
-        0 10px 40px rgba(0, 0, 0, 0.1),
-        0 0 100px rgba(218, 165, 32, 0.1);
-    margin-bottom: 40px;
-    position: relative;
-    overflow: hidden;
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(218, 165, 32, 0.1) 0%, transparent 70%);
-    animation: rotate 30s linear infinite;
-}
-
-@keyframes rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-.hero > * {
-    position: relative;
-    z-index: 1;
-}
-
-.hero h2 {
-    font-size: 2.5rem;
-    color: var(--brown);
-    margin-bottom: 15px;
-    font-weight: 800;
-}
-
-.hero p {
-    font-size: 1.2rem;
-    color: var(--gray);
-    margin-bottom: 30px;
-}
-
-.cta-buttons {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.btn {
-    padding: 15px 35px;
-    border-radius: 30px;
-    font-size: 1.1rem;
-    font-weight: 700;
-    cursor: pointer;
-    border: none;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.btn-primary {
-    background: linear-gradient(135deg, var(--gold) 0%, var(--brown) 100%);
-    color: var(--white);
-    box-shadow: 0 6px 20px rgba(218, 165, 32, 0.4);
-}
-
-.btn-primary:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 30px rgba(218, 165, 32, 0.6);
-}
-
-.btn-secondary {
-    background: var(--white);
-    color: var(--brown);
-    border: 3px solid var(--brown);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.btn-secondary:hover {
-    background: var(--brown);
-    color: var(--white);
-    transform: translateY(-4px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-}
-
-/* Feature Grid */
-.features {
-    margin: 40px 0;
-}
-
-.features h3 {
-    font-size: 2rem;
-    color: var(--brown);
-    margin-bottom: 30px;
-    text-align: center;
-    font-weight: 800;
-}
-
-.feature-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-}
-
-.feature-card {
-    background: linear-gradient(135deg, var(--white) 0%, var(--beige) 100%);
-    padding: 35px;
-    border-radius: 20px;
-    text-align: center;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-}
-
-.feature-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 35px rgba(218, 165, 32, 0.3);
-    border-color: var(--gold);
-}
-
-.feature-icon {
-    font-size: 3.5rem;
-    margin-bottom: 15px;
-}
-
-.feature-card h4 {
-    font-size: 1.4rem;
-    color: var(--brown);
-    margin-bottom: 10px;
-    font-weight: 700;
-}
-
-.feature-card p {
-    color: var(--gray);
-}
-
-/* Daily Verse */
-.daily-verse-preview {
-    background: linear-gradient(135deg, var(--white) 0%, var(--beige) 100%);
-    padding: 40px;
-    border-radius: 25px;
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
-    margin: 40px 0;
-}
-
-.daily-verse-preview h3 {
-    font-size: 1.8rem;
-    color: var(--brown);
-    margin-bottom: 20px;
-    text-align: center;
-    font-weight: 700;
-}
-
-.verse-card {
-    background: linear-gradient(135deg, #FFFACD 0%, var(--beige) 100%);
-    padding: 30px;
-    border-radius: 20px;
-    border-left: 6px solid var(--gold);
-    box-shadow: 
-        0 4px 15px rgba(0, 0, 0, 0.1),
-        inset 0 0 20px rgba(218, 165, 32, 0.1);
-    position: relative;
-}
-
-.verse-card::before {
-    content: '"';
-    position: absolute;
-    top: 10px;
-    left: 20px;
-    font-size: 5rem;
-    color: rgba(218, 165, 32, 0.2);
-    font-family: Georgia, serif;
-}
-
-.verse-card.large {
-    padding: 60px;
-    text-align: center;
-}
-
-.verse-text {
-    font-size: 1.3rem;
-    font-style: italic;
-    color: var(--text-dark);
-    margin-bottom: 15px;
-    line-height: 1.9;
-    font-weight: 500;
-}
-
-.verse-ref {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--brown);
-    text-align: right;
-}
-
-.verse-card.large .verse-text {
-    font-size: 1.7rem;
-}
-
-.verse-card.large .verse-ref {
-    font-size: 1.4rem;
-    text-align: center;
-    margin-top: 25px;
-}
-
-/* Chapters Grid */
-.subtitle {
-    text-align: center;
-    color: var(--gray);
-    margin-bottom: 30px;
-    font-size: 1.1rem;
-}
-
-.chapters-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 30px;
-}
-
-.chapter-card {
-    background: linear-gradient(135deg, var(--white) 0%, var(--beige) 100%);
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border-left: 6px solid var(--gold);
-    position: relative;
-    overflow: hidden;
-}
-
-.chapter-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100px;
-    height: 100px;
-    background: radial-gradient(circle, rgba(218, 165, 32, 0.1) 0%, transparent 70%);
-    transform: translate(30%, -30%);
-    transition: all 0.3s ease;
-}
-
-.chapter-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 35px rgba(218, 165, 32, 0.3);
-    border-left-color: var(--brown);
-}
-
-.chapter-card:hover::before {
-    transform: translate(0%, 0%) scale(1.5);
-}
-
-.chapter-number {
-    font-size: 0.95rem;
-    color: var(--gold);
-    font-weight: 800;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    letter-spacing: 1px;
-}
-
-.chapter-title {
-    font-size: 1.5rem;
-    color: var(--brown);
-    margin-bottom: 10px;
-    font-weight: 800;
-}
-
-.chapter-subtitle {
-    font-size: 1rem;
-    color: var(--gray);
-    margin-bottom: 15px;
-    font-style: italic;
-}
-
-.chapter-lessons {
-    font-size: 0.9rem;
-    color: var(--gray);
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 2px solid rgba(218, 165, 32, 0.2);
-}
-
-/* Lessons List */
-.lessons-list {
-    margin-top: 30px;
-}
-
-.lesson-item {
-    background: linear-gradient(135deg, var(--white) 0%, var(--beige) 100%);
-    padding: 25px;
-    margin-bottom: 15px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border-left: 5px solid var(--sky-blue);
-}
-
-.lesson-item:hover {
-    transform: translateX(8px);
-    box-shadow: 0 6px 25px rgba(135, 206, 235, 0.3);
-    border-left-color: var(--gold);
-}
-
-.lesson-number {
-    font-weight: 800;
-    color: var(--gold);
-    margin-right: 10px;
-}
-
-.lesson-title {
-    font-size: 1.1rem;
-    color: var(--text-dark);
-    font-weight: 700;
-}
-
-.lesson-desc {
-    color: var(--gray);
-    font-size: 0.95rem;
-    margin-top: 5px;
-}
-
-/* Lesson Detail */
-.lesson-content {
-    background: linear-gradient(135deg, var(--white) 0%, var(--beige) 100%);
-    padding: 50px;
-    border-radius: 25px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-}
-
-.lesson-header {
-    margin-bottom: 35px;
-    padding-bottom: 25px;
-    border-bottom: 4px solid var(--gold);
-}
-
-.lesson-section {
-    margin: 35px 0;
-}
-
-.lesson-section h3 {
-    color: var(--brown);
-    font-size: 1.6rem;
-    margin-bottom: 15px;
-    font-weight: 700;
-}
-
-.lesson-section p {
-    line-height: 1.9;
-    color: var(--text-dark);
-    margin-bottom: 15px;
-}
-
-.lesson-section ul {
-    margin-left: 30px;
-    color: var(--text-dark);
-}
-
-.lesson-section li {
-    margin-bottom: 12px;
-}
-
-/* Back Button */
-.back-btn {
-    background: var(--gray);
-    color: var(--white);
-    border: none;
-    padding: 12px 25px;
-    border-radius: 25px;
-    cursor: pointer;
-    margin-bottom: 25px;
-    font-size: 1rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.back-btn:hover {
-    background: var(--brown);
-    transform: translateX(-5px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-}
-
-/* About Section */
-.about-content {
-    background: linear-gradient(135deg, var(--white) 0%, var(--beige) 100%);
-    padding: 50px;
-    border-radius: 25px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-}
-
-.about-section {
-    margin-bottom: 45px;
-}
-
-.about-section h3 {
-    color: var(--brown);
-    font-size: 1.9rem;
-    margin-bottom: 20px;
-    font-weight: 700;
-}
-
-.about-section p {
-    line-height: 1.9;
-    color: var(--text-dark);
-    margin-bottom: 12px;
-}
-
-.about-section ul {
-    margin-left: 30px;
-    color: var(--text-dark);
-}
-
-.about-section li {
-    margin-bottom: 10px;
-}
-
-.copyright-notice {
-    background: var(--beige);
-    padding: 20px;
-    border-radius: 15px;
-    border-left: 5px solid var(--gold);
-    margin-top: 20px;
-    font-style: italic;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-}
-
-/* Daily Verse Card */
-.daily-verse-card {
-    max-width: 900px;
-    margin: 50px auto;
-}
-
-.daily-verse-card .btn {
-    display: block;
-    margin: 25px auto 0;
-}
-
-/* Footer */
-.footer {
-    background: linear-gradient(135deg, var(--brown) 0%, var(--dark-brown) 100%);
-    color: var(--white);
-    text-align: center;
-    padding: 35px 0;
-    margin-top: 80px;
-    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
-}
-
-.footer p {
-    margin: 8px 0;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .logo-section {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .branding h1 {
-        font-size: 1.4rem;
-    }
-    
-    .claim {
-        font-size: 0.85rem;
-    }
-    
-    .hero h2 {
-        font-size: 1.8rem;
-    }
-    
-    .hero p {
-        font-size: 1rem;
-    }
-    
-    .chapters-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .nav {
-        justify-content: center;
-    }
-    
-    .user-menu {
-        margin-left: 0;
-        width: 100%;
-        justify-content: center;
-        margin-top: 10px;
-    }
-    
-    .language-buttons {
-        flex-direction: column;
-        align-items: stretch;
-    }
-    
-    .lang-btn {
-        min-width: auto;
-    }
-    
-    .login-card {
-        padding: 30px 20px;
-    }
-    
-    .app-title {
-        font-size: 1.5rem;
-    }
-    
-    .welcome-section {
-        padding: 15px;
-        margin: 10px 0;
-    }
-    
-    .welcome-title {
-        font-size: 1.4rem;
-    }
-    
-    .welcome-text {
-        font-size: 0.95rem;
-    }
-    
-    .bible-verse-section {
-        padding: 20px 15px;
-        margin: 10px 0;
-    }
-    
-    .verse-icon {
-        font-size: 2rem;
-    }
-    
-    .bible-verse {
-        font-size: 1rem;
-    }
-    
-    .bible-reference {
-        font-size: 0.95rem;
-    }
-    
-    .invitation-section {
-        padding: 20px 15px;
-        margin: 10px 0;
-    }
-    
-    .invitation-title {
-        font-size: 1.3rem;
-    }
-    
-    .invitation-text {
-        font-size: 0.95rem;
-    }
-    
-    .main-logo {
-        max-width: 80px;
-        margin: 10px auto 15px;
-    }
-    
-    .login-container {
-        padding: 10px;
-    }
-}
-
-@media (max-width: 480px) {
-    .verse-text {
-        font-size: 1.1rem;
-    }
-    
-    .verse-card.large .verse-text {
-        font-size: 1.4rem;
-    }
-    
-    .lesson-content, .about-content {
-        padding: 30px 20px;
-    }
-    
-    .hero {
-        padding: 40px 20px;
-    }
-}
-
-/* ================== ENHANCED RESPONSIVE & DEVICE DETECTION ================== */
-
-/* Mobile-specific optimizations */
-body.device-mobile .login-container,
-body.screen-small .login-container {
-    max-width: 100%;
-    padding: 10px;
-}
-
-body.device-mobile .login-card,
-body.screen-small .login-card {
-    padding: 20px 15px;
-    margin: 8px 0;
-}
-
-body.device-mobile .main-logo,
-body.screen-small .main-logo {
-    max-width: 80px;
-}
-
-body.device-mobile .app-title,
-body.screen-small .app-title {
-    font-size: 1.2rem;
-}
-
-body.device-mobile .btn-login,
-body.screen-small .btn-login {
-    padding: 12px;
-    font-size: 0.95rem;
-}
-
-body.device-mobile .welcome-section,
-body.screen-small .welcome-section {
-    padding: 15px;
-}
-
-body.device-mobile .bible-verse-section,
-body.screen-small .bible-verse-section {
-    padding: 18px 15px;
-}
-
-body.device-mobile .invitation-section,
-body.screen-small .invitation-section {
-    padding: 18px 15px;
-}
-
-/* Tablet-specific optimizations */
-body.device-tablet .container,
-body.screen-medium .container {
-    max-width: 900px;
-}
-
-body.device-tablet .chapters-grid,
-body.screen-medium .chapters-grid {
-    grid-template-columns: repeat(2, 1fr);
-}
-
-/* Desktop enhancements */
-body.device-desktop .login-card,
-body.screen-large .login-card {
-    max-width: 550px;
-}
-
-/* ================== ENHANCED VIBRANT SPIRITUAL DESIGN ================== */
-
-/* More vibrant colors */
-:root {
-    --vibrant-blue: #4A90E2;
-    --vibrant-gold: #FFD700;
-    --church-purple: #8B5CF6;
-    --holy-white: #FFFEF9;
-    --divine-glow: rgba(255, 215, 0, 0.5);
-}
-
-/* Enhanced background with church atmosphere */
-.login-page {
-    background: 
-        radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(74, 144, 226, 0.15) 0%, transparent 50%),
-        linear-gradient(135deg, 
-            #87CEEB 0%, 
-            #6DB3E8 25%, 
-            #F5F5DC 50%,
-            #E8D4A0 75%,
-            #DAA520 100%
-        );
-    animation: backgroundShift 20s ease-in-out infinite;
-}
-
-@keyframes backgroundShift {
-    0%, 100% { filter: hue-rotate(0deg) brightness(1); }
-    50% { filter: hue-rotate(5deg) brightness(1.05); }
-}
-
-/* Enhanced spiritual glow */
-.main-logo {
-    filter: drop-shadow(0 0 20px var(--divine-glow))
-            drop-shadow(0 0 40px rgba(255, 215, 0, 0.3));
-    animation: logoGlow 4s ease-in-out infinite, float 6s ease-in-out infinite;
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-}
-
-/* More vibrant buttons */
-.btn-login {
-    background: linear-gradient(135deg, var(--vibrant-gold) 0%, var(--brown) 50%, var(--vibrant-blue) 100%);
-    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5),
-                inset 0 -3px 10px rgba(0, 0, 0, 0.2);
-    position: relative;
-    overflow: hidden;
-}
-
-.btn-login::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(
-        45deg,
-        transparent,
-        rgba(255, 255, 255, 0.3),
-        transparent
-    );
-    transform: rotate(45deg);
-    transition: all 0.5s;
-}
-
-.btn-login:hover::before {
-    left: 100%;
-}
-
-.btn-login.admin-btn {
-    background: linear-gradient(135deg, var(--church-purple) 0%, var(--vibrant-blue) 100%);
-    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.5);
-}
-
-/* Enhanced cards */
-.chapter-card, .feature-card, .lesson-card {
-    background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.95) 0%, 
-        rgba(245, 245, 220, 0.9) 100%);
-    border: 2px solid transparent;
-    background-clip: padding-box;
-    position: relative;
-}
-
-.chapter-card::before, .feature-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 15px;
-    padding: 2px;
-    background: linear-gradient(135deg, var(--vibrant-gold), var(--vibrant-blue), var(--church-purple));
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.chapter-card:hover::before, .feature-card:hover::before {
-    opacity: 1;
-}
-
-/* Enhanced floating elements with church symbols */
-.floating-elements::after {
-    content: '✝';
-    position: absolute;
-    font-size: 60px;
-    color: rgba(255, 255, 255, 0.2);
-    top: 20%;
-    right: 10%;
-    animation: float 8s ease-in-out infinite;
-    text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-}
-
-.spiritual-background::after {
-    content: '🕊';
-    position: absolute;
-    font-size: 50px;
-    top: 60%;
-    left: 15%;
-    animation: float 10s ease-in-out infinite reverse;
-    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
-}
-
-/* Enhanced header with church atmosphere */
-.header {
-    background: linear-gradient(135deg, 
-        rgba(135, 206, 235, 0.95) 0%,
-        rgba(218, 165, 32, 0.95) 100%);
-    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3),
-                inset 0 -2px 10px rgba(255, 255, 255, 0.5);
-}
-
-/* Vibrant nav hover effects */
-.nav-link {
-    position: relative;
-    transition: all 0.3s ease;
-}
-
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 50%;
-    width: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--vibrant-gold), var(--church-purple));
-    transform: translateX(-50%);
-    transition: width 0.3s ease;
-    border-radius: 2px;
-}
-
-.nav-link:hover::after {
-    width: 80%;
-}
-
-/* Enhanced verse cards with spiritual glow */
-.verse-card {
-    background: linear-gradient(135deg,
-        rgba(255, 255, 255, 0.98) 0%,
-        rgba(255, 254, 249, 0.95) 100%);
-    box-shadow: 0 10px 40px rgba(218, 165, 32, 0.3),
-                inset 0 0 20px rgba(255, 215, 0, 0.1);
-}
-
-.verse-card.large {
-    border: 3px solid var(--vibrant-gold);
-    box-shadow: 0 15px 50px rgba(218, 165, 32, 0.4),
-                0 0 60px rgba(139, 92, 246, 0.2),
-                inset 0 0 30px rgba(255, 215, 0, 0.15);
-}
-
-/* Pulse animation for spiritual emphasis */
-@keyframes holyPulse {
-    0%, 100% {
-        box-shadow: 0 0 20px rgba(255, 215, 0, 0.3),
-                    0 0 40px rgba(139, 92, 246, 0.2);
-    }
-    50% {
-        box-shadow: 0 0 30px rgba(255, 215, 0, 0.5),
-                    0 0 60px rgba(139, 92, 246, 0.4);
-    }
-}
-
-.login-card, .verse-card.large {
-    animation: holyPulse 3s ease-in-out infinite;
-}
-
-/* Touch-friendly mobile interactions */
-@media (hover: none) and (pointer: coarse) {
-    .btn-login, .nav-link, .chapter-card, .lang-btn {
-        transform: none !important;
-    }
-    
-    .btn-login:active {
-        transform: scale(0.95) !important;
-    }
-    
-    .chapter-card:active {
-        transform: scale(0.98) !important;
-    }
 }
