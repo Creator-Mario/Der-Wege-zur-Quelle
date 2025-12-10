@@ -120,6 +120,52 @@ function checkLoginStatus() {
     }
 }
 
+// Toggle between registration and login
+function toggleRegistration() {
+    const regForm = document.getElementById('registration-form');
+    const loginForm = document.getElementById('login-form');
+    const buttons = document.querySelectorAll('.action-btn');
+    
+    regForm.style.display = 'block';
+    loginForm.style.display = 'none';
+    
+    buttons.forEach(btn => btn.classList.remove('active'));
+    buttons[0].classList.add('active'); // Register button
+}
+
+function toggleLogin() {
+    const regForm = document.getElementById('registration-form');
+    const loginForm = document.getElementById('login-form');
+    const buttons = document.querySelectorAll('.action-btn');
+    
+    regForm.style.display = 'none';
+    loginForm.style.display = 'block';
+    
+    buttons.forEach(btn => btn.classList.remove('active'));
+    buttons[1].classList.add('active'); // Login button
+}
+
+// Handle registration
+function handleRegistration(event) {
+    event.preventDefault();
+    const username = document.getElementById('reg-username').value;
+    const email = document.getElementById('reg-email').value;
+    
+    // Save user data
+    const userData = {
+        name: username,
+        email: email,
+        isAdmin: false
+    };
+    
+    localStorage.setItem('bibleStudyUser', JSON.stringify(userData));
+    userName = username;
+    userEmail = email;
+    isAdmin = false;
+    
+    showMainApp();
+}
+
 // Show/hide login tabs
 function showLoginTab(tab) {
     // Update tab buttons

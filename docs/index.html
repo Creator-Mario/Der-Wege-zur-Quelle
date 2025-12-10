@@ -50,41 +50,66 @@
                 <p class="verse-reference" data-i18n="welcome.reference">2. Timotheus 3,16-17</p>
             </div>
             
-            <!-- Login Section - Centered -->
+            <!-- Login/Registration Section - Centered -->
             <div class="floating-section login-form-section">
-                <div class="login-tabs">
-                    <button class="tab-btn active" onclick="showLoginTab('user')" data-i18n="login.userTab">Benutzer</button>
-                    <button class="tab-btn" onclick="showLoginTab('admin')" data-i18n="login.adminTab">Admin</button>
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="action-btn" onclick="toggleRegistration()" data-i18n="login.registerBtn">Registrieren</button>
+                    <button class="action-btn active" onclick="toggleLogin()" data-i18n="login.loginBtn">Anmelden</button>
                 </div>
                 
-                <!-- User Login -->
-                <div id="user-login-form" class="login-tab-content active">
-                    <form onsubmit="handleLogin(event)">
+                <!-- Registration Form (Hidden by default) -->
+                <div id="registration-form" class="form-container" style="display: none;">
+                    <h3 data-i18n="login.registerTitle">Registrierung</h3>
+                    <form onsubmit="handleRegistration(event)">
                         <div class="form-group">
-                            <label for="username" data-i18n="login.username">Benutzername</label>
-                            <input type="text" id="username" name="username" required>
+                            <label for="reg-username" data-i18n="login.username">Benutzername</label>
+                            <input type="text" id="reg-username" name="reg-username" required>
                         </div>
                         <div class="form-group">
-                            <label for="email" data-i18n="login.email">E-Mail (optional)</label>
-                            <input type="email" id="email" name="email">
+                            <label for="reg-email" data-i18n="login.email">E-Mail</label>
+                            <input type="email" id="reg-email" name="reg-email" required>
                         </div>
-                        <button type="submit" class="btn-login" data-i18n="login.submit">Zur Bibelstudie</button>
+                        <button type="submit" class="btn-submit" data-i18n="login.registerSubmit">Registrieren</button>
                     </form>
                 </div>
                 
-                <!-- Admin Login -->
-                <div id="admin-login-form" class="login-tab-content">
-                    <form onsubmit="handleAdminLogin(event)">
-                        <div class="form-group">
-                            <label for="admin-username" data-i18n="login.username">Benutzername</label>
-                            <input type="text" id="admin-username" name="admin-username" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="admin-password" data-i18n="login.password">Passwort</label>
-                            <input type="password" id="admin-password" name="admin-password" required>
-                        </div>
-                        <button type="submit" class="btn-login" data-i18n="login.adminSubmit">Als Admin anmelden</button>
-                    </form>
+                <!-- Login Form -->
+                <div id="login-form" class="form-container">
+                    <div class="login-tabs">
+                        <button class="tab-btn active" onclick="showLoginTab('user')" data-i18n="login.userTab">Benutzer</button>
+                        <button class="tab-btn" onclick="showLoginTab('admin')" data-i18n="login.adminTab">Admin</button>
+                    </div>
+                    
+                    <!-- User Login -->
+                    <div id="user-login-form" class="login-tab-content active">
+                        <form onsubmit="handleLogin(event)">
+                            <div class="form-group">
+                                <label for="username" data-i18n="login.username">Benutzername</label>
+                                <input type="text" id="username" name="username" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" data-i18n="login.email">E-Mail (optional)</label>
+                                <input type="email" id="email" name="email">
+                            </div>
+                            <button type="submit" class="btn-submit" data-i18n="login.submit">Zur Bibelstudie</button>
+                        </form>
+                    </div>
+                    
+                    <!-- Admin Login -->
+                    <div id="admin-login-form" class="login-tab-content">
+                        <form onsubmit="handleAdminLogin(event)">
+                            <div class="form-group">
+                                <label for="admin-username" data-i18n="login.username">Benutzername</label>
+                                <input type="text" id="admin-username" name="admin-username" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="admin-password" data-i18n="login.password">Passwort</label>
+                                <input type="password" id="admin-password" name="admin-password" required>
+                            </div>
+                            <button type="submit" class="btn-submit" data-i18n="login.adminSubmit">Als Admin anmelden</button>
+                        </form>
+                    </div>
                 </div>
             </div>
             

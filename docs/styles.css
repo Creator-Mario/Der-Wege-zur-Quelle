@@ -275,7 +275,55 @@ body {
         rgba(135, 206, 235, 0.3) 0%,
         rgba(255, 255, 255, 0.9) 100%
     );
-    border: none; /* Removed border */
+    border: none; /* Removed border - Clean design */
+}
+
+/* Action Buttons (Register/Login Toggle) */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.action-btn {
+    flex: 1;
+    padding: 14px 25px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid rgba(218, 165, 32, 0.3);
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+    background: var(--gold);
+    color: white;
+    transform: translateY(-2px);
+    border-color: var(--gold);
+}
+
+.action-btn.active {
+    background: var(--gold);
+    color: white;
+    box-shadow: 0 4px 15px rgba(218, 165, 32, 0.5);
+    border-color: var(--gold);
+}
+
+/* Form Container */
+.form-container {
+    animation: fadeIn 0.4s ease;
+}
+
+.form-container h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    text-align: center;
+    margin-bottom: 15px;
 }
 
 /* Login Tabs */
@@ -349,7 +397,7 @@ body {
     box-shadow: 0 0 10px rgba(218, 165, 32, 0.3);
 }
 
-.btn-login {
+.btn-submit {
     width: 100%;
     padding: 14px 20px;
     background: linear-gradient(135deg, var(--gold) 0%, var(--brown) 100%);
@@ -357,13 +405,13 @@ body {
     border: none;
     border-radius: 10px;
     font-size: 1.1rem;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(218, 165, 32, 0.3);
 }
 
-.btn-login:hover {
+.btn-submit:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(218, 165, 32, 0.5);
 }
