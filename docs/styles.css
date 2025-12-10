@@ -19,6 +19,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
@@ -58,6 +62,16 @@ body {
     align-items: center;
     justify-content: center;
     animation: fadeIn 0.8s ease;
+    padding: 20px 0;
+}
+
+/* Mobile: Allow scrolling for all content */
+@media (max-width: 768px) {
+    .login-page.active {
+        align-items: flex-start;
+        padding-top: 20px;
+        min-height: 100vh;
+    }
 }
 
 .login-container {
@@ -1170,43 +1184,55 @@ body {
     }
     
     .welcome-section {
-        padding: 20px;
+        padding: 15px;
+        margin: 10px 0;
     }
     
     .welcome-title {
-        font-size: 1.6rem;
-    }
-    
-    .welcome-text {
-        font-size: 1rem;
-    }
-    
-    .bible-verse-section {
-        padding: 25px 20px;
-    }
-    
-    .verse-icon {
-        font-size: 2.5rem;
-    }
-    
-    .bible-verse {
-        font-size: 1.05rem;
-    }
-    
-    .bible-reference {
-        font-size: 1rem;
-    }
-    
-    .invitation-section {
-        padding: 25px 20px;
-    }
-    
-    .invitation-title {
         font-size: 1.4rem;
     }
     
-    .invitation-text {
+    .welcome-text {
+        font-size: 0.95rem;
+    }
+    
+    .bible-verse-section {
+        padding: 20px 15px;
+        margin: 10px 0;
+    }
+    
+    .verse-icon {
+        font-size: 2rem;
+    }
+    
+    .bible-verse {
         font-size: 1rem;
+    }
+    
+    .bible-reference {
+        font-size: 0.95rem;
+    }
+    
+    .invitation-section {
+        padding: 20px 15px;
+        margin: 10px 0;
+    }
+    
+    .invitation-title {
+        font-size: 1.3rem;
+    }
+    
+    .invitation-text {
+        font-size: 0.95rem;
+    }
+    
+    .main-logo {
+        max-width: 80px;
+        margin: 10px auto 15px;
+    }
+    
+    .login-container {
+        padding: 10px;
     }
 }
 
@@ -1234,29 +1260,44 @@ body {
 body.device-mobile .login-container,
 body.screen-small .login-container {
     max-width: 100%;
-    padding: 15px;
+    padding: 10px;
 }
 
 body.device-mobile .login-card,
 body.screen-small .login-card {
-    padding: 25px 15px;
-    margin: 10px;
+    padding: 20px 15px;
+    margin: 8px 0;
 }
 
 body.device-mobile .main-logo,
 body.screen-small .main-logo {
-    max-width: 100px;
+    max-width: 80px;
 }
 
 body.device-mobile .app-title,
 body.screen-small .app-title {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
 }
 
 body.device-mobile .btn-login,
 body.screen-small .btn-login {
-    padding: 14px;
-    font-size: 1rem;
+    padding: 12px;
+    font-size: 0.95rem;
+}
+
+body.device-mobile .welcome-section,
+body.screen-small .welcome-section {
+    padding: 15px;
+}
+
+body.device-mobile .bible-verse-section,
+body.screen-small .bible-verse-section {
+    padding: 18px 15px;
+}
+
+body.device-mobile .invitation-section,
+body.screen-small .invitation-section {
+    padding: 18px 15px;
 }
 
 /* Tablet-specific optimizations */
