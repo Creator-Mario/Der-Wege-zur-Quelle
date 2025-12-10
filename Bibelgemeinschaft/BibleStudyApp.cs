@@ -33,10 +33,10 @@ public class BibleStudyApp
         await _bibleService.LoadBibleDataAsync();
         await _bookmarkService.LoadBookmarksAsync();
         UIHelper.DisplaySuccess("Bibeldaten erfolgreich geladen!");
-        Thread.Sleep(1000);
+        await Task.Delay(1000);
     }
 
-    private void ShowMainMenu()
+    private async void ShowMainMenu()
     {
         var metadata = _bibleService.GetMetadata();
         string title = metadata?.name ?? "Die Bibel – Der Weg zur Quelle";
@@ -56,16 +56,16 @@ public class BibleStudyApp
         switch (choice)
         {
             case 1:
-                BrowseBooks();
+                await BrowseBooksAsync();
                 break;
             case 2:
                 SearchVerses();
                 break;
             case 3:
-                ShowDailyVerse();
+                await ShowDailyVerseAsync();
                 break;
             case 4:
-                ManageBookmarks();
+                await ManageBookmarksAsync();
                 break;
             case 5:
                 ShowAbout();
@@ -76,12 +76,12 @@ public class BibleStudyApp
                 break;
             default:
                 UIHelper.DisplayError("Ungültige Auswahl. Bitte versuchen Sie es erneut.");
-                Thread.Sleep(1500);
+                await Task.Delay(1500);
                 break;
         }
     }
 
-    private void BrowseBooks()
+    private async Task BrowseBooksAsync()
     {
         var books = _bibleService.GetBookNames();
         if (books.Count == 0)
@@ -115,23 +115,23 @@ public class BibleStudyApp
                 if (choice == 0) return;
                 if (choice >= 1 && choice <= books.Count)
                 {
-                    SelectChapter(books[choice - 1]);
+                    await SelectChapterAsync(books[choice - 1]);
                 }
                 else
                 {
                     UIHelper.DisplayError("Ungültige Auswahl.");
-                    Thread.Sleep(1500);
+                    await Task.Delay(1500);
                 }
             }
             else
             {
                 UIHelper.DisplayError("Bitte geben Sie eine gültige Nummer ein.");
-                Thread.Sleep(1500);
+                await Task.Delay(1500);
             }
         }
     }
 
-    private void SelectChapter(string bookName)
+    private async Task SelectChapterAsync(string bookName)
     {
         int maxChapter = _bibleService.GetMaxChapter(bookName);
 
@@ -172,7 +172,7 @@ public class BibleStudyApp
                 {
                     string note = UIHelper.GetUserInput("Notiz (optional): ");
                     _bookmarkService.AddBookmark(bookName, chapter, 1, note);
-                    _ = _bookmarkService.SaveBookmarksAsync();
+                    await _bookmarkService.SaveBookmarksAsync();
                     UIHelper.DisplaySuccess("Lesezeichen gespeichert!");
                 }
                 
@@ -181,7 +181,7 @@ public class BibleStudyApp
             else
             {
                 UIHelper.DisplayError("Ungültige Kapitelnummer.");
-                Thread.Sleep(1500);
+                await Task.Delay(1500);
             }
         }
     }
@@ -242,7 +242,7 @@ public class BibleStudyApp
         UIHelper.PressKeyToContinue();
     }
 
-    private void ShowDailyVerse()
+    private async Task ShowDailyVerseAsync()
     {
         UIHelper.DisplayHeader("Tagesvers");
 
@@ -266,7 +266,7 @@ public class BibleStudyApp
             {
                 string note = UIHelper.GetUserInput("Notiz (optional): ");
                 _bookmarkService.AddBookmark(verse.book_name ?? "", verse.chapter, verse.verse, note);
-                _ = _bookmarkService.SaveBookmarksAsync();
+                await _bookmarkService.SaveBookmarksAsync();
                 UIHelper.DisplaySuccess("Lesezeichen gespeichert!");
             }
         }
@@ -278,7 +278,7 @@ public class BibleStudyApp
         UIHelper.PressKeyToContinue();
     }
 
-    private void ManageBookmarks()
+    private async Task ManageBookmarksAsync()
     {
         while (true)
         {
@@ -328,9 +328,9 @@ public class BibleStudyApp
                 if (int.TryParse(numStr, out int delIndex) && delIndex >= 1 && delIndex <= bookmarks.Count)
                 {
                     _bookmarkService.RemoveBookmark(delIndex - 1);
-                    _ = _bookmarkService.SaveBookmarksAsync();
+                    await _bookmarkService.SaveBookmarksAsync();
                     UIHelper.DisplaySuccess("Lesezeichen gelöscht!");
-                    Thread.Sleep(1000);
+                    await Task.Delay(1000);
                 }
             }
             else if (int.TryParse(input, out int index) && index >= 1 && index <= bookmarks.Count)
@@ -358,7 +358,7 @@ public class BibleStudyApp
             else
             {
                 UIHelper.DisplayError("Ungültige Eingabe.");
-                Thread.Sleep(1500);
+                await Task.Delay(1500);
             }
         }
     }

@@ -7,6 +7,7 @@ public class BibleService
 {
     private BibleData? _bibleData;
     private readonly string _dataPath;
+    private static readonly Random _random = new Random();
 
     public BibleService(string dataPath)
     {
@@ -37,9 +38,10 @@ public class BibleService
         
         return _bibleData.verses
             .Select(v => v.book_name)
-            .Distinct()
             .Where(name => !string.IsNullOrEmpty(name))
-            .ToList()!;
+            .Distinct()
+            .Cast<string>()
+            .ToList();
     }
 
     public int GetMaxChapter(string bookName)
@@ -80,8 +82,7 @@ public class BibleService
         if (_bibleData?.verses == null || _bibleData.verses.Count == 0) 
             return null;
         
-        Random random = new Random();
-        int index = random.Next(_bibleData.verses.Count);
+        int index = _random.Next(_bibleData.verses.Count);
         return _bibleData.verses[index];
     }
 
