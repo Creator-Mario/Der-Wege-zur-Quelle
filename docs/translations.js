@@ -4,8 +4,8 @@ const translations = {
         welcome: {
             title: "Herzlich Willkommen!",
             text: "Wir freuen uns, dass Sie den Weg zu uns gefunden haben. Diese Studien-App wurde mit Liebe und Hingabe erstellt, um Ihnen auf Ihrer geistlichen Reise durch die Heilige Schrift beizustehen. Entdecken Sie die zeitlosen Wahrheiten Gottes Wort und lassen Sie sich inspirieren auf dem Weg zur Quelle des Lebens.",
-            verse: "... und weil du von Kind auf die heiligen Schriften kennst, die vermögend sind, dich weise zu machen zur Seligkeit durch den Glauben, der in Christo Jesu ist.",
-            reference: "2. Timotheus 3,15",
+            verse: "Alle Schrift ist von Gott eingegeben und nütze zur Lehre, zur Überführung, zur Zurechtweisung, zur Unterweisung in der Gerechtigkeit, auf daß der Mensch Gottes vollkommen sei, zu jedem guten Werke völlig geschickt.",
+            reference: "2. Timotheus 3,16-17",
             invitationTitle: "Ihre Einladung zur biblischen Studienreise",
             invitationText: "Tauchen Sie ein in 12 Kapitel mit 120 Lektionen, die Sie durch die gesamte Bibel führen – von der Schöpfung bis zur Vollendung. Jede Lektion bietet tiefgehende Einsichten, praktische Anwendungen und Missionsübungen. Beginnen Sie noch heute Ihre Reise zum Verständnis von Gottes Wort!"
         },
@@ -84,8 +84,8 @@ const translations = {
         welcome: {
             title: "Welcome!",
             text: "We are delighted that you have found your way to us. This study app was created with love and dedication to assist you on your spiritual journey through the Holy Scriptures. Discover the timeless truths of God's Word and be inspired on the path to the Source of Life.",
-            verse: "... and that from childhood you have known the Holy Scriptures, which are able to make you wise for salvation through faith which is in Christ Jesus.",
-            reference: "2 Timothy 3:15",
+            verse: "All Scripture is given by inspiration of God, and is profitable for doctrine, for reproof, for correction, for instruction in righteousness, that the man of God may be complete, thoroughly equipped for every good work.",
+            reference: "2 Timothy 3:16-17",
             invitationTitle: "Your Invitation to a Biblical Study Journey",
             invitationText: "Dive into 12 chapters with 120 lessons that guide you through the entire Bible – from creation to completion. Each lesson offers deep insights, practical applications, and mission exercises. Begin your journey to understanding God's Word today!"
         },
@@ -164,8 +164,8 @@ const translations = {
         welcome: {
             title: "Selamat Datang!",
             text: "Kami sangat senang Anda telah menemukan jalan kepada kami. Aplikasi studi ini dibuat dengan cinta dan dedikasi untuk membantu Anda dalam perjalanan rohani melalui Kitab Suci. Temukan kebenaran abadi Firman Tuhan dan biarkan diri Anda terinspirasi di jalan menuju Sumber Kehidupan.",
-            verse: "... dan karena dari kecil engkau sudah mengenal Kitab-kitab Suci yang dapat memberi hikmat kepadamu dan menuntun engkau kepada keselamatan oleh iman kepada Kristus Yesus.",
-            reference: "2 Timotius 3:15",
+            verse: "Segala tulisan yang diilhamkan Allah memang bermanfaat untuk mengajar, untuk menyatakan kesalahan, untuk memperbaiki kelakuan dan untuk mendidik orang dalam kebenaran. Dengan demikian tiap-tiap manusia kepunyaan Allah diperlengkapi untuk setiap perbuatan baik.",
+            reference: "2 Timotius 3:16-17",
             invitationTitle: "Undangan Anda untuk Perjalanan Studi Alkitab",
             invitationText: "Selami 12 bab dengan 120 pelajaran yang memandu Anda melalui seluruh Alkitab – dari penciptaan hingga penyelesaian. Setiap pelajaran menawarkan wawasan mendalam, aplikasi praktis, dan latihan misi. Mulailah perjalanan Anda untuk memahami Firman Tuhan hari ini!"
         },
