@@ -1,0 +1,561 @@
+/* Color Scheme: Himmelblau, Goldgelb, Beige, Braun */
+:root {
+    --sky-blue: #87CEEB;
+    --gold: #DAA520;
+    --beige: #F5F5DC;
+    --brown: #8B4513;
+    --dark-brown: #654321;
+    --white: #FFFFFF;
+    --light-gray: #F8F9FA;
+    --gray: #6C757D;
+    --text-dark: #2C3E50;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background: linear-gradient(135deg, var(--beige) 0%, var(--light-gray) 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+.header {
+    background: linear-gradient(135deg, var(--sky-blue) 0%, #6DB3E8 100%);
+    color: var(--white);
+    padding: 20px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.logo svg {
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+.branding h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.claim {
+    font-size: 0.95rem;
+    font-style: italic;
+    opacity: 0.95;
+}
+
+.nav {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.nav-btn {
+    background: rgba(255,255,255,0.2);
+    border: 2px solid var(--white);
+    color: var(--white);
+    padding: 8px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    background: var(--white);
+    color: var(--sky-blue);
+    transform: translateY(-2px);
+}
+
+.lang-select {
+    background: var(--white);
+    border: 2px solid var(--gold);
+    color: var(--text-dark);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+/* Main Content */
+.main {
+    padding: 40px 0;
+    min-height: calc(100vh - 300px);
+}
+
+.view {
+    display: none;
+}
+
+.view.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin-bottom: 40px;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    color: var(--brown);
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: var(--gray);
+    margin-bottom: 30px;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--gold) 0%, #C8941C 100%);
+    color: var(--white);
+    box-shadow: 0 4px 15px rgba(218, 165, 32, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(218, 165, 32, 0.4);
+}
+
+.btn-secondary {
+    background: var(--white);
+    color: var(--brown);
+    border: 2px solid var(--brown);
+}
+
+.btn-secondary:hover {
+    background: var(--brown);
+    color: var(--white);
+    transform: translateY(-3px);
+}
+
+/* Feature Grid */
+.features {
+    margin: 40px 0;
+}
+
+.features h3 {
+    font-size: 2rem;
+    color: var(--brown);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.feature-card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.feature-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.feature-card h4 {
+    font-size: 1.4rem;
+    color: var(--brown);
+    margin-bottom: 10px;
+}
+
+.feature-card p {
+    color: var(--gray);
+}
+
+/* Daily Verse */
+.daily-verse-preview {
+    background: var(--white);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin: 40px 0;
+}
+
+.daily-verse-preview h3 {
+    font-size: 1.8rem;
+    color: var(--brown);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.verse-card {
+    background: linear-gradient(135deg, var(--beige) 0%, #FFFACD 100%);
+    padding: 30px;
+    border-radius: 15px;
+    border-left: 5px solid var(--gold);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.verse-card.large {
+    padding: 50px;
+    text-align: center;
+}
+
+.verse-text {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+    line-height: 1.8;
+}
+
+.verse-ref {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--brown);
+    text-align: right;
+}
+
+.verse-card.large .verse-text {
+    font-size: 1.6rem;
+}
+
+.verse-card.large .verse-ref {
+    font-size: 1.3rem;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Chapters Grid */
+.subtitle {
+    text-align: center;
+    color: var(--gray);
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+}
+
+.chapters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.chapter-card {
+    background: var(--white);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-left: 5px solid var(--gold);
+}
+
+.chapter-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    border-left-color: var(--brown);
+}
+
+.chapter-number {
+    font-size: 0.9rem;
+    color: var(--gold);
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.chapter-title {
+    font-size: 1.4rem;
+    color: var(--brown);
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.chapter-subtitle {
+    font-size: 1rem;
+    color: var(--gray);
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+.chapter-lessons {
+    font-size: 0.9rem;
+    color: var(--gray);
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--beige);
+}
+
+/* Lessons List */
+.lessons-list {
+    margin-top: 30px;
+}
+
+.lesson-item {
+    background: var(--white);
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-left: 4px solid var(--sky-blue);
+}
+
+.lesson-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+    border-left-color: var(--gold);
+}
+
+.lesson-number {
+    font-weight: 700;
+    color: var(--gold);
+    margin-right: 10px;
+}
+
+.lesson-title {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.lesson-desc {
+    color: var(--gray);
+    font-size: 0.95rem;
+    margin-top: 5px;
+}
+
+/* Lesson Detail */
+.lesson-content {
+    background: var(--white);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.lesson-header {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 3px solid var(--gold);
+}
+
+.lesson-section {
+    margin: 30px 0;
+}
+
+.lesson-section h3 {
+    color: var(--brown);
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.lesson-section p {
+    line-height: 1.8;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+}
+
+.lesson-section ul {
+    margin-left: 30px;
+    color: var(--text-dark);
+}
+
+.lesson-section li {
+    margin-bottom: 10px;
+}
+
+/* Back Button */
+.back-btn {
+    background: var(--gray);
+    color: var(--white);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    background: var(--brown);
+    transform: translateX(-3px);
+}
+
+/* About Section */
+.about-content {
+    background: var(--white);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.about-section {
+    margin-bottom: 40px;
+}
+
+.about-section h3 {
+    color: var(--brown);
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.about-section p {
+    line-height: 1.8;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+}
+
+.about-section ul {
+    margin-left: 30px;
+    color: var(--text-dark);
+}
+
+.about-section li {
+    margin-bottom: 8px;
+}
+
+.copyright-notice {
+    background: var(--beige);
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 4px solid var(--gold);
+    margin-top: 15px;
+    font-style: italic;
+}
+
+/* Daily Verse Card */
+.daily-verse-card {
+    max-width: 800px;
+    margin: 40px auto;
+}
+
+.daily-verse-card .btn {
+    display: block;
+    margin: 20px auto 0;
+}
+
+/* Footer */
+.footer {
+    background: var(--brown);
+    color: var(--white);
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 60px;
+}
+
+.footer p {
+    margin: 5px 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .logo-section {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .branding h1 {
+        font-size: 1.4rem;
+    }
+    
+    .claim {
+        font-size: 0.85rem;
+    }
+    
+    .hero h2 {
+        font-size: 1.8rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    .chapters-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .nav {
+        justify-content: center;
+    }
+    
+    .lang-select {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .verse-text {
+        font-size: 1.1rem;
+    }
+    
+    .verse-card.large .verse-text {
+        font-size: 1.3rem;
+    }
+    
+    .lesson-content {
+        padding: 20px;
+    }
+}
