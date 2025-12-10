@@ -7,101 +7,95 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Login/Start Page -->
+    <!-- Login/Start Page - Single Screen Static Design -->
     <div id="login-page" class="login-page active">
         <div class="login-container">
             <div class="spiritual-background">
                 <div class="light-rays"></div>
-                <div class="floating-elements">
-                    <div class="dove"></div>
-                    <div class="cross"></div>
-                </div>
             </div>
             
             <div class="login-card">
-                <!-- Logo Section -->
-                <div class="logo-container">
-                    <img src="logo.png" alt="Logo" class="main-logo">
-                </div>
-                
-                <!-- Title Section -->
-                <h1 class="app-title">Die Bibel – Glauben der Weg zur Quelle</h1>
-                <p class="app-claim">"Durch Glauben finden wir die Quelle – ein klarer Weg durch alle 66 Bücher"</p>
-                
-                <!-- Grid Layout for Desktop -->
-                <div class="content-grid">
-                    <!-- Welcome Section -->
-                    <div class="welcome-section">
-                        <h2 class="welcome-title" data-i18n="welcome.title">Herzlich Willkommen!</h2>
-                        <p class="welcome-text" data-i18n="welcome.text">
-                            Wir freuen uns, dass Sie den Weg zu uns gefunden haben. Diese Studien-App wurde mit Liebe und Hingabe erstellt,
-                            um Ihnen auf Ihrer geistlichen Reise durch die Heilige Schrift beizustehen.
-                        </p>
+                <!-- Header: Logo + Title + Language (One Row) -->
+                <div class="page-header">
+                    <div class="logo-title-group">
+                        <img src="logo.png" alt="Logo" class="main-logo">
+                        <div class="title-group">
+                            <h1 class="app-title">Die Bibel – Glauben der Weg zur Quelle</h1>
+                            <p class="app-claim">"Durch Glauben finden wir die Quelle"</p>
+                        </div>
                     </div>
-                    
-                    <!-- Bible Verse Section -->
-                    <div class="bible-verse-section">
-                        <div class="verse-icon">✝</div>
-                        <p class="bible-verse" data-i18n="welcome.verse">
-                            "Alle Schrift ist von Gott eingegeben und nütze zur Lehre, zur Überführung, zur Zurechtweisung, zur Unterweisung in der Gerechtigkeit, auf daß der Mensch Gottes vollkommen sei, zu jedem guten Werke völlig geschickt."
-                        </p>
-                        <p class="bible-reference" data-i18n="welcome.reference">2. Timotheus 3,16-17</p>
+                    <div class="language-selection-compact">
+                        <button class="lang-btn-compact" data-lang="de" onclick="selectLanguage('de')" title="Deutsch">🇩🇪</button>
+                        <button class="lang-btn-compact" data-lang="en" onclick="selectLanguage('en')" title="English">🇬🇧</button>
+                        <button class="lang-btn-compact" data-lang="id" onclick="selectLanguage('id')" title="Indonesia">🇮🇩</button>
                     </div>
                 </div>
                 
-                <div class="content-grid">
-                    <!-- Invitation Section -->
-                    <div class="invitation-section">
-                        <h3 class="invitation-title" data-i18n="welcome.invitationTitle">Ihre Einladung zur biblischen Studienreise</h3>
-                        <p class="invitation-text" data-i18n="welcome.invitationText">
-                            Tauchen Sie ein in 12 Kapitel mit 120 Lektionen, die Sie durch die gesamte Bibel führen – 
-                            von der Schöpfung bis zur Vollendung. Beginnen Sie noch heute!
-                        </p>
-                    </div>
-                
-                    <!-- Login/Language Section -->
-                    <div class="login-lang-section">
-                        <div class="language-selection">
-                            <h3>Sprache wählen / Choose Language / Pilih Bahasa</h3>
-                            <div class="language-buttons">
-                                <button class="lang-btn" data-lang="de" onclick="selectLanguage('de')">
-                                    <span class="lang-flag">🇩🇪</span>
-                                    <span class="lang-name">Deutsch</span>
-                                </button>
-                                <button class="lang-btn" data-lang="en" onclick="selectLanguage('en')">
-                                    <span class="lang-flag">🇬🇧</span>
-                                    <span class="lang-name">English</span>
-                                </button>
-                                <button class="lang-btn" data-lang="id" onclick="selectLanguage('id')">
-                                    <span class="lang-flag">🇮🇩</span>
-                                    <span class="lang-name">Indonesia</span>
-                                </button>
-                            </div>
+                <!-- Main Content Grid (Content | Login) -->
+                <div class="main-content-grid">
+                    <!-- Left: Combined Content Section -->
+                    <div class="content-section">
+                        <div class="welcome-compact">
+                            <h2 data-i18n="welcome.title">Herzlich Willkommen!</h2>
+                            <p data-i18n="welcome.text">Beginnen Sie Ihre geistliche Reise durch die Heilige Schrift mit 12 Kapiteln und 120 Lektionen.</p>
                         </div>
                         
-                        <div class="login-form">
-                            <div class="login-tabs">
-                                <button class="tab-btn active" onclick="showLoginTab('user')" data-i18n="login.userTab">Benutzer</button>
-                                <button class="tab-btn" onclick="showLoginTab('admin')" data-i18n="login.adminTab">Admin</button>
-                            </div>
-                            
-                            <!-- User Login -->
-                            <div id="user-login-form" class="login-tab-content active">
-                                <h3 data-i18n="login.title">Anmelden</h3>
-                                <form onsubmit="handleLogin(event)">
-                                    <div class="form-group">
-                                        <label for="username" data-i18n="login.username">Benutzername</label>
-                                        <input type="text" id="username" name="username" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="email" data-i18n="login.email">E-Mail (optional)</label>
-                                        <input type="email" id="email" name="email">
-                                    </div>
-                                    <button type="submit" class="btn-login" data-i18n="login.submit">Zur Bibelstudie</button>
+                        <div class="verse-compact">
+                            <span class="verse-icon">✝</span>
+                            <p class="verse-text" data-i18n="welcome.verse">"Alle Schrift ist von Gott eingegeben und nütze zur Lehre, zur Überführung, zur Zurechtweisung, zur Unterweisung in der Gerechtigkeit, auf daß der Mensch Gottes vollkommen sei, zu jedem guten Werke völlig geschickt."</p>
+                            <p class="verse-ref" data-i18n="welcome.reference">2. Timotheus 3,16-17</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Right: Login Form -->
+                    <div class="login-section">
+                        <div class="login-tabs">
+                            <button class="tab-btn active" onclick="showLoginTab('user')" data-i18n="login.userTab">Benutzer</button>
+                            <button class="tab-btn" onclick="showLoginTab('admin')" data-i18n="login.adminTab">Admin</button>
+                        </div>
+                        
+                        <!-- User Login -->
+                        <div id="user-login-form" class="login-tab-content active">
+                            <form onsubmit="handleLogin(event)">
+                                <div class="form-group">
+                                    <label for="username" data-i18n="login.username">Benutzername</label>
+                                    <input type="text" id="username" name="username" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" data-i18n="login.email">E-Mail (optional)</label>
+                                    <input type="email" id="email" name="email">
+                                </div>
+                                <button type="submit" class="btn-login" data-i18n="login.submit">Zur Bibelstudie</button>
                                 </form>
                             </div>
                             
                             <!-- Admin Login -->
+                            <div id="admin-login-form" class="login-tab-content">
+                                <form onsubmit="handleAdminLogin(event)">
+                                    <div class="form-group">
+                                        <label for="admin-username" data-i18n="login.username">Benutzername</label>
+                                        <input type="text" id="admin-username" name="admin-username" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="admin-password" data-i18n="login.password">Passwort</label>
+                                        <input type="password" id="admin-password" name="admin-password" required>
+                                    </div>
+                                    <button type="submit" class="btn-login" data-i18n="login.adminSubmit">Als Admin anmelden</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Footer Copyright -->
+                <div class="page-footer">
+                    <p>© 2024 Glauben der Weg zur Quelle – Mario R. Denzer</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Login -->
                             <div id="admin-login-form" class="login-tab-content">
                                 <h3 data-i18n="login.adminTitle">Admin-Login</h3>
                                 <form onsubmit="handleAdminLogin(event)">

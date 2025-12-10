@@ -38,7 +38,7 @@ body {
     padding: 0 20px;
 }
 
-/* ================== LOGIN PAGE ================== */
+/* ================== LOGIN PAGE - SINGLE SCREEN NO SCROLL ================== */
 .login-page {
     display: none;
     position: fixed;
@@ -46,15 +46,14 @@ body {
     left: 0;
     width: 100%;
     height: 100vh;
+    max-height: 100vh;
     z-index: 10000;
     background: linear-gradient(135deg, 
         #87CEEB 0%, 
-        #6DB3E8 25%, 
         #F5F5DC 50%,
-        #E8D4A0 75%,
         #DAA520 100%
     );
-    overflow-y: auto;
+    overflow: hidden; /* NO SCROLLING! */
 }
 
 .login-page.active {
@@ -62,31 +61,18 @@ body {
     align-items: center;
     justify-content: center;
     animation: fadeIn 0.8s ease;
-    padding: 20px 0;
-}
-
-/* Desktop: Center aligned for balanced view */
-@media (min-width: 769px) {
-    .login-page.active {
-        align-items: center;
-        justify-content: center;
-    }
-}
-
-/* Mobile: Allow scrolling for all content */
-@media (max-width: 768px) {
-    .login-page.active {
-        align-items: flex-start;
-        padding-top: 20px;
-        min-height: 100vh;
-    }
 }
 
 .login-container {
     width: 100%;
-    max-width: 900px;
-    padding: 20px;
+    max-width: 1100px;
+    height: 100%;
+    max-height: 100vh;
+    padding: 15px;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .spiritual-background {
@@ -98,6 +84,430 @@ body {
     z-index: 0;
     pointer-events: none;
 }
+
+.light-rays {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, 
+        rgba(218, 165, 32, 0.1) 0%, 
+        rgba(218, 165, 32, 0.05) 30%, 
+        transparent 70%
+    );
+    transform: translate(-50%, -50%);
+    animation: rotate 30s linear infinite;
+}
+
+.login-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.15),
+        0 0 60px rgba(218, 165, 32, 0.2);
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-height: calc(100vh - 30px);
+    display: flex;
+    flex-direction: column;
+    padding: 15px 20px;
+    overflow: hidden; /* NO OVERFLOW! */
+}
+
+/* Header: Logo + Title + Language Flags in ONE ROW */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-shrink: 0;
+}
+
+.logo-title-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+}
+
+.main-logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid var(--gold);
+    box-shadow: 
+        0 0 20px rgba(218, 165, 32, 0.4),
+        0 0 40px rgba(135, 206, 235, 0.2);
+    animation: logoGlow 3s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+.title-group {
+    flex: 1;
+}
+
+.app-title {
+    font-size: 1.3rem;
+    color: var(--brown);
+    margin: 0;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.app-claim {
+    font-size: 0.85rem;
+    color: var(--gray);
+    font-style: italic;
+    margin: 3px 0 0 0;
+}
+
+.language-selection-compact {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.lang-btn-compact {
+    background: white;
+    border: 2px solid var(--gold);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.lang-btn-compact:hover {
+    background: var(--gold);
+    transform: scale(1.1);
+}
+
+/* Main Content Grid: Content | Login */
+.main-content-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 20px;
+    flex: 1;
+    overflow: hidden;
+    min-height: 0;
+}
+
+/* Left: Compact Content Section */
+.content-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.welcome-compact {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(245, 245, 220, 0.7));
+    border: 2px solid var(--gold);
+    border-radius: 10px;
+    padding: 12px;
+}
+
+.welcome-compact h2 {
+    font-size: 1.1rem;
+    color: var(--brown);
+    margin: 0 0 8px 0;
+}
+
+.welcome-compact p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+.verse-compact {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(218, 165, 32, 0.15));
+    border: 2px solid #8B5CF6;
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+}
+
+.verse-icon {
+    font-size: 1.8rem;
+    color: #8B5CF6;
+    display: block;
+    margin-bottom: 8px;
+    animation: holypulse 3s ease-in-out infinite;
+}
+
+.verse-text {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: var(--text-dark);
+    font-style: italic;
+    margin: 0 0 8px 0;
+}
+
+.verse-ref {
+    font-size: 0.8rem;
+    color: #8B5CF6;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Right: Login Section */
+.login-section {
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid var(--sky-blue);
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.login-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+    flex-shrink: 0;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 8px;
+    border: 2px solid var(--sky-blue);
+    background: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+    background: var(--sky-blue);
+    color: white;
+}
+
+.tab-btn.active {
+    background: var(--sky-blue);
+    color: white;
+}
+
+.login-tab-content {
+    display: none;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.login-tab-content.active {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 12px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid var(--beige);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--sky-blue);
+}
+
+.btn-login {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, var(--sky-blue), var(--gold));
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(135, 206, 235, 0.4);
+}
+
+/* Footer */
+.page-footer {
+    text-align: center;
+    padding: 8px 0 0 0;
+    border-top: 1px solid rgba(218, 165, 32, 0.3);
+    margin-top: 10px;
+    flex-shrink: 0;
+}
+
+.page-footer p {
+    font-size: 0.75rem;
+    color: var(--gray);
+    margin: 0;
+}
+
+/* ========== RESPONSIVE: MOBILE ========== */
+@media (max-width: 768px) {
+    .login-card {
+        padding: 12px 15px;
+        max-height: calc(100vh - 20px);
+    }
+    
+    .page-header {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 12px;
+    }
+    
+    .logo-title-group {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+    }
+    
+    .main-logo {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .app-title {
+        font-size: 1.1rem;
+    }
+    
+    .app-claim {
+        font-size: 0.75rem;
+    }
+    
+    .language-selection-compact {
+        justify-content: center;
+    }
+    
+    .lang-btn-compact {
+        padding: 6px 10px;
+        font-size: 1.3rem;
+    }
+    
+    .main-content-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .content-section {
+        max-height: 35vh;
+    }
+    
+    .welcome-compact {
+        padding: 10px;
+    }
+    
+    .welcome-compact h2 {
+        font-size: 1rem;
+    }
+    
+    .welcome-compact p {
+        font-size: 0.85rem;
+    }
+    
+    .verse-compact {
+        padding: 10px;
+    }
+    
+    .verse-text {
+        font-size: 0.8rem;
+    }
+    
+    .login-section {
+        padding: 12px;
+    }
+    
+    .tab-btn {
+        padding: 6px;
+        font-size: 0.85rem;
+    }
+    
+    .form-group label {
+        font-size: 0.8rem;
+    }
+    
+    .form-group input {
+        padding: 8px;
+        font-size: 0.85rem;
+    }
+    
+    .btn-login {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+    
+    .page-footer p {
+        font-size: 0.7rem;
+    }
+}
+
+/* Animations */
+@keyframes logoGlow {
+    0%, 100% {
+        box-shadow: 
+            0 0 20px rgba(218, 165, 32, 0.4),
+            0 0 40px rgba(135, 206, 235, 0.2);
+    }
+    50% {
+        box-shadow: 
+            0 0 30px rgba(218, 165, 32, 0.6),
+            0 0 60px rgba(135, 206, 235, 0.3);
+    }
+}
+
+@keyframes holypulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Remove old styles that are no longer needed */
 
 .light-rays {
     position: absolute;
