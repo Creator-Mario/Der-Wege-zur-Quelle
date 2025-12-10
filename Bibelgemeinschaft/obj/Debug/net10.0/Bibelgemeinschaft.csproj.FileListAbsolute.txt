@@ -1,0 +1,14 @@
+C:\Users\Mario Reiner-02\source\repos\Bibelgemeinschaft\bin\Debug\net10.0\Bibelgemeinschaft.exe
+C:\Users\Mario Reiner-02\source\repos\Bibelgemeinschaft\bin\Debug\net10.0\Bibelgemeinschaft.deps.json
+C:\Users\Mario Reiner-02\source\repos\Bibelgemeinschaft\bin\Debug\net10.0\Bibelgemeinschaft.runtimeconfig.json
+C:\Users\Mario Reiner-02\source\repos\Bibelgemeinschaft\bin\Debug\net10.0\Bibelgemeinschaft.dll
+C:\Users\Mario Reiner-02\source\repos\Bibelgemeinschaft\bin\Debug\net10.0\Bibelgemeinschaft.pdb
+C:\Users\Mario Reiner-02\source\repos\Bibelgemeinschaft\obj\Debug\net10.0\Bibelgemeinschaft.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mario Reiner-02\source\repos\Bibelgemeinschaft\obj\Debug\net10.0\Bibelgemeinschaft.AssemblyInfoInputs.cache
+C:\Users\Mario Reiner-02\source\repos\Bibelgemeinschaft\obj\Debug\net10.0\Bibelgemeinschaft.AssemblyInfo.cs
+C:\Users\Mario Reiner-02\source\repos\Bibelgemeinschaft\obj\Debug\net10.0\Bibelgemeinschaft.csproj.CoreCompileInputs.cache
+C:\Users\Mario Reiner-02\source\repos\Bibelgemeinschaft\obj\Debug\net10.0\Bibelgemeinschaft.dll
+C:\Users\Mario Reiner-02\source\repos\Bibelgemeinschaft\obj\Debug\net10.0\refint\Bibelgemeinschaft.dll
+C:\Users\Mario Reiner-02\source\repos\Bibelgemeinschaft\obj\Debug\net10.0\Bibelgemeinschaft.pdb
+C:\Users\Mario Reiner-02\source\repos\Bibelgemeinschaft\obj\Debug\net10.0\Bibelgemeinschaft.genruntimeconfig.cache
+C:\Users\Mario Reiner-02\source\repos\Bibelgemeinschaft\obj\Debug\net10.0\ref\Bibelgemeinschaft.dll
