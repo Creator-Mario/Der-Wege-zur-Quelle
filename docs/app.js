@@ -163,11 +163,13 @@ function selectLanguage(lang) {
     currentLanguage = lang;
     localStorage.setItem('bibleStudyLang', lang);
     
-    // Update selected button
-    document.querySelectorAll('.lang-btn').forEach(btn => {
+    // Update selected button (fixed selector)
+    document.querySelectorAll('.lang-btn-float').forEach(btn => {
         btn.classList.remove('selected');
+        if (btn.getAttribute('data-lang') === lang) {
+            btn.classList.add('selected');
+        }
     });
-    document.querySelector(`.lang-btn[data-lang="${lang}"]`).classList.add('selected');
     
     // Update all translations
     updateTranslations();

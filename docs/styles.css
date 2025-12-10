@@ -49,10 +49,12 @@ body {
     height: 100vh;
     max-height: 100vh;
     z-index: 10000;
+    /* Updated background to match logo better */
     background: linear-gradient(135deg, 
-        #87CEEB 0%, 
-        #F5F5DC 50%,
-        #DAA520 100%
+        #87CEEB 0%,   /* Sky blue */
+        #F5F5DC 40%,  /* Beige */
+        #DAA520 70%,  /* Gold */
+        #8B5CF6 100%  /* Purple accent */
     );
     overflow-y: auto;
     overflow-x: hidden;
@@ -199,67 +201,70 @@ body {
 .welcome-section {
     background: linear-gradient(135deg, 
         rgba(255, 255, 255, 0.9) 0%,
-        rgba(245, 245, 220, 0.8) 100%
+        rgba(245, 245, 220, 0.85) 100%
     );
-    border: 3px solid var(--gold);
+    border: none; /* Removed border */
 }
 
 .floating-title {
     font-size: 1.8rem;
-    color: var(--brown);
+    color: #1a1a1a; /* Darker for better contrast */
     text-align: center;
     margin-bottom: 12px;
-    font-weight: 700;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    font-weight: 700; /* Bold */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
 }
 
 .floating-text {
     font-size: 0.95rem;
     text-align: center;
-    color: var(--text-dark);
+    color: #1a1a1a; /* Darker for better contrast */
     line-height: 1.5;
+    font-weight: 600; /* Bold */
 }
 
 /* Bible Verse Section */
 .verse-section {
     background: linear-gradient(135deg, 
-        rgba(139, 92, 246, 0.15) 0%,
-        rgba(218, 165, 32, 0.15) 100%
+        rgba(139, 92, 246, 0.25) 0%,
+        rgba(218, 165, 32, 0.25) 100%
     );
-    border: 3px solid var(--purple);
+    border: none; /* Removed border */
     text-align: center;
 }
 
 .verse-icon-large {
     font-size: 2.5rem;
-    color: var(--purple);
+    color: #1a1a1a; /* Darker for visibility */
     margin-bottom: 10px;
     animation: holyCrossPulse 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.6));
 }
 
 @keyframes holyCrossPulse {
     0%, 100% { 
         transform: scale(1);
-        text-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+        filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.5));
     }
     50% { 
         transform: scale(1.1);
-        text-shadow: 0 0 20px rgba(139, 92, 246, 0.8);
+        filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.9));
     }
 }
 
 .floating-verse {
     font-size: 1rem;
     font-style: italic;
-    color: var(--brown);
+    color: #1a1a1a; /* Darker for better contrast */
     line-height: 1.6;
     margin-bottom: 10px;
+    font-weight: 600; /* Bold */
 }
 
 .verse-reference {
     font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--purple);
+    font-weight: 700; /* Bolder */
+    color: #1a1a1a; /* Darker for better contrast */
 }
 
 /* Login Form Section */
@@ -267,10 +272,10 @@ body {
     width: 500px;
     max-width: 90%;
     background: linear-gradient(135deg, 
-        rgba(135, 206, 235, 0.2) 0%,
+        rgba(135, 206, 235, 0.3) 0%,
         rgba(255, 255, 255, 0.9) 100%
     );
-    border: 2px solid var(--sky-blue);
+    border: none; /* Removed border */
 }
 
 /* Login Tabs */
@@ -283,12 +288,12 @@ body {
 .tab-btn {
     flex: 1;
     padding: 12px 20px;
-    background: rgba(255, 255, 255, 0.7);
-    border: 2px solid var(--gold);
+    background: rgba(255, 255, 255, 0.8);
+    border: none; /* Removed border */
     border-radius: 10px;
     font-size: 1rem;
-    font-weight: 600;
-    color: var(--brown);
+    font-weight: 700; /* Bolder */
+    color: #1a1a1a; /* Darker */
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -322,18 +327,20 @@ body {
 .form-group label {
     display: block;
     margin-bottom: 8px;
-    font-weight: 600;
-    color: var(--brown);
+    font-weight: 700; /* Bolder */
+    color: #1a1a1a; /* Darker */
 }
 
 .form-group input {
     width: 100%;
     padding: 12px 15px;
-    border: 2px solid var(--beige);
+    border: 2px solid rgba(0, 0, 0, 0.2); /* Darker border */
     border-radius: 8px;
     font-size: 1rem;
+    font-weight: 600; /* Bold */
     transition: all 0.3s ease;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.95);
+    color: #1a1a1a; /* Darker text */
 }
 
 .form-group input:focus {
@@ -361,40 +368,61 @@ body {
     box-shadow: 0 6px 20px rgba(218, 165, 32, 0.5);
 }
 
-/* Language Selection - Fixed Bottom Right */
+/* Language Selection - Fixed Top Right */
 .language-selection-floating {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
+    top: 20px;
+    right: 20px;
     display: flex;
-    gap: 10px;
+    gap: 8px;
     z-index: 1000;
+    align-items: center;
 }
 
 .lang-btn-float {
-    width: 50px;
-    height: 50px;
-    background: rgba(255, 255, 255, 0.9);
-    border: 3px solid var(--gold);
-    border-radius: 50%;
-    font-size: 1.8rem;
+    min-width: 70px;
+    height: 45px;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid var(--gold);
+    border-radius: 10px;
+    font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 2px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
+.lang-btn-float .flag {
+    font-size: 1.4rem;
+    line-height: 1;
+}
+
+.lang-btn-float .lang-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1;
+}
+
 .lang-btn-float:hover {
-    transform: scale(1.15) rotate(5deg);
+    transform: scale(1.05);
     box-shadow: 0 6px 20px rgba(218, 165, 32, 0.4);
+    background: rgba(255, 255, 255, 1);
 }
 
 .lang-btn-float.selected {
     background: var(--gold);
     border-color: var(--brown);
     box-shadow: 0 0 20px rgba(218, 165, 32, 0.6);
+}
+
+.lang-btn-float.selected .lang-label {
+    color: white;
 }
 
 /* Footer */
@@ -424,19 +452,19 @@ body {
     }
     
     .floating-title {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
     }
     
     .floating-text {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
     
     .floating-verse {
-        font-size: 1.05rem;
+        font-size: 0.95rem;
     }
     
     .verse-icon-large {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
     
     .login-form-section {
@@ -447,16 +475,25 @@ body {
         width: 90vw;
     }
     
+    /* Mobile language buttons - top right */
     .language-selection-floating {
-        bottom: 15px;
-        right: 15px;
-        gap: 8px;
+        top: 15px;
+        right: 10px;
+        gap: 5px;
     }
     
     .lang-btn-float {
-        width: 45px;
-        height: 45px;
-        font-size: 1.5rem;
+        min-width: 55px;
+        height: 40px;
+        padding: 6px 8px;
+    }
+    
+    .lang-btn-float .flag {
+        font-size: 1.2rem;
+    }
+    
+    .lang-btn-float .lang-label {
+        font-size: 0.65rem;
     }
 }
 

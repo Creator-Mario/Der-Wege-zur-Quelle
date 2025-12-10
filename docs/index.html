@@ -9,6 +9,22 @@
 <body>
     <!-- Login/Start Page - Full-Width Floating Design -->
     <div id="login-page" class="login-page active">
+        <!-- Language Selection - Fixed Top Right -->
+        <div class="language-selection-floating">
+            <button class="lang-btn-float selected" data-lang="de" onclick="selectLanguage('de')" title="Deutsch">
+                <span class="flag">🇩🇪</span>
+                <span class="lang-label">DE</span>
+            </button>
+            <button class="lang-btn-float" data-lang="en" onclick="selectLanguage('en')" title="English">
+                <span class="flag">🇬🇧</span>
+                <span class="lang-label">EN</span>
+            </button>
+            <button class="lang-btn-float" data-lang="id" onclick="selectLanguage('id')" title="Indonesia">
+                <span class="flag">🇮🇩</span>
+                <span class="lang-label">ID</span>
+            </button>
+        </div>
+        
         <!-- Background Logo Watermark -->
         <div class="background-logo-container">
             <img src="logo.png" alt="Background Logo" class="background-logo">
@@ -70,13 +86,6 @@
                         <button type="submit" class="btn-login" data-i18n="login.adminSubmit">Als Admin anmelden</button>
                     </form>
                 </div>
-            </div>
-            
-            <!-- Language Selection - Fixed Bottom Right -->
-            <div class="language-selection-floating">
-                <button class="lang-btn-float selected" data-lang="de" onclick="selectLanguage('de')" title="Deutsch">🇩🇪</button>
-                <button class="lang-btn-float" data-lang="en" onclick="selectLanguage('en')" title="English">🇬🇧</button>
-                <button class="lang-btn-float" data-lang="id" onclick="selectLanguage('id')" title="Indonesia">🇮🇩</button>
             </div>
             
             <!-- Copyright Footer -->
