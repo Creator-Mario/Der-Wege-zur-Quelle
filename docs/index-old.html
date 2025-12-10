@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Die Bibel – Glauben der Weg zur Quelle</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo-section">
+                <div class="logo">
+                    <svg width="60" height="60" viewBox="0 0 60 60">
+                        <circle cx="30" cy="30" r="28" fill="#87CEEB" stroke="#DAA520" stroke-width="2"/>
+                        <path d="M30 10 L30 50 M15 30 L45 30" stroke="#DAA520" stroke-width="3"/>
+                        <circle cx="30" cy="20" r="3" fill="white"/>
+                        <path d="M25 35 Q30 32 35 35" stroke="white" stroke-width="2" fill="none"/>
+                    </svg>
+                </div>
+                <div class="branding">
+                    <h1>Die Bibel – Glauben der Weg zur Quelle</h1>
+                    <p class="claim">Durch Glauben finden wir die Quelle – ein klarer Weg durch alle 66 Bücher</p>
+                </div>
+            </div>
+            <nav class="nav">
+                <button class="nav-btn" onclick="showView('home')">Start</button>
+                <button class="nav-btn" onclick="showView('courses')">Kurse</button>
+                <button class="nav-btn" onclick="showView('daily')">Tagesvers</button>
+                <button class="nav-btn" onclick="showView('about')">Info</button>
+                <select id="language" class="lang-select">
+                    <option value="de">Deutsch</option>
+                    <option value="en">English</option>
+                    <option value="id">Bahasa Indonesia</option>
+                </select>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Home View -->
+        <div id="home-view" class="view active">
+            <div class="container">
+                <section class="hero">
+                    <h2>Willkommen zur biblischen Studienreise</h2>
+                    <p>Eine umfassende Studien-App für Studenten freikirchlicher Christengemeinschaften</p>
+                    <div class="cta-buttons">
+                        <button class="btn btn-primary" onclick="showView('courses')">Kurse starten</button>
+                        <button class="btn btn-secondary" onclick="showView('about')">Mehr erfahren</button>
+                    </div>
+                </section>
+
+                <section class="daily-verse-preview">
+                    <h3>📖 Tagesvers</h3>
+                    <div class="verse-card" id="daily-verse-preview">
+                        <p class="verse-text">"Im Anfang schuf Gott die Himmel und die Erde."</p>
+                        <p class="verse-ref">– 1. Mose 1:1</p>
+                    </div>
+                </section>
+
+                <section class="features">
+                    <h3>Funktionen</h3>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">📚</div>
+                            <h4>12 Kapitel</h4>
+                            <p>Strukturierte Lektionen durch die gesamte Bibel</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">✅</div>
+                            <h4>120 Lektionen</h4>
+                            <p>Vertieftes Bibelstudium mit praktischer Anwendung</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📝</div>
+                            <h4>Tests & Zertifikate</h4>
+                            <p>Überprüfe deinen Fortschritt und erhalte Zertifikate</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🌍</div>
+                            <h4>Mission</h4>
+                            <p>Befähigung zur Weitergabe der biblischen Botschaft</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Courses View -->
+        <div id="courses-view" class="view">
+            <div class="container">
+                <h2>Kursübersicht – 12 Kapitel</h2>
+                <p class="subtitle">Jedes Kapitel enthält 10 Lektionen mit Einleitung, Bibelverse, Erklärung und Mini-Test</p>
+                
+                <div class="chapters-grid" id="chapters-grid"></div>
+            </div>
+        </div>
+
+        <!-- Chapter Detail View -->
+        <div id="chapter-view" class="view">
+            <div class="container">
+                <button class="back-btn" onclick="showView('courses')">← Zurück zu Kursen</button>
+                <div id="chapter-detail"></div>
+            </div>
+        </div>
+
+        <!-- Lesson View -->
+        <div id="lesson-view" class="view">
+            <div class="container">
+                <button class="back-btn" onclick="goBackToChapter()">← Zurück zum Kapitel</button>
+                <div id="lesson-detail"></div>
+            </div>
+        </div>
+
+        <!-- Daily Verse View -->
+        <div id="daily-view" class="view">
+            <div class="container">
+                <h2>Tagesvers</h2>
+                <div class="daily-verse-card">
+                    <div class="verse-card large" id="daily-verse-full">
+                        <p class="verse-text">"Denn also hat Gott die Welt geliebt, dass er seinen eingeborenen Sohn gab, damit alle, die an ihn glauben, nicht verloren werden, sondern das ewige Leben haben."</p>
+                        <p class="verse-ref">– Johannes 3:16</p>
+                    </div>
+                    <button class="btn btn-secondary" onclick="generateNewVerse()">Neuer Vers</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- About View -->
+        <div id="about-view" class="view">
+            <div class="container">
+                <h2>Über diese App</h2>
+                <div class="about-content">
+                    <section class="about-section">
+                        <h3>🎯 Projektidee</h3>
+                        <p>Eine mehrsprachige, offline-fähige Studien-App für Studenten freikirchlicher Christengemeinschaften. Die App vermittelt die Botschaft der Bibel, befähigt zur Mission und bietet interaktives Lernen.</p>
+                        <p><strong>Grundlage:</strong> Elberfelder Bibel</p>
+                    </section>
+
+                    <section class="about-section">
+                        <h3>📜 Copyright & Impressum</h3>
+                        <p>© Glauben der Weg zur Quelle – Mario R. Denzer</p>
+                        <p><strong>Creator & Admin:</strong> Mario R. Denzer</p>
+                        <p><strong>Kontakt:</strong> marioreinerdenzer@gmail.com</p>
+                        <p class="copyright-notice">Alle Rechte vorbehalten. Inhalte (Texte, Lektionen, Tests, Zertifikate) dürfen nur mit Genehmigung des Autors genutzt oder weitergegeben werden.</p>
+                    </section>
+
+                    <section class="about-section">
+                        <h3>⚙️ Technologie</h3>
+                        <p>Diese Demo-Version ist eine statische Web-App, die offline im Browser läuft. Sie zeigt die Struktur aller 12 Kapitel mit 120 Lektionen.</p>
+                        <p><strong>Features:</strong></p>
+                        <ul>
+                            <li>Responsive Design für alle Geräte</li>
+                            <li>Offline-fähig (nach dem ersten Laden)</li>
+                            <li>Mehrsprachig (DE/EN/ID)</li>
+                            <li>Strukturierte Lektionen mit Tests</li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Glauben der Weg zur Quelle – Mario R. Denzer</p>
+            <p>Alle Rechte vorbehalten</p>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

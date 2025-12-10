@@ -1,14 +1,119 @@
+// Enhanced Bible Study App with Login and Multi-language Support
 // Application State
 let currentView = 'home';
 let currentChapter = null;
 let currentLesson = null;
+let currentLanguage = 'de';
+let userName = '';
+let userEmail = '';
 
 // Initialize app
 document.addEventListener('DOMContentLoaded', function() {
-    initializeApp();
+    checkLoginStatus();
 });
 
+// Check if user is logged in
+function checkLoginStatus() {
+    const savedUser = localStorage.getItem('bibleStudyUser');
+    const savedLang = localStorage.getItem('bibleStudyLang');
+    
+    if (savedUser) {
+        const userData = JSON.parse(savedUser);
+        userName = userData.name;
+        userEmail = userData.email || '';
+        currentLanguage = savedLang || 'de';
+        
+        showMainApp();
+    } else {
+        showLoginPage();
+    }
+}
+
+// Show login page
+function showLoginPage() {
+    document.getElementById('login-page').classList.add('active');
+    document.getElementById('main-app').classList.remove('active');
+}
+
+// Show main app
+function showMainApp() {
+    document.getElementById('login-page').classList.remove('active');
+    document.getElementById('main-app').classList.add('active');
+    
+    // Initialize app components
+    initializeApp();
+    
+    // Update user display
+    document.getElementById('user-name-display').textContent = userName;
+}
+
+// Language selection
+function selectLanguage(lang) {
+    currentLanguage = lang;
+    localStorage.setItem('bibleStudyLang', lang);
+    
+    // Update selected button
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.remove('selected');
+    });
+    document.querySelector(`.lang-btn[data-lang="${lang}"]`).classList.add('selected');
+    
+    // Update all translations
+    updateTranslations();
+}
+
+// Handle login form submission
+function handleLogin(event) {
+    event.preventDefault();
+    
+    const usernameInput = document.getElementById('username');
+    const emailInput = document.getElementById('email');
+    
+    userName = usernameInput.value.trim();
+    userEmail = emailInput.value.trim();
+    
+    if (!userName) {
+        alert(currentLanguage === 'de' ? 'Bitte geben Sie einen Benutzernamen ein' :
+              currentLanguage === 'en' ? 'Please enter a username' :
+              'Silakan masukkan nama pengguna');
+        return false;
+    }
+    
+    // Save user data
+    const userData = {
+        name: userName,
+        email: userEmail,
+        loginDate: new Date().toISOString()
+    };
+    
+    localStorage.setItem('bibleStudyUser', JSON.stringify(userData));
+    localStorage.setItem('bibleStudyLang', currentLanguage);
+    
+    // Show main app
+    showMainApp();
+    
+    return false;
+}
+
+// Logout
+function logout() {
+    const confirmMsg = currentLanguage === 'de' ? 'Möchten Sie sich wirklich abmelden?' :
+                       currentLanguage === 'en' ? 'Do you really want to log out?' :
+                       'Apakah Anda benar-benar ingin keluar?';
+    
+    if (confirm(confirmMsg)) {
+        localStorage.removeItem('bibleStudyUser');
+        userName = '';
+        userEmail = '';
+        showLoginPage();
+    }
+}
+
+// Initialize main app
 function initializeApp() {
+    // Update translations
+    updateTranslations();
+    
     // Render chapters grid
     renderChaptersGrid();
     
@@ -23,7 +128,7 @@ function initializeApp() {
 // View Management
 function showView(viewName) {
     // Hide all views
-    document.querySelectorAll('.view').forEach(view => {
+    document.querySelectorAll('.main .view').forEach(view => {
         view.classList.remove('active');
     });
     
@@ -33,6 +138,9 @@ function showView(viewName) {
         view.classList.add('active');
         currentView = viewName;
     }
+    
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // Render Chapters Grid
@@ -51,7 +159,7 @@ function renderChaptersGrid() {
             <div class="chapter-number">Kapitel ${chapter.id}</div>
             <h3 class="chapter-title">${chapter.title}</h3>
             <p class="chapter-subtitle">${chapter.subtitle}</p>
-            <div class="chapter-lessons">📚 ${chapter.lessons.length} Lektionen</div>
+            <div class="chapter-lessons">${chapter.lessons.length} Lektionen</div>
         `;
         
         grid.appendChild(card);
@@ -69,32 +177,18 @@ function showChapter(chapterId) {
     detail.innerHTML = `
         <div class="lesson-content">
             <div class="lesson-header">
-                <div class="chapter-number">Kapitel ${chapter.id}</div>
-                <h2>${chapter.title}</h2>
-                <p style="color: var(--gray); font-size: 1.1rem; font-style: italic;">${chapter.subtitle}</p>
-            </div>
-            
-            <div class="lesson-section">
-                <h3>Lektionen</h3>
-                <p>Dieses Kapitel enthält 10 Lektionen, die Ihnen helfen, die biblischen Wahrheiten zu verstehen und in Ihrem Leben anzuwenden.</p>
+                <h2 class="chapter-title">${chapter.title}</h2>
+                <p class="chapter-subtitle">${chapter.subtitle}</p>
             </div>
             
             <div class="lessons-list">
                 ${chapter.lessons.map(lesson => `
-                    <div class="lesson-item" onclick="showLesson(${chapter.id}, ${lesson.num})">
-                        <span class="lesson-number">L${lesson.num}</span>
-                        <div>
-                            <div class="lesson-title">${lesson.title}</div>
-                            <div class="lesson-desc">${lesson.desc}</div>
-                        </div>
+                    <div class="lesson-item" onclick="showLesson(${chapterId}, ${lesson.id})">
+                        <span class="lesson-number">L${lesson.id}:</span>
+                        <span class="lesson-title">${lesson.title}</span>
+                        <p class="lesson-desc">${lesson.description}</p>
                     </div>
                 `).join('')}
-            </div>
-            
-            <div class="lesson-section" style="margin-top: 40px; background: var(--beige); padding: 20px; border-radius: 10px;">
-                <h3>📝 Abschlusstest</h3>
-                <p>Nach Abschluss aller 10 Lektionen steht ein Kapiteltest zur Verfügung. Nach erfolgreichem Abschluss erhalten Sie ein Zertifikat.</p>
-                <button class="btn btn-secondary" style="margin-top: 10px;" disabled>Test (verfügbar nach allen Lektionen)</button>
             </div>
         </div>
     `;
@@ -103,116 +197,74 @@ function showChapter(chapterId) {
 }
 
 // Show Lesson Detail
-function showLesson(chapterId, lessonNum) {
+function showLesson(chapterId, lessonId) {
     const chapter = courseData.find(c => c.id === chapterId);
     if (!chapter) return;
     
-    const lesson = chapter.lessons.find(l => l.num === lessonNum);
+    const lesson = chapter.lessons.find(l => l.id === lessonId);
     if (!lesson) return;
     
-    currentLesson = { chapter, lesson };
+    currentLesson = lesson;
+    currentChapter = chapter;
     
     const detail = document.getElementById('lesson-detail');
     detail.innerHTML = `
         <div class="lesson-content">
             <div class="lesson-header">
-                <div class="chapter-number">Kapitel ${chapter.id} – Lektion ${lesson.num}</div>
+                <div class="chapter-number">Kapitel ${chapterId} - Lektion ${lessonId}</div>
                 <h2>${lesson.title}</h2>
-                <p style="color: var(--gray); font-size: 1.1rem;">${lesson.desc}</p>
+                <p class="lesson-desc">${lesson.description}</p>
             </div>
             
             <div class="lesson-section">
                 <h3>📖 Einleitung</h3>
-                <p>Diese Lektion führt Sie in das Thema "${lesson.title}" ein und vermittelt wichtige biblische Grundlagen. Sie werden lernen, wie diese Wahrheiten Ihr Leben und Ihren Dienst bereichern können.</p>
+                <p>${lesson.content.intro}</p>
             </div>
             
             <div class="lesson-section">
                 <h3>📜 Bibelverse</h3>
                 <div class="verse-card">
-                    <p class="verse-text">Hier würden die relevanten Bibelverse für diese Lektion stehen, die aus der Elberfelder Bibel zitiert werden.</p>
-                    <p class="verse-ref">– Beispielvers</p>
+                    <p class="verse-text">${lesson.content.verses}</p>
                 </div>
-                <p style="margin-top: 15px;"><em>Hinweis: In der vollständigen Version werden hier spezifische Verse zur Lektion angezeigt.</em></p>
             </div>
             
             <div class="lesson-section">
                 <h3>💡 Erklärung</h3>
-                <p>Diese Sektion bietet eine ausführliche Erklärung des Lektionsthemas. Sie werden die theologischen und praktischen Aspekte verstehen lernen.</p>
-                <p><strong>Schlüsselpunkte:</strong></p>
+                <p>${lesson.content.explanation}</p>
+            </div>
+            
+            <div class="lesson-section">
+                <h3>🌍 Fremdwörter / Foreign Words / Kata Asing</h3>
                 <ul>
-                    <li>Biblische Grundlage des Themas</li>
-                    <li>Historischer und kultureller Kontext</li>
-                    <li>Relevanz für das Leben heute</li>
-                    <li>Praktische Anwendung im Alltag</li>
+                    ${lesson.content.glossary.map(item => `
+                        <li><strong>${item.term}:</strong> DE: ${item.de} | EN: ${item.en} | ID: ${item.id}</li>
+                    `).join('')}
                 </ul>
             </div>
             
             <div class="lesson-section">
-                <h3>🔤 Fremdwörter</h3>
-                <p><strong>Mehrsprachiges Glossar (DE/EN/ID):</strong></p>
-                <ul>
-                    <li><strong>Offenbarung</strong> – Revelation – Wahyu</li>
-                    <li><strong>Gnade</strong> – Grace – Kasih karunia</li>
-                    <li><strong>Heiligung</strong> – Sanctification – Pengudusan</li>
-                </ul>
-            </div>
-            
-            <div class="lesson-section">
-                <h3>🌱 Anwendung im Alltag</h3>
-                <p>Wie können Sie diese Lektion in Ihrem täglichen Leben umsetzen?</p>
-                <ul>
-                    <li>Reflektieren Sie über die gelernten Wahrheiten</li>
-                    <li>Beten Sie für Weisheit in der Anwendung</li>
-                    <li>Teilen Sie Ihre Erkenntnisse mit anderen</li>
-                    <li>Setzen Sie konkrete Schritte um</li>
-                </ul>
+                <h3>🎯 Anwendung im Alltag</h3>
+                <p>${lesson.content.application}</p>
             </div>
             
             <div class="lesson-section">
                 <h3>✍️ Arbeitsauftrag</h3>
-                <p><strong>Reflexionsfragen:</strong></p>
-                <ul>
-                    <li>Was hat Sie in dieser Lektion am meisten angesprochen?</li>
-                    <li>Wie möchten Sie das Gelernte in Ihrem Leben umsetzen?</li>
-                    <li>Welche Herausforderungen sehen Sie dabei?</li>
-                </ul>
-                <textarea style="width: 100%; min-height: 120px; margin-top: 15px; padding: 15px; border: 2px solid var(--beige); border-radius: 10px; font-size: 1rem;" placeholder="Schreiben Sie hier Ihre Gedanken und Reflexionen..."></textarea>
+                <p>${lesson.content.assignment}</p>
             </div>
             
-            <div class="lesson-section" style="background: linear-gradient(135deg, var(--sky-blue) 0%, #6DB3E8 100%); color: white; padding: 30px; border-radius: 15px;">
-                <h3 style="color: white;">🌍 Missionsübung</h3>
-                <p><strong>Wie kann ich diese Botschaft weitergeben?</strong></p>
-                <p>Überlegen Sie konkret:</p>
-                <ul>
-                    <li>Mit wem könnten Sie diese Wahrheit teilen?</li>
-                    <li>Welche Gelegenheit bietet sich in nächster Zeit?</li>
-                    <li>Wie können Sie die Botschaft verständlich kommunizieren?</li>
-                </ul>
+            <div class="lesson-section">
+                <h3>🚀 Missionsübung</h3>
+                <p>${lesson.content.missionExercise}</p>
+                <p><em>"Wie kann ich diese Botschaft weitergeben?"</em></p>
             </div>
             
             <div class="lesson-section">
                 <h3>📝 Mini-Test</h3>
-                <p><strong>Überprüfen Sie Ihr Verständnis:</strong></p>
-                <div style="background: var(--white); padding: 20px; border-radius: 10px; border-left: 4px solid var(--gold);">
-                    <p><strong>Frage 1:</strong> Was ist die Hauptaussage dieser Lektion?</p>
-                    <div style="margin: 10px 0;">
-                        <label style="display: block; margin: 8px 0; cursor: pointer;">
-                            <input type="radio" name="q1" value="a"> Option A
-                        </label>
-                        <label style="display: block; margin: 8px 0; cursor: pointer;">
-                            <input type="radio" name="q1" value="b"> Option B
-                        </label>
-                        <label style="display: block; margin: 8px 0; cursor: pointer;">
-                            <input type="radio" name="q1" value="c"> Option C
-                        </label>
-                    </div>
-                    <button class="btn btn-primary" style="margin-top: 15px;" onclick="alert('Test-Funktion wird in der vollständigen Version verfügbar sein!')">Antwort überprüfen</button>
-                </div>
-                <p style="margin-top: 15px;"><em>Hinweis: Dies ist ein Demo. Die vollständige Version enthält spezifische Fragen zu jeder Lektion.</em></p>
-            </div>
-            
-            <div style="margin-top: 40px; text-align: center;">
-                <button class="btn btn-primary" onclick="completeLesson()" style="font-size: 1.2rem; padding: 15px 40px;">Lektion abschließen ✓</button>
+                <ol>
+                    ${lesson.content.quiz.map(q => `
+                        <li>${q}</li>
+                    `).join('')}
+                </ol>
             </div>
         </div>
     `;
@@ -220,7 +272,7 @@ function showLesson(chapterId, lessonNum) {
     showView('lesson');
 }
 
-// Go back to chapter
+// Go back to chapter from lesson
 function goBackToChapter() {
     if (currentChapter) {
         showChapter(currentChapter.id);
@@ -229,42 +281,63 @@ function goBackToChapter() {
     }
 }
 
-// Complete lesson
-function completeLesson() {
-    if (!currentLesson) return;
-    
-    const { chapter, lesson } = currentLesson;
-    
-    alert(`✅ Glückwunsch!\n\nSie haben Lektion ${lesson.num} "${lesson.title}" abgeschlossen.\n\nIhre Fortschritte werden in der vollständigen Version gespeichert.`);
-    
-    // Go back to chapter view
-    goBackToChapter();
-}
-
-// Daily Verse Functions
+// Set random verse
 function setRandomVerse(elementId) {
+    const verses = [
+        {
+            text: '"Im Anfang schuf Gott die Himmel und die Erde."',
+            ref: '1. Mose 1:1'
+        },
+        {
+            text: '"Denn also hat Gott die Welt geliebt, dass er seinen eingeborenen Sohn gab, damit alle, die an ihn glauben, nicht verloren werden, sondern das ewige Leben haben."',
+            ref: 'Johannes 3:16'
+        },
+        {
+            text: '"Dein Wort ist meines Fußes Leuchte und ein Licht auf meinem Weg."',
+            ref: 'Psalm 119:105'
+        },
+        {
+            text: '"Vertraut auf den HERRN allezeit, denn in Jah, dem HERRN, ist ein Fels der Ewigkeiten!"',
+            ref: 'Jesaja 26:4'
+        },
+        {
+            text: '"Ich vermag alles in dem, der mich kräftigt."',
+            ref: 'Philipper 4:13'
+        },
+        {
+            text: '"Fürchte dich nicht, denn ich bin mit dir; schau nicht ängstlich umher, denn ich bin dein Gott!"',
+            ref: 'Jesaja 41:10'
+        },
+        {
+            text: '"Seid stark und mutig, fürchtet euch nicht und erschreckt nicht vor ihnen! Denn der HERR, dein Gott, er ist es, der mit dir geht; er wird dich nicht aufgeben und dich nicht verlassen."',
+            ref: '5. Mose 31:6'
+        },
+        {
+            text: '"Dem König der Zeitalter aber, dem unvergänglichen, unsichtbaren, alleinigen Gott, sei Ehre und Herrlichkeit von Ewigkeit zu Ewigkeit! Amen."',
+            ref: '1. Timotheus 1:17'
+        },
+        {
+            text: '"Und wir wissen, dass denen, die Gott lieben, alle Dinge zum Guten mitwirken, denen, die nach seinem Vorsatz berufen sind."',
+            ref: 'Römer 8:28'
+        },
+        {
+            text: '"Naht euch Gott, und er wird sich euch nahen!"',
+            ref: 'Jakobus 4:8'
+        }
+    ];
+    
+    const randomVerse = verses[Math.floor(Math.random() * verses.length)];
     const element = document.getElementById(elementId);
-    if (!element) return;
     
-    const verse = bibleVerses[Math.floor(Math.random() * bibleVerses.length)];
-    
-    element.innerHTML = `
-        <p class="verse-text">"${verse.text}"</p>
-        <p class="verse-ref">– ${verse.ref}</p>
-    `;
+    if (element) {
+        element.innerHTML = `
+            <p class="verse-text">${randomVerse.text}</p>
+            <p class="verse-ref">– ${randomVerse.ref}</p>
+        `;
+    }
 }
 
+// Generate new verse
 function generateNewVerse() {
     setRandomVerse('daily-verse-full');
 }
-
-// Language Selector
-document.getElementById('language')?.addEventListener('change', function(e) {
-    const lang = e.target.value;
-    alert(`Sprachauswahl: ${lang}\n\nDie vollständige Version wird Inhalte in Deutsch, English und Bahasa Indonesia anbieten.`);
-});
-
-// Log app initialization
-console.log('📖 Die Bibel – Glauben der Weg zur Quelle');
-console.log('Demo-Version initialisiert');
-console.log(`${courseData.length} Kapitel mit insgesamt ${courseData.reduce((sum, ch) => sum + ch.lessons.length, 0)} Lektionen geladen`);

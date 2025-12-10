@@ -1,3 +1,4 @@
+/* Spiritual Bible Study App - Enhanced Professional Design */
 /* Color Scheme: Himmelblau, Goldgelb, Beige, Braun */
 :root {
     --sky-blue: #87CEEB;
@@ -9,6 +10,7 @@
     --light-gray: #F8F9FA;
     --gray: #6C757D;
     --text-dark: #2C3E50;
+    --spiritual-glow: rgba(218, 165, 32, 0.3);
 }
 
 * {
@@ -23,6 +25,7 @@ body {
     color: var(--text-dark);
     background: linear-gradient(135deg, var(--beige) 0%, var(--light-gray) 100%);
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 .container {
@@ -31,12 +34,336 @@ body {
     padding: 0 20px;
 }
 
+/* ================== LOGIN PAGE ================== */
+.login-page {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 10000;
+    background: linear-gradient(135deg, 
+        #87CEEB 0%, 
+        #6DB3E8 25%, 
+        #F5F5DC 50%,
+        #E8D4A0 75%,
+        #DAA520 100%
+    );
+    overflow-y: auto;
+}
+
+.login-page.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.8s ease;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    position: relative;
+}
+
+.spiritual-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.light-rays {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150%;
+    height: 100%;
+    background: radial-gradient(
+        ellipse at top,
+        rgba(255, 255, 255, 0.3) 0%,
+        transparent 70%
+    );
+    animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 0.8; }
+}
+
+.floating-elements {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.dove, .cross {
+    position: absolute;
+    opacity: 0.1;
+    animation: float 20s ease-in-out infinite;
+}
+
+.dove {
+    top: 10%;
+    left: 10%;
+    width: 80px;
+    height: 80px;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 30 Q30 50 50 70 Q70 50 50 30" fill="white" opacity="0.3"/></svg>');
+    animation-delay: 0s;
+}
+
+.cross {
+    bottom: 15%;
+    right: 15%;
+    width: 60px;
+    height: 60px;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 10 L50 90 M20 50 L80 50" stroke="white" stroke-width="8" opacity="0.3"/></svg>');
+    animation-delay: 5s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-20px) rotate(5deg); }
+    50% { transform: translateY(-40px) rotate(0deg); }
+    75% { transform: translateY(-20px) rotate(-5deg); }
+}
+
+.login-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    padding: 40px;
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.3),
+        0 0 100px rgba(218, 165, 32, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    position: relative;
+    z-index: 1;
+    border: 2px solid rgba(218, 165, 32, 0.3);
+}
+
+.logo-container {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.main-logo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    box-shadow: 
+        0 10px 30px rgba(218, 165, 32, 0.4),
+        0 0 60px rgba(135, 206, 235, 0.3);
+    border: 4px solid var(--gold);
+    background: var(--white);
+    padding: 10px;
+    animation: logoGlow 3s ease-in-out infinite;
+}
+
+@keyframes logoGlow {
+    0%, 100% { 
+        box-shadow: 
+            0 10px 30px rgba(218, 165, 32, 0.4),
+            0 0 60px rgba(135, 206, 235, 0.3);
+    }
+    50% { 
+        box-shadow: 
+            0 10px 40px rgba(218, 165, 32, 0.6),
+            0 0 80px rgba(135, 206, 235, 0.5);
+    }
+}
+
+.app-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    text-align: center;
+    background: linear-gradient(135deg, var(--brown) 0%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 10px rgba(218, 165, 32, 0.2);
+}
+
+.app-claim {
+    text-align: center;
+    font-style: italic;
+    color: var(--gray);
+    margin-bottom: 30px;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.language-selection {
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid var(--beige);
+}
+
+.language-selection h3 {
+    text-align: center;
+    color: var(--brown);
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.language-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.lang-btn {
+    background: linear-gradient(135deg, var(--white) 0%, var(--beige) 100%);
+    border: 3px solid var(--beige);
+    padding: 15px 25px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    min-width: 120px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.lang-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(218, 165, 32, 0.3);
+    border-color: var(--gold);
+    background: linear-gradient(135deg, var(--white) 0%, var(--gold) 100%);
+}
+
+.lang-btn.selected {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--brown) 100%);
+    border-color: var(--brown);
+    color: var(--white);
+    box-shadow: 0 8px 30px rgba(218, 165, 32, 0.5);
+}
+
+.lang-flag {
+    font-size: 2.5rem;
+}
+
+.lang-name {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.lang-btn.selected .lang-name {
+    color: var(--white);
+}
+
+.login-form {
+    margin-bottom: 25px;
+}
+
+.login-form h3 {
+    text-align: center;
+    color: var(--brown);
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--brown);
+    font-weight: 600;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid var(--beige);
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: var(--white);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 4px rgba(218, 165, 32, 0.1);
+}
+
+.btn-login {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--brown) 100%);
+    color: var(--white);
+    border: none;
+    border-radius: 15px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(218, 165, 32, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-login:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(218, 165, 32, 0.6);
+}
+
+.login-note {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--gray);
+    font-style: italic;
+    margin-top: 15px;
+}
+
+.copyright-footer {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 2px solid var(--beige);
+    font-size: 0.9rem;
+    color: var(--gray);
+}
+
+.copyright-footer p {
+    margin: 5px 0;
+}
+
+/* ================== MAIN APP ================== */
+.main-app {
+    display: none;
+}
+
+.main-app.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
 /* Header */
 .header {
     background: linear-gradient(135deg, var(--sky-blue) 0%, #6DB3E8 100%);
     color: var(--white);
     padding: 20px 0;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -49,15 +376,19 @@ body {
     margin-bottom: 15px;
 }
 
-.logo svg {
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+.header-logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid var(--white);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .branding h1 {
     font-size: 1.8rem;
     font-weight: 700;
     margin-bottom: 5px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .claim {
@@ -74,7 +405,7 @@ body {
 }
 
 .nav-btn {
-    background: rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.2);
     border: 2px solid var(--white);
     color: var(--white);
     padding: 8px 20px;
@@ -91,16 +422,35 @@ body {
     transform: translateY(-2px);
 }
 
-.lang-select {
-    background: var(--white);
-    border: 2px solid var(--gold);
-    color: var(--text-dark);
+.user-menu {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-name {
+    font-weight: 600;
     padding: 8px 15px;
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 20px;
+}
+
+.btn-logout {
+    background: var(--brown);
+    border: 2px solid var(--white);
+    color: var(--white);
+    padding: 8px 20px;
+    border-radius: 25px;
+    cursor: pointer;
     font-size: 0.9rem;
     font-weight: 600;
-    cursor: pointer;
-    margin-left: auto;
+    transition: all 0.3s ease;
+}
+
+.btn-logout:hover {
+    background: var(--dark-brown);
+    transform: translateY(-2px);
 }
 
 /* Main Content */
@@ -115,28 +465,60 @@ body {
 
 .view.active {
     display: block;
-    animation: fadeIn 0.3s ease;
+    animation: slideIn 0.4s ease;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+@keyframes slideIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
 }
 
 /* Hero Section */
 .hero {
     text-align: center;
     padding: 60px 20px;
-    background: var(--white);
-    border-radius: 20px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    background: linear-gradient(135deg, var(--white) 0%, var(--beige) 100%);
+    border-radius: 30px;
+    box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.1),
+        0 0 100px rgba(218, 165, 32, 0.1);
     margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(218, 165, 32, 0.1) 0%, transparent 70%);
+    animation: rotate 30s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.hero > * {
+    position: relative;
+    z-index: 1;
 }
 
 .hero h2 {
     font-size: 2.5rem;
     color: var(--brown);
     margin-bottom: 15px;
+    font-weight: 800;
 }
 
 .hero p {
@@ -153,36 +535,40 @@ body {
 }
 
 .btn {
-    padding: 12px 30px;
+    padding: 15px 35px;
     border-radius: 30px;
     font-size: 1.1rem;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     border: none;
     transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--gold) 0%, #C8941C 100%);
+    background: linear-gradient(135deg, var(--gold) 0%, var(--brown) 100%);
     color: var(--white);
-    box-shadow: 0 4px 15px rgba(218, 165, 32, 0.3);
+    box-shadow: 0 6px 20px rgba(218, 165, 32, 0.4);
 }
 
 .btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(218, 165, 32, 0.4);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(218, 165, 32, 0.6);
 }
 
 .btn-secondary {
     background: var(--white);
     color: var(--brown);
-    border: 2px solid var(--brown);
+    border: 3px solid var(--brown);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .btn-secondary:hover {
     background: var(--brown);
     color: var(--white);
-    transform: translateY(-3px);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
 /* Feature Grid */
@@ -195,6 +581,7 @@ body {
     color: var(--brown);
     margin-bottom: 30px;
     text-align: center;
+    font-weight: 800;
 }
 
 .feature-grid {
@@ -204,21 +591,23 @@ body {
 }
 
 .feature-card {
-    background: var(--white);
-    padding: 30px;
-    border-radius: 15px;
+    background: linear-gradient(135deg, var(--white) 0%, var(--beige) 100%);
+    padding: 35px;
+    border-radius: 20px;
     text-align: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
 }
 
 .feature-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 35px rgba(218, 165, 32, 0.3);
+    border-color: var(--gold);
 }
 
 .feature-icon {
-    font-size: 3rem;
+    font-size: 3.5rem;
     margin-bottom: 15px;
 }
 
@@ -226,6 +615,7 @@ body {
     font-size: 1.4rem;
     color: var(--brown);
     margin-bottom: 10px;
+    font-weight: 700;
 }
 
 .feature-card p {
@@ -234,10 +624,10 @@ body {
 
 /* Daily Verse */
 .daily-verse-preview {
-    background: var(--white);
+    background: linear-gradient(135deg, var(--white) 0%, var(--beige) 100%);
     padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    border-radius: 25px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
     margin: 40px 0;
 }
 
@@ -246,18 +636,32 @@ body {
     color: var(--brown);
     margin-bottom: 20px;
     text-align: center;
+    font-weight: 700;
 }
 
 .verse-card {
-    background: linear-gradient(135deg, var(--beige) 0%, #FFFACD 100%);
+    background: linear-gradient(135deg, #FFFACD 0%, var(--beige) 100%);
     padding: 30px;
-    border-radius: 15px;
-    border-left: 5px solid var(--gold);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    border-radius: 20px;
+    border-left: 6px solid var(--gold);
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.1),
+        inset 0 0 20px rgba(218, 165, 32, 0.1);
+    position: relative;
+}
+
+.verse-card::before {
+    content: '"';
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    font-size: 5rem;
+    color: rgba(218, 165, 32, 0.2);
+    font-family: Georgia, serif;
 }
 
 .verse-card.large {
-    padding: 50px;
+    padding: 60px;
     text-align: center;
 }
 
@@ -266,24 +670,25 @@ body {
     font-style: italic;
     color: var(--text-dark);
     margin-bottom: 15px;
-    line-height: 1.8;
+    line-height: 1.9;
+    font-weight: 500;
 }
 
 .verse-ref {
     font-size: 1.1rem;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--brown);
     text-align: right;
 }
 
 .verse-card.large .verse-text {
-    font-size: 1.6rem;
+    font-size: 1.7rem;
 }
 
 .verse-card.large .verse-ref {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 25px;
 }
 
 /* Chapters Grid */
@@ -297,39 +702,58 @@ body {
 .chapters-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 25px;
+    gap: 30px;
     margin-top: 30px;
 }
 
 .chapter-card {
-    background: var(--white);
-    border-radius: 15px;
-    padding: 25px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    background: linear-gradient(135deg, var(--white) 0%, var(--beige) 100%);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: all 0.3s ease;
-    border-left: 5px solid var(--gold);
+    border-left: 6px solid var(--gold);
+    position: relative;
+    overflow: hidden;
+}
+
+.chapter-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(218, 165, 32, 0.1) 0%, transparent 70%);
+    transform: translate(30%, -30%);
+    transition: all 0.3s ease;
 }
 
 .chapter-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 35px rgba(218, 165, 32, 0.3);
     border-left-color: var(--brown);
 }
 
+.chapter-card:hover::before {
+    transform: translate(0%, 0%) scale(1.5);
+}
+
 .chapter-number {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: var(--gold);
-    font-weight: 700;
+    font-weight: 800;
     text-transform: uppercase;
     margin-bottom: 10px;
+    letter-spacing: 1px;
 }
 
 .chapter-title {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     color: var(--brown);
     margin-bottom: 10px;
-    font-weight: 700;
+    font-weight: 800;
 }
 
 .chapter-subtitle {
@@ -344,7 +768,7 @@ body {
     color: var(--gray);
     margin-top: 15px;
     padding-top: 15px;
-    border-top: 1px solid var(--beige);
+    border-top: 2px solid rgba(218, 165, 32, 0.2);
 }
 
 /* Lessons List */
@@ -353,24 +777,24 @@ body {
 }
 
 .lesson-item {
-    background: var(--white);
-    padding: 20px;
+    background: linear-gradient(135deg, var(--white) 0%, var(--beige) 100%);
+    padding: 25px;
     margin-bottom: 15px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     cursor: pointer;
     transition: all 0.3s ease;
-    border-left: 4px solid var(--sky-blue);
+    border-left: 5px solid var(--sky-blue);
 }
 
 .lesson-item:hover {
-    transform: translateX(5px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+    transform: translateX(8px);
+    box-shadow: 0 6px 25px rgba(135, 206, 235, 0.3);
     border-left-color: var(--gold);
 }
 
 .lesson-number {
-    font-weight: 700;
+    font-weight: 800;
     color: var(--gold);
     margin-right: 10px;
 }
@@ -378,7 +802,7 @@ body {
 .lesson-title {
     font-size: 1.1rem;
     color: var(--text-dark);
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .lesson-desc {
@@ -389,30 +813,31 @@ body {
 
 /* Lesson Detail */
 .lesson-content {
-    background: var(--white);
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    background: linear-gradient(135deg, var(--white) 0%, var(--beige) 100%);
+    padding: 50px;
+    border-radius: 25px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
 }
 
 .lesson-header {
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 3px solid var(--gold);
+    margin-bottom: 35px;
+    padding-bottom: 25px;
+    border-bottom: 4px solid var(--gold);
 }
 
 .lesson-section {
-    margin: 30px 0;
+    margin: 35px 0;
 }
 
 .lesson-section h3 {
     color: var(--brown);
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     margin-bottom: 15px;
+    font-weight: 700;
 }
 
 .lesson-section p {
-    line-height: 1.8;
+    line-height: 1.9;
     color: var(--text-dark);
     margin-bottom: 15px;
 }
@@ -423,7 +848,7 @@ body {
 }
 
 .lesson-section li {
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 /* Back Button */
@@ -431,41 +856,45 @@ body {
     background: var(--gray);
     color: var(--white);
     border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
+    padding: 12px 25px;
+    border-radius: 25px;
     cursor: pointer;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     font-size: 1rem;
+    font-weight: 600;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .back-btn:hover {
     background: var(--brown);
-    transform: translateX(-3px);
+    transform: translateX(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
 /* About Section */
 .about-content {
-    background: var(--white);
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    background: linear-gradient(135deg, var(--white) 0%, var(--beige) 100%);
+    padding: 50px;
+    border-radius: 25px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
 }
 
 .about-section {
-    margin-bottom: 40px;
+    margin-bottom: 45px;
 }
 
 .about-section h3 {
     color: var(--brown);
-    font-size: 1.8rem;
-    margin-bottom: 15px;
+    font-size: 1.9rem;
+    margin-bottom: 20px;
+    font-weight: 700;
 }
 
 .about-section p {
-    line-height: 1.8;
+    line-height: 1.9;
     color: var(--text-dark);
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .about-section ul {
@@ -474,40 +903,42 @@ body {
 }
 
 .about-section li {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 .copyright-notice {
     background: var(--beige);
-    padding: 15px;
-    border-radius: 10px;
-    border-left: 4px solid var(--gold);
-    margin-top: 15px;
+    padding: 20px;
+    border-radius: 15px;
+    border-left: 5px solid var(--gold);
+    margin-top: 20px;
     font-style: italic;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 /* Daily Verse Card */
 .daily-verse-card {
-    max-width: 800px;
-    margin: 40px auto;
+    max-width: 900px;
+    margin: 50px auto;
 }
 
 .daily-verse-card .btn {
     display: block;
-    margin: 20px auto 0;
+    margin: 25px auto 0;
 }
 
 /* Footer */
 .footer {
-    background: var(--brown);
+    background: linear-gradient(135deg, var(--brown) 0%, var(--dark-brown) 100%);
     color: var(--white);
     text-align: center;
-    padding: 30px 0;
-    margin-top: 60px;
+    padding: 35px 0;
+    margin-top: 80px;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .footer p {
-    margin: 5px 0;
+    margin: 8px 0;
 }
 
 /* Responsive */
@@ -541,8 +972,28 @@ body {
         justify-content: center;
     }
     
-    .lang-select {
+    .user-menu {
         margin-left: 0;
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    
+    .language-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .lang-btn {
+        min-width: auto;
+    }
+    
+    .login-card {
+        padding: 30px 20px;
+    }
+    
+    .app-title {
+        font-size: 1.5rem;
     }
 }
 
@@ -552,10 +1003,14 @@ body {
     }
     
     .verse-card.large .verse-text {
-        font-size: 1.3rem;
+        font-size: 1.4rem;
     }
     
-    .lesson-content {
-        padding: 20px;
+    .lesson-content, .about-content {
+        padding: 30px 20px;
+    }
+    
+    .hero {
+        padding: 40px 20px;
     }
 }
