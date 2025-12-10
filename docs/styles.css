@@ -62,7 +62,7 @@ body {
 
 .login-container {
     width: 100%;
-    max-width: 500px;
+    max-width: 700px;
     padding: 20px;
     position: relative;
 }
@@ -199,6 +199,125 @@ body {
     margin-bottom: 30px;
     font-size: 1rem;
     line-height: 1.5;
+}
+
+/* Welcome Section */
+.welcome-section {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 245, 220, 0.9) 100%);
+    padding: 30px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    border: 3px solid var(--gold);
+    box-shadow: 
+        0 10px 30px rgba(218, 165, 32, 0.2),
+        inset 0 0 50px rgba(255, 255, 255, 0.5);
+}
+
+.welcome-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--brown) 0%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 10px rgba(218, 165, 32, 0.3);
+}
+
+.welcome-text {
+    text-align: center;
+    color: var(--text-dark);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 0;
+}
+
+/* Bible Verse Section */
+.bible-verse-section {
+    background: linear-gradient(135deg, 
+        rgba(139, 92, 246, 0.15) 0%,
+        rgba(218, 165, 32, 0.15) 100%
+    );
+    padding: 35px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    border: 3px solid var(--gold);
+    position: relative;
+    box-shadow: 
+        0 15px 40px rgba(139, 92, 246, 0.3),
+        inset 0 0 60px rgba(255, 255, 255, 0.4);
+    text-align: center;
+}
+
+.verse-icon {
+    font-size: 3rem;
+    color: var(--gold);
+    margin-bottom: 20px;
+    text-shadow: 0 0 20px rgba(218, 165, 32, 0.6);
+    animation: holyPulse 3s ease-in-out infinite;
+}
+
+@keyframes holyPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.9;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+}
+
+.bible-verse {
+    font-size: 1.15rem;
+    font-style: italic;
+    line-height: 1.9;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+    font-weight: 500;
+    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
+}
+
+.bible-reference {
+    font-weight: 700;
+    color: var(--brown);
+    font-size: 1.1rem;
+    margin-top: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Invitation Section */
+.invitation-section {
+    background: linear-gradient(135deg, 
+        rgba(135, 206, 235, 0.2) 0%,
+        rgba(245, 245, 220, 0.3) 100%
+    );
+    padding: 35px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    border: 3px solid var(--sky-blue);
+    box-shadow: 
+        0 15px 40px rgba(135, 206, 235, 0.3),
+        inset 0 0 50px rgba(255, 255, 255, 0.5);
+}
+
+.invitation-title {
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--brown);
+    margin-bottom: 20px;
+    text-shadow: 0 2px 10px rgba(218, 165, 32, 0.2);
+}
+
+.invitation-text {
+    text-align: center;
+    color: var(--text-dark);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 0;
 }
 
 .language-selection {
@@ -1048,6 +1167,46 @@ body {
     
     .app-title {
         font-size: 1.5rem;
+    }
+    
+    .welcome-section {
+        padding: 20px;
+    }
+    
+    .welcome-title {
+        font-size: 1.6rem;
+    }
+    
+    .welcome-text {
+        font-size: 1rem;
+    }
+    
+    .bible-verse-section {
+        padding: 25px 20px;
+    }
+    
+    .verse-icon {
+        font-size: 2.5rem;
+    }
+    
+    .bible-verse {
+        font-size: 1.05rem;
+    }
+    
+    .bible-reference {
+        font-size: 1rem;
+    }
+    
+    .invitation-section {
+        padding: 25px 20px;
+    }
+    
+    .invitation-title {
+        font-size: 1.4rem;
+    }
+    
+    .invitation-text {
+        font-size: 1rem;
     }
 }
 
