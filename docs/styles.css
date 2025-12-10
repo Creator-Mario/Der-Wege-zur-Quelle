@@ -46,7 +46,8 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
+    max-height: 100vh;
     z-index: 10000;
     background: linear-gradient(135deg, 
         #87CEEB 0%, 
@@ -55,15 +56,17 @@ body {
     );
     overflow-y: auto;
     overflow-x: hidden;
-    padding: 40px 20px;
+    padding: 20px 20px;
 }
 
 .login-page.active {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     animation: fadeIn 0.8s ease;
 }
 
-/* Background Logo Watermark */
+/* Background Logo Watermark - Pulsing */
 .background-logo-container {
     position: fixed;
     top: 50%;
@@ -74,22 +77,24 @@ body {
 }
 
 .background-logo {
-    width: 70vw;
-    max-width: 800px;
+    width: 50vw;
+    max-width: 600px;
     height: auto;
-    opacity: 0.08;
-    filter: blur(2px);
-    animation: slowRotate 60s linear infinite, logoFade 4s ease-in-out infinite alternate;
+    opacity: 0.15;
+    filter: blur(1px);
+    animation: logoPulse 4s ease-in-out infinite;
 }
 
-@keyframes slowRotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+@keyframes logoPulse {
+    0%, 100% { 
+        transform: scale(1);
+        opacity: 0.15;
+    }
+    50% { 
+        transform: scale(1.05);
+        opacity: 0.25;
+    }
 }
-
-@keyframes logoFade {
-    from { opacity: 0.05; }
-    to { opacity: 0.12; }
 }
 
 .spiritual-background {
@@ -100,6 +105,25 @@ body {
     height: 100%;
     z-index: 0;
     pointer-events: none;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.75), rgba(245, 245, 220, 0.75)),
+        radial-gradient(ellipse at top, rgba(135, 206, 235, 0.4), transparent 60%),
+        radial-gradient(ellipse at bottom right, rgba(218, 165, 32, 0.3), transparent 50%);
+    background-size: cover;
+}
+
+.spiritual-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        linear-gradient(45deg, transparent 48%, rgba(218, 165, 32, 0.05) 50%, transparent 52%),
+        linear-gradient(-45deg, transparent 48%, rgba(139, 92, 246, 0.05) 50%, transparent 52%);
+    background-size: 100px 100px;
+    opacity: 0.3;
 }
 
 .light-rays {
@@ -108,9 +132,9 @@ body {
     left: 50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle, 
-        rgba(218, 165, 32, 0.1) 0%, 
-        rgba(218, 165, 32, 0.05) 30%, 
+    background: radial-gradient(ellipse, 
+        rgba(255, 255, 255, 0.4) 0%, 
+        rgba(218, 165, 32, 0.1) 30%, 
         transparent 70%
     );
     transform: translate(-50%, -50%);
@@ -127,25 +151,29 @@ body {
     position: relative;
     z-index: 10;
     max-width: 1400px;
+    width: 100%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 15px;
     align-items: center;
+    max-height: 95vh;
+    overflow-y: auto;
+    padding: 10px 0;
 }
 
 /* Floating Sections - Full Width */
 .floating-section {
     width: 90%;
     max-width: 1200px;
-    padding: 30px 40px;
-    background: rgba(255, 255, 255, 0.75);
+    padding: 20px 30px;
+    background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(10px);
     border-radius: 20px;
     box-shadow: 
         0 8px 32px rgba(0, 0, 0, 0.1),
         0 0 20px rgba(218, 165, 32, 0.15);
-    animation: float Animation 0.8s ease;
+    animation: floatAnimation 0.8s ease;
     transition: all 0.3s ease;
 }
 
@@ -177,19 +205,19 @@ body {
 }
 
 .floating-title {
-    font-size: 2.5rem;
+    font-size: 1.8rem;
     color: var(--brown);
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
     font-weight: 700;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .floating-text {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     text-align: center;
     color: var(--text-dark);
-    line-height: 1.8;
+    line-height: 1.5;
 }
 
 /* Bible Verse Section */
@@ -203,9 +231,9 @@ body {
 }
 
 .verse-icon-large {
-    font-size: 3rem;
+    font-size: 2.5rem;
     color: var(--purple);
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     animation: holyCrossPulse 3s ease-in-out infinite;
 }
 
@@ -221,15 +249,15 @@ body {
 }
 
 .floating-verse {
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-style: italic;
     color: var(--brown);
-    line-height: 1.8;
-    margin-bottom: 15px;
+    line-height: 1.6;
+    margin-bottom: 10px;
 }
 
 .verse-reference {
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 600;
     color: var(--purple);
 }
