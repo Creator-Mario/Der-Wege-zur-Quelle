@@ -6,10 +6,52 @@ let currentLesson = null;
 let currentLanguage = 'de';
 let userName = '';
 let userEmail = '';
+let isAdmin = false;
+
+// Device detection
+function detectDevice() {
+    const ua = navigator.userAgent;
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+    const isTablet = /iPad|Android/i.test(ua) && !/Mobile/i.test(ua);
+    
+    document.body.classList.remove('device-mobile', 'device-tablet', 'device-desktop');
+    
+    if (isMobile && !isTablet) {
+        document.body.classList.add('device-mobile');
+    } else if (isTablet) {
+        document.body.classList.add('device-tablet');
+    } else {
+        document.body.classList.add('device-desktop');
+    }
+    
+    // Also check screen size for better accuracy
+    checkScreenSize();
+}
+
+function checkScreenSize() {
+    const width = window.innerWidth;
+    
+    if (width <= 768) {
+        document.body.classList.add('screen-small');
+        document.body.classList.remove('screen-medium', 'screen-large');
+    } else if (width <= 1024) {
+        document.body.classList.add('screen-medium');
+        document.body.classList.remove('screen-small', 'screen-large');
+    } else {
+        document.body.classList.add('screen-large');
+        document.body.classList.remove('screen-small', 'screen-medium');
+    }
+}
 
 // Initialize app
 document.addEventListener('DOMContentLoaded', function() {
+    detectDevice();
     checkLoginStatus();
+});
+
+// Re-detect on window resize
+window.addEventListener('resize', function() {
+    checkScreenSize();
 });
 
 // Check if user is logged in
@@ -21,11 +63,32 @@ function checkLoginStatus() {
         const userData = JSON.parse(savedUser);
         userName = userData.name;
         userEmail = userData.email || '';
+        isAdmin = userData.isAdmin || false;
         currentLanguage = savedLang || 'de';
         
         showMainApp();
     } else {
         showLoginPage();
+    }
+}
+
+// Show/hide login tabs
+function showLoginTab(tab) {
+    // Update tab buttons
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    event.target.classList.add('active');
+    
+    // Update tab content
+    document.querySelectorAll('.login-tab-content').forEach(content => {
+        content.classList.remove('active');
+    });
+    
+    if (tab === 'user') {
+        document.getElementById('user-login-form').classList.add('active');
+    } else {
+        document.getElementById('admin-login-form').classList.add('active');
     }
 }
 
@@ -71,6 +134,7 @@ function handleLogin(event) {
     
     userName = usernameInput.value.trim();
     userEmail = emailInput.value.trim();
+    isAdmin = false;
     
     if (!userName) {
         alert(currentLanguage === 'de' ? 'Bitte geben Sie einen Benutzernamen ein' :
@@ -83,6 +147,55 @@ function handleLogin(event) {
     const userData = {
         name: userName,
         email: userEmail,
+        isAdmin: false,
+        loginDate: new Date().toISOString()
+    };
+    
+    localStorage.setItem('bibleStudyUser', JSON.stringify(userData));
+    localStorage.setItem('bibleStudyLang', currentLanguage);
+    
+    // Show main app
+    showMainApp();
+    
+    return false;
+}
+
+// Handle admin login
+function handleAdminLogin(event) {
+    event.preventDefault();
+    
+    const usernameInput = document.getElementById('admin-username');
+    const passwordInput = document.getElementById('admin-password');
+    
+    const adminUsername = usernameInput.value.trim();
+    const adminPassword = passwordInput.value;
+    
+    if (!adminUsername) {
+        alert(currentLanguage === 'de' ? 'Bitte geben Sie einen Benutzernamen ein' :
+              currentLanguage === 'en' ? 'Please enter a username' :
+              'Silakan masukkan nama pengguna');
+        return false;
+    }
+    
+    // Check admin password
+    if (adminPassword !== 'Der Weg') {
+        alert(currentLanguage === 'de' ? 'Falsches Passwort!' :
+              currentLanguage === 'en' ? 'Wrong password!' :
+              'Kata sandi salah!');
+        passwordInput.value = '';
+        passwordInput.focus();
+        return false;
+    }
+    
+    // Save admin data
+    userName = adminUsername + ' (Admin)';
+    userEmail = '';
+    isAdmin = true;
+    
+    const userData = {
+        name: userName,
+        email: '',
+        isAdmin: true,
         loginDate: new Date().toISOString()
     };
     

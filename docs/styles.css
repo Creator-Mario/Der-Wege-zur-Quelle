@@ -268,11 +268,65 @@ body {
     margin-bottom: 25px;
 }
 
+/* Login Tabs */
+.login-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    padding: 5px;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 12px 20px;
+    background: transparent;
+    color: var(--brown);
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tab-btn.active {
+    background: linear-gradient(135deg, var(--sky-blue), var(--gold));
+    color: var(--white);
+    box-shadow: 0 4px 15px rgba(135, 206, 235, 0.4);
+}
+
+.tab-btn:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.login-tab-content {
+    display: none;
+}
+
+.login-tab-content.active {
+    display: block;
+    animation: fadeInUp 0.5s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .login-form h3 {
     text-align: center;
     color: var(--brown);
     margin-bottom: 20px;
     font-size: 1.4rem;
+    text-shadow: 0 2px 4px rgba(139, 69, 19, 0.1);
 }
 
 .form-group {
@@ -1012,5 +1066,260 @@ body {
     
     .hero {
         padding: 40px 20px;
+    }
+}
+
+/* ================== ENHANCED RESPONSIVE & DEVICE DETECTION ================== */
+
+/* Mobile-specific optimizations */
+body.device-mobile .login-container,
+body.screen-small .login-container {
+    max-width: 100%;
+    padding: 15px;
+}
+
+body.device-mobile .login-card,
+body.screen-small .login-card {
+    padding: 25px 15px;
+    margin: 10px;
+}
+
+body.device-mobile .main-logo,
+body.screen-small .main-logo {
+    max-width: 100px;
+}
+
+body.device-mobile .app-title,
+body.screen-small .app-title {
+    font-size: 1.3rem;
+}
+
+body.device-mobile .btn-login,
+body.screen-small .btn-login {
+    padding: 14px;
+    font-size: 1rem;
+}
+
+/* Tablet-specific optimizations */
+body.device-tablet .container,
+body.screen-medium .container {
+    max-width: 900px;
+}
+
+body.device-tablet .chapters-grid,
+body.screen-medium .chapters-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* Desktop enhancements */
+body.device-desktop .login-card,
+body.screen-large .login-card {
+    max-width: 550px;
+}
+
+/* ================== ENHANCED VIBRANT SPIRITUAL DESIGN ================== */
+
+/* More vibrant colors */
+:root {
+    --vibrant-blue: #4A90E2;
+    --vibrant-gold: #FFD700;
+    --church-purple: #8B5CF6;
+    --holy-white: #FFFEF9;
+    --divine-glow: rgba(255, 215, 0, 0.5);
+}
+
+/* Enhanced background with church atmosphere */
+.login-page {
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(74, 144, 226, 0.15) 0%, transparent 50%),
+        linear-gradient(135deg, 
+            #87CEEB 0%, 
+            #6DB3E8 25%, 
+            #F5F5DC 50%,
+            #E8D4A0 75%,
+            #DAA520 100%
+        );
+    animation: backgroundShift 20s ease-in-out infinite;
+}
+
+@keyframes backgroundShift {
+    0%, 100% { filter: hue-rotate(0deg) brightness(1); }
+    50% { filter: hue-rotate(5deg) brightness(1.05); }
+}
+
+/* Enhanced spiritual glow */
+.main-logo {
+    filter: drop-shadow(0 0 20px var(--divine-glow))
+            drop-shadow(0 0 40px rgba(255, 215, 0, 0.3));
+    animation: logoGlow 4s ease-in-out infinite, float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+/* More vibrant buttons */
+.btn-login {
+    background: linear-gradient(135deg, var(--vibrant-gold) 0%, var(--brown) 50%, var(--vibrant-blue) 100%);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5),
+                inset 0 -3px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-login::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transform: rotate(45deg);
+    transition: all 0.5s;
+}
+
+.btn-login:hover::before {
+    left: 100%;
+}
+
+.btn-login.admin-btn {
+    background: linear-gradient(135deg, var(--church-purple) 0%, var(--vibrant-blue) 100%);
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.5);
+}
+
+/* Enhanced cards */
+.chapter-card, .feature-card, .lesson-card {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.95) 0%, 
+        rgba(245, 245, 220, 0.9) 100%);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+}
+
+.chapter-card::before, .feature-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 15px;
+    padding: 2px;
+    background: linear-gradient(135deg, var(--vibrant-gold), var(--vibrant-blue), var(--church-purple));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.chapter-card:hover::before, .feature-card:hover::before {
+    opacity: 1;
+}
+
+/* Enhanced floating elements with church symbols */
+.floating-elements::after {
+    content: '✝';
+    position: absolute;
+    font-size: 60px;
+    color: rgba(255, 255, 255, 0.2);
+    top: 20%;
+    right: 10%;
+    animation: float 8s ease-in-out infinite;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.spiritual-background::after {
+    content: '🕊';
+    position: absolute;
+    font-size: 50px;
+    top: 60%;
+    left: 15%;
+    animation: float 10s ease-in-out infinite reverse;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
+}
+
+/* Enhanced header with church atmosphere */
+.header {
+    background: linear-gradient(135deg, 
+        rgba(135, 206, 235, 0.95) 0%,
+        rgba(218, 165, 32, 0.95) 100%);
+    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3),
+                inset 0 -2px 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Vibrant nav hover effects */
+.nav-link {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--vibrant-gold), var(--church-purple));
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+    border-radius: 2px;
+}
+
+.nav-link:hover::after {
+    width: 80%;
+}
+
+/* Enhanced verse cards with spiritual glow */
+.verse-card {
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.98) 0%,
+        rgba(255, 254, 249, 0.95) 100%);
+    box-shadow: 0 10px 40px rgba(218, 165, 32, 0.3),
+                inset 0 0 20px rgba(255, 215, 0, 0.1);
+}
+
+.verse-card.large {
+    border: 3px solid var(--vibrant-gold);
+    box-shadow: 0 15px 50px rgba(218, 165, 32, 0.4),
+                0 0 60px rgba(139, 92, 246, 0.2),
+                inset 0 0 30px rgba(255, 215, 0, 0.15);
+}
+
+/* Pulse animation for spiritual emphasis */
+@keyframes holyPulse {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.3),
+                    0 0 40px rgba(139, 92, 246, 0.2);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(255, 215, 0, 0.5),
+                    0 0 60px rgba(139, 92, 246, 0.4);
+    }
+}
+
+.login-card, .verse-card.large {
+    animation: holyPulse 3s ease-in-out infinite;
+}
+
+/* Touch-friendly mobile interactions */
+@media (hover: none) and (pointer: coarse) {
+    .btn-login, .nav-link, .chapter-card, .lang-btn {
+        transform: none !important;
+    }
+    
+    .btn-login:active {
+        transform: scale(0.95) !important;
+    }
+    
+    .chapter-card:active {
+        transform: scale(0.98) !important;
     }
 }

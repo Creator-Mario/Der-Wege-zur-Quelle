@@ -2,10 +2,15 @@
 const translations = {
     de: {
         login: {
+            userTab: "Benutzer",
+            adminTab: "Admin",
             title: "Anmelden",
+            adminTitle: "Admin-Login",
             username: "Benutzername",
             email: "E-Mail (optional)",
+            password: "Passwort",
             submit: "Zur Bibelstudie",
+            adminSubmit: "Als Admin anmelden",
             note: "Diese Demo-Version speichert Ihre Daten nur lokal in Ihrem Browser"
         },
         nav: {
@@ -69,10 +74,15 @@ const translations = {
     },
     en: {
         login: {
+            userTab: "User",
+            adminTab: "Admin",
             title: "Sign In",
+            adminTitle: "Admin Login",
             username: "Username",
             email: "Email (optional)",
+            password: "Password",
             submit: "Start Bible Study",
+            adminSubmit: "Sign In as Admin",
             note: "This demo version stores your data locally in your browser only"
         },
         nav: {
@@ -136,10 +146,15 @@ const translations = {
     },
     id: {
         login: {
+            userTab: "Pengguna",
+            adminTab: "Admin",
             title: "Masuk",
+            adminTitle: "Login Admin",
             username: "Nama pengguna",
             email: "Email (opsional)",
+            password: "Kata sandi",
             submit: "Mulai Studi Alkitab",
+            adminSubmit: "Masuk sebagai Admin",
             note: "Versi demo ini hanya menyimpan data Anda secara lokal di browser Anda"
         },
         nav: {
