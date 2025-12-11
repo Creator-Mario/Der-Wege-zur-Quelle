@@ -39,14 +39,14 @@ body {
         linear-gradient(-45deg, transparent 48%, rgba(139, 92, 246, 0.03) 50%, transparent 52%),
         /* Subtle gradient overlay for better text readability */
         linear-gradient(135deg, 
-            rgba(135, 206, 235, 0.3) 0%,   /* Himmelblau overlay */
-            rgba(218, 165, 32, 0.2) 35%,   /* Goldgelb overlay */
-            rgba(245, 245, 220, 0.2) 65%,  /* Beige overlay */
-            rgba(139, 69, 19, 0.3) 100%    /* Braun overlay */
+            rgba(135, 206, 235, 0.4) 0%,   /* Himmelblau overlay - increased for better contrast */
+            rgba(218, 165, 32, 0.3) 35%,   /* Goldgelb overlay - increased */
+            rgba(245, 245, 220, 0.3) 65%,  /* Beige overlay - increased */
+            rgba(139, 69, 19, 0.4) 100%    /* Braun overlay - increased */
         ),
-        /* Background image from repository */
+        /* Background image from repository (smaller size) */
         url('hintergrund-bild.png');
-    background-size: 80px 80px, 80px 80px, 100% 100%, cover;
+    background-size: 80px 80px, 80px 80px, 100% 100%, 40%;
     background-position: center, center, center, center;
     background-repeat: repeat, repeat, no-repeat, no-repeat;
     background-attachment: fixed;
@@ -114,13 +114,13 @@ body {
     }
 }
 
-/* Title - Two Lines, White Serif with Shadow */
+/* Title - Two Lines, Black Bold with Light Shadow */
 .main-title {
     font-family: Georgia, 'Times New Roman', serif;
-    color: var(--white);
+    color: #000000;
     text-shadow: 
-        2px 2px 4px var(--text-shadow),
-        0 0 20px rgba(0, 0, 0, 0.5);
+        1px 1px 2px rgba(255, 255, 255, 0.9),
+        0 0 10px rgba(255, 255, 255, 0.7);
     margin-bottom: 15px;
     line-height: 1.2;
     display: flex;
@@ -150,19 +150,20 @@ body {
 .verse-reference {
     font-size: 1rem;
     font-weight: 700;
-    color: var(--white);
-    text-shadow: 1px 1px 3px var(--text-shadow);
+    color: #000000;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.9);
     margin-bottom: 8px;
     text-align: center;
 }
 
 .verse-text {
     font-size: 0.9rem;
-    color: var(--white);
-    text-shadow: 1px 1px 3px var(--text-shadow);
+    color: #000000;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.9);
     line-height: 1.4;
     text-align: center;
     font-style: italic;
+    font-weight: 700;
 }
 
 /* Entry Button - Contrast Color */
