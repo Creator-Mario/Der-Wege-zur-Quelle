@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Die Bibel – Glauben der Weg zur Quelle</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Layer 1: Branding & Entry Page -->
+    <div id="branding-layer" class="branding-layer active">
+        <!-- Language Selection - Top Right -->
+        <div class="language-selection-floating">
+            <button class="lang-btn-float selected" data-lang="de" onclick="selectLanguage('de')" title="Deutsch">
+                <span class="flag">🇩🇪</span>
+            </button>
+            <button class="lang-btn-float" data-lang="en" onclick="selectLanguage('en')" title="English">
+                <span class="flag">🇬🇧</span>
+            </button>
+            <button class="lang-btn-float" data-lang="id" onclick="selectLanguage('id')" title="Indonesia">
+                <span class="flag">🇮🇩</span>
+            </button>
+        </div>
+
+        <!-- Branding Content -->
+        <div class="branding-content">
+            <!-- Pulsing Logo -->
+            <div class="logo-container">
+                <img src="logo.png" alt="Logo" class="branding-logo">
+            </div>
+            
+            <!-- Title and Claim -->
+            <h1 class="branding-title" data-i18n="branding.title">Die Bibel – Glauben der Weg zur Quelle</h1>
+            <p class="branding-claim" data-i18n="branding.claim">"Durch Glauben finden wir die Quelle – ein klarer Weg durch alle 66 Bücher"</p>
+            
+            <!-- Entry Button -->
+            <button class="entry-btn" onclick="showRegistrationOverlay()" data-i18n="branding.button">Anmelden / Registrieren</button>
+            </div>
+            
+            <!-- Login/Registration Section - Centered -->
+            <div class="floating-section login-form-section">
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="action-btn" onclick="toggleRegistration()" data-i18n="login.registerBtn">Registrieren</button>
+                    <button class="action-btn active" onclick="toggleLogin()" data-i18n="login.loginBtn">Anmelden</button>
+                </div>
+                
+                <!-- Registration Form (Hidden by default) -->
+                <div id="registration-form" class="form-container" style="display: none;">
+                    <h3 data-i18n="login.registerTitle">Registrierung</h3>
+                    <form onsubmit="handleRegistration(event)">
+                        <div class="form-group">
+                            <label for="reg-username" data-i18n="login.username">Benutzername</label>
+                            <input type="text" id="reg-username" name="reg-username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-email" data-i18n="login.email">E-Mail</label>
+                            <input type="email" id="reg-email" name="reg-email" required>
+                        </div>
+                        <button type="submit" class="btn-submit" data-i18n="login.registerSubmit">Registrieren</button>
+                    </form>
+                </div>
+                
+                <!-- Login Form -->
+                <div id="login-form" class="form-container">
+                    <div class="login-tabs">
+                        <button class="tab-btn active" onclick="showLoginTab('user')" data-i18n="login.userTab">Benutzer</button>
+                        <button class="tab-btn" onclick="showLoginTab('admin')" data-i18n="login.adminTab">Admin</button>
+                    </div>
+                    
+                    <!-- User Login -->
+                    <div id="user-login-form" class="login-tab-content active">
+                        <form onsubmit="handleLogin(event)">
+                            <div class="form-group">
+                                <label for="username" data-i18n="login.username">Benutzername</label>
+                                <input type="text" id="username" name="username" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" data-i18n="login.email">E-Mail (optional)</label>
+                                <input type="email" id="email" name="email">
+                            </div>
+                            <button type="submit" class="btn-submit" data-i18n="login.submit">Zur Bibelstudie</button>
+                        </form>
+                    </div>
+                    
+                    <!-- Admin Login -->
+                    <div id="admin-login-form" class="login-tab-content">
+                        <form onsubmit="handleAdminLogin(event)">
+                            <div class="form-group">
+                                <label for="admin-username" data-i18n="login.username">Benutzername</label>
+                                <input type="text" id="admin-username" name="admin-username" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="admin-password" data-i18n="login.password">Passwort</label>
+                                <input type="password" id="admin-password" name="admin-password" required>
+                            </div>
+                            <button type="submit" class="btn-submit" data-i18n="login.adminSubmit">Als Admin anmelden</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Copyright Footer -->
+            <div class="floating-footer">
+                <p>© 2024 Glauben der Weg zur Quelle – Mario R. Denzer</p>
+            </div>
+        </div>
+    </div>
+                                <form onsubmit="handleAdminLogin(event)">
+                                    <div class="form-group">
+                                        <label for="admin-username" data-i18n="login.username">Benutzername</label>
+                                        <input type="text" id="admin-username" name="admin-username" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="admin-password" data-i18n="login.password">Passwort</label>
+                                        <input type="password" id="admin-password" name="admin-password" required>
+                                    </div>
+                                    <button type="submit" class="btn-login admin-btn" data-i18n="login.adminSubmit">Als Admin anmelden</button>
+                                </form>
+                            </div>
+                            
+                            <p class="login-note" data-i18n="login.note">
+                                Diese Demo-Version speichert Ihre Daten nur lokal in Ihrem Browser
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="copyright-footer">
+                    <p>© 2025 Glauben der Weg zur Quelle – Mario R. Denzer</p>
+                    <p>marioreinerdenzer@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div id="main-app" class="main-app">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="logo-section">
+                    <div class="logo">
+                        <img src="logo.png" alt="Logo" class="header-logo">
+                    </div>
+                    <div class="branding">
+                        <h1 data-i18n="app.title">Die Bibel – Glauben der Weg zur Quelle</h1>
+                        <p class="claim" data-i18n="app.claim">Durch Glauben finden wir die Quelle – ein klarer Weg durch alle 66 Bücher</p>
+                    </div>
+                </div>
+                <nav class="nav">
+                    <button class="nav-btn" onclick="showView('home')" data-i18n="nav.home">Start</button>
+                    <button class="nav-btn" onclick="showView('courses')" data-i18n="nav.courses">Kurse</button>
+                    <button class="nav-btn" onclick="showView('daily')" data-i18n="nav.daily">Tagesvers</button>
+                    <button class="nav-btn" onclick="showView('about')" data-i18n="nav.about">Info</button>
+                    <div class="user-menu">
+                        <span class="user-name" id="user-name-display"></span>
+                        <button class="btn-logout" onclick="logout()" data-i18n="nav.logout">Abmelden</button>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Home View -->
+            <div id="home-view" class="view active">
+                <div class="container">
+                    <section class="hero">
+                        <h2 data-i18n="home.welcome">Willkommen zur biblischen Studienreise</h2>
+                        <p data-i18n="home.subtitle">Eine umfassende Studien-App für Studenten freikirchlicher Christengemeinschaften</p>
+                        <div class="cta-buttons">
+                            <button class="btn btn-primary" onclick="showView('courses')" data-i18n="home.startCourses">Kurse starten</button>
+                            <button class="btn btn-secondary" onclick="showView('about')" data-i18n="home.learnMore">Mehr erfahren</button>
+                        </div>
+                    </section>
+
+                    <section class="daily-verse-preview">
+                        <h3 data-i18n="home.dailyVerse">📖 Tagesvers</h3>
+                        <div class="verse-card" id="daily-verse-preview">
+                            <p class="verse-text">"Im Anfang schuf Gott die Himmel und die Erde."</p>
+                            <p class="verse-ref">– 1. Mose 1:1</p>
+                        </div>
+                    </section>
+
+                    <section class="features">
+                        <h3 data-i18n="home.features">Funktionen</h3>
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">📚</div>
+                                <h4 data-i18n="features.chapters">12 Kapitel</h4>
+                                <p data-i18n="features.chaptersDesc">Strukturierte Lektionen durch die gesamte Bibel</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">✅</div>
+                                <h4 data-i18n="features.lessons">120 Lektionen</h4>
+                                <p data-i18n="features.lessonsDesc">Vertieftes Bibelstudium mit praktischer Anwendung</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">📝</div>
+                                <h4 data-i18n="features.tests">Tests & Zertifikate</h4>
+                                <p data-i18n="features.testsDesc">Überprüfe deinen Fortschritt und erhalte Zertifikate</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">🌍</div>
+                                <h4 data-i18n="features.mission">Mission</h4>
+                                <p data-i18n="features.missionDesc">Befähigung zur Weitergabe der biblischen Botschaft</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <!-- Courses View -->
+            <div id="courses-view" class="view">
+                <div class="container">
+                    <h2 data-i18n="courses.title">Kursübersicht – 12 Kapitel</h2>
+                    <p class="subtitle" data-i18n="courses.subtitle">Jedes Kapitel enthält 10 Lektionen mit Einleitung, Bibelverse, Erklärung und Mini-Test</p>
+                    
+                    <div class="chapters-grid" id="chapters-grid"></div>
+                </div>
+            </div>
+
+            <!-- Chapter Detail View -->
+            <div id="chapter-view" class="view">
+                <div class="container">
+                    <button class="back-btn" onclick="showView('courses')" data-i18n="nav.back">← Zurück zu Kursen</button>
+                    <div id="chapter-detail"></div>
+                </div>
+            </div>
+
+            <!-- Lesson View -->
+            <div id="lesson-view" class="view">
+                <div class="container">
+                    <button class="back-btn" onclick="goBackToChapter()" data-i18n="nav.backChapter">← Zurück zum Kapitel</button>
+                    <div id="lesson-detail"></div>
+                </div>
+            </div>
+
+            <!-- Daily Verse View -->
+            <div id="daily-view" class="view">
+                <div class="container">
+                    <h2 data-i18n="daily.title">Tagesvers</h2>
+                    <div class="daily-verse-card">
+                        <div class="verse-card large" id="daily-verse-full">
+                            <p class="verse-text">"Denn also hat Gott die Welt geliebt, dass er seinen eingeborenen Sohn gab, damit alle, die an ihn glauben, nicht verloren werden, sondern das ewige Leben haben."</p>
+                            <p class="verse-ref">– Johannes 3:16</p>
+                        </div>
+                        <button class="btn btn-secondary" onclick="generateNewVerse()" data-i18n="daily.newVerse">Neuer Vers</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- About View -->
+            <div id="about-view" class="view">
+                <div class="container">
+                    <h2 data-i18n="about.title">Über diese App</h2>
+                    <div class="about-content">
+                        <section class="about-section">
+                            <h3>🎯 <span data-i18n="about.projectTitle">Projektidee</span></h3>
+                            <p data-i18n="about.projectDesc">Eine mehrsprachige, offline-fähige Studien-App für Studenten freikirchlicher Christengemeinschaften. Die App vermittelt die Botschaft der Bibel, befähigt zur Mission und bietet interaktives Lernen.</p>
+                            <p><strong data-i18n="about.basis">Grundlage:</strong> <span data-i18n="about.basisText">Elberfelder Bibel</span></p>
+                        </section>
+
+                        <section class="about-section">
+                            <h3>📜 <span data-i18n="about.copyrightTitle">Copyright & Impressum</span></h3>
+                            <p>© Glauben der Weg zur Quelle – Mario R. Denzer</p>
+                            <p><strong>Creator & Admin:</strong> Mario R. Denzer</p>
+                            <p><strong>Kontakt:</strong> marioreinerdenzer@gmail.com</p>
+                            <p class="copyright-notice" data-i18n="about.copyrightNotice">Alle Rechte vorbehalten. Inhalte (Texte, Lektionen, Tests, Zertifikate) dürfen nur mit Genehmigung des Autors genutzt oder weitergegeben werden.</p>
+                        </section>
+
+                        <section class="about-section">
+                            <h3>⚙️ <span data-i18n="about.techTitle">Technologie</span></h3>
+                            <p data-i18n="about.techDesc">Diese Demo-Version ist eine statische Web-App, die offline im Browser läuft. Sie zeigt die Struktur aller 12 Kapitel mit 120 Lektionen.</p>
+                            <p><strong data-i18n="about.featuresTitle">Features:</strong></p>
+                            <ul>
+                                <li data-i18n="about.feature1">Responsive Design für alle Geräte</li>
+                                <li data-i18n="about.feature2">Offline-fähig (nach dem ersten Laden)</li>
+                                <li data-i18n="about.feature3">Mehrsprachig (DE/EN/ID)</li>
+                                <li data-i18n="about.feature4">Strukturierte Lektionen mit Tests</li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p>&copy; 2025 Glauben der Weg zur Quelle – Mario R. Denzer</p>
+                <p data-i18n="footer.rights">Alle Rechte vorbehalten</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="translations.js"></script>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

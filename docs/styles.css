@@ -1,17 +1,14 @@
-/* Spiritual Bible Study App - Full-Width Floating Design */
-/* Color Scheme: Himmelblau, Goldgelb, Beige, Braun */
+/* Two-Layer Design - Die Bibel App */
+/* Color Scheme matching Logo: Himmelblau → Goldgelb → Beige → Braun */
+
 :root {
     --sky-blue: #87CEEB;
     --gold: #DAA520;
     --beige: #F5F5DC;
     --brown: #8B4513;
     --dark-brown: #654321;
-    --purple: #8B5CF6;
     --white: #FFFFFF;
-    --light-gray: #F8F9FA;
-    --gray: #6C757D;
-    --text-dark: #2C3E50;
-    --spiritual-glow: rgba(218, 165, 32, 0.3);
+    --text-shadow: rgba(0, 0, 0, 0.7);
 }
 
 * {
@@ -20,536 +17,399 @@
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.7;
-    color: var(--text-dark);
-    background: linear-gradient(135deg, var(--beige) 0%, var(--light-gray) 100%);
-    min-height: 100vh;
     overflow-x: hidden;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* ================== LOGIN PAGE - FULL WIDTH FLOATING ================== */
-.login-page {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
+/* ==================== LAYER 1: BRANDING ==================== */
+.branding-layer {
     width: 100%;
-    height: 100vh;
-    max-height: 100vh;
-    z-index: 10000;
-    /* Updated background to match logo better */
-    background: linear-gradient(135deg, 
-        #87CEEB 0%,   /* Sky blue */
-        #F5F5DC 40%,  /* Beige */
-        #DAA520 70%,  /* Gold */
-        #8B5CF6 100%  /* Purple accent */
-    );
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding: 20px 20px;
-}
-
-.login-page.active {
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    animation: fadeIn 0.8s ease;
+    position: relative;
+    /* Gradient matching logo colors */
+    background: linear-gradient(135deg, 
+        #87CEEB 0%,   /* Himmelblau */
+        #DAA520 35%,  /* Goldgelb */
+        #F5F5DC 65%,  /* Beige */
+        #8B4513 100%  /* Braun */
+    );
 }
 
-/* Background Logo Watermark - Pulsing */
-.background-logo-container {
+/* Language Selector */
+.lang-selector {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    pointer-events: none;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    gap: 10px;
 }
 
-.background-logo {
-    width: 50vw;
-    max-width: 600px;
+.lang-btn {
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.lang-btn:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.lang-btn.selected {
+    background: var(--gold);
+    box-shadow: 0 4px 15px rgba(218, 165, 32, 0.5);
+}
+
+/* Branding Content */
+.branding-content {
+    text-align: center;
+    padding: 40px 20px;
+    max-width: 800px;
+}
+
+/* Logo with Pulsing Animation */
+.logo-wrapper {
+    margin-bottom: 40px;
+}
+
+.main-logo {
+    width: 200px;
     height: auto;
-    opacity: 0.15;
-    filter: blur(1px);
     animation: logoPulse 4s ease-in-out infinite;
+    filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.3));
 }
 
 @keyframes logoPulse {
     0%, 100% { 
         transform: scale(1);
-        opacity: 0.15;
+        opacity: 0.9;
     }
     50% { 
-        transform: scale(1.05);
-        opacity: 0.25;
+        transform: scale(1.08);
+        opacity: 1;
     }
 }
+
+/* Title - White Serif with Shadow */
+.main-title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 2.8rem;
+    color: var(--white);
+    text-shadow: 
+        2px 2px 4px var(--text-shadow),
+        0 0 20px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+    line-height: 1.2;
 }
 
-.spiritual-background {
+/* Claim - Sans-serif under title */
+.main-claim {
+    font-size: 1.3rem;
+    color: var(--white);
+    text-shadow: 1px 1px 3px var(--text-shadow);
+    margin-bottom: 50px;
+    font-style: italic;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Entry Button - Contrast Color */
+.entry-button {
+    padding: 18px 45px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--white);
+    background: var(--dark-brown);
+    border: 3px solid var(--white);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.entry-button:hover {
+    background: var(--brown);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.entry-button:active {
+    transform: translateY(-1px);
+}
+
+/* ==================== LAYER 2: REGISTRATION OVERLAY ==================== */
+.registration-overlay {
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 0;
-    pointer-events: none;
-    background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.75), rgba(245, 245, 220, 0.75)),
-        radial-gradient(ellipse at top, rgba(135, 206, 235, 0.4), transparent 60%),
-        radial-gradient(ellipse at bottom right, rgba(218, 165, 32, 0.3), transparent 50%);
-    background-size: cover;
-}
-
-.spiritual-background::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: 
-        linear-gradient(45deg, transparent 48%, rgba(218, 165, 32, 0.05) 50%, transparent 52%),
-        linear-gradient(-45deg, transparent 48%, rgba(139, 92, 246, 0.05) 50%, transparent 52%);
-    background-size: 100px 100px;
-    opacity: 0.3;
-}
-
-.light-rays {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(ellipse, 
-        rgba(255, 255, 255, 0.4) 0%, 
-        rgba(218, 165, 32, 0.1) 30%, 
-        transparent 70%
-    );
-    transform: translate(-50%, -50%);
-    animation: rotate 30s linear infinite;
-}
-
-@keyframes rotate {
-    from { transform: translate(-50%, -50%) rotate(0deg); }
-    to { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-/* Floating Content Wrapper */
-.floating-content-wrapper {
-    position: relative;
-    z-index: 10;
-    max-width: 1400px;
-    width: 100%;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    align-items: center;
-    max-height: 95vh;
-    overflow-y: auto;
-    padding: 10px 0;
-}
-
-/* Floating Sections - Full Width */
-.floating-section {
-    width: 90%;
-    max-width: 1200px;
-    padding: 20px 30px;
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.1),
-        0 0 20px rgba(218, 165, 32, 0.15);
-    animation: floatAnimation 0.8s ease;
-    transition: all 0.3s ease;
-}
-
-.floating-section:hover {
-    transform: translateY(-5px);
-    box-shadow: 
-        0 12px 40px rgba(0, 0, 0, 0.15),
-        0 0 30px rgba(218, 165, 32, 0.25);
-}
-
-@keyframes floatAnimation {
-    from { 
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to { 
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Welcome Section */
-.welcome-section {
-    background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.9) 0%,
-        rgba(245, 245, 220, 0.85) 100%
-    );
-    border: none; /* Removed border */
-}
-
-.floating-title {
-    font-size: 1.8rem;
-    color: #1a1a1a; /* Darker for better contrast */
-    text-align: center;
-    margin-bottom: 12px;
-    font-weight: 700; /* Bold */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
-}
-
-.floating-text {
-    font-size: 0.95rem;
-    text-align: center;
-    color: #1a1a1a; /* Darker for better contrast */
-    line-height: 1.5;
-    font-weight: 600; /* Bold */
-}
-
-/* Bible Verse Section */
-.verse-section {
-    background: linear-gradient(135deg, 
-        rgba(139, 92, 246, 0.25) 0%,
-        rgba(218, 165, 32, 0.25) 100%
-    );
-    border: none; /* Removed border */
-    text-align: center;
-}
-
-.verse-icon-large {
-    font-size: 2.5rem;
-    color: #1a1a1a; /* Darker for visibility */
-    margin-bottom: 10px;
-    animation: holyCrossPulse 3s ease-in-out infinite;
-    filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.6));
-}
-
-@keyframes holyCrossPulse {
-    0%, 100% { 
-        transform: scale(1);
-        filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.5));
-    }
-    50% { 
-        transform: scale(1.1);
-        filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.9));
-    }
-}
-
-.floating-verse {
-    font-size: 1rem;
-    font-style: italic;
-    color: #1a1a1a; /* Darker for better contrast */
-    line-height: 1.6;
-    margin-bottom: 10px;
-    font-weight: 600; /* Bold */
-}
-
-.verse-reference {
-    font-size: 0.9rem;
-    font-weight: 700; /* Bolder */
-    color: #1a1a1a; /* Darker for better contrast */
-}
-
-/* Login Form Section */
-.login-form-section {
-    width: 500px;
-    max-width: 90%;
-    background: linear-gradient(135deg, 
-        rgba(135, 206, 235, 0.3) 0%,
-        rgba(255, 255, 255, 0.9) 100%
-    );
-    border: none; /* Removed border - Clean design */
-}
-
-/* Action Buttons (Register/Login Toggle) */
-.action-buttons {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-    justify-content: center;
-}
-
-.action-btn {
-    flex: 1;
-    padding: 14px 25px;
-    background: rgba(255, 255, 255, 0.9);
-    border: 2px solid rgba(218, 165, 32, 0.3);
-    border-radius: 10px;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #1a1a1a;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.action-btn:hover {
-    background: var(--gold);
-    color: white;
-    transform: translateY(-2px);
-    border-color: var(--gold);
-}
-
-.action-btn.active {
-    background: var(--gold);
-    color: white;
-    box-shadow: 0 4px 15px rgba(218, 165, 32, 0.5);
-    border-color: var(--gold);
-}
-
-/* Form Container */
-.form-container {
-    animation: fadeIn 0.4s ease;
-}
-
-.form-container h3 {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #1a1a1a;
-    text-align: center;
-    margin-bottom: 15px;
-}
-
-/* Login Tabs */
-.login-tabs {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.tab-btn {
-    flex: 1;
-    padding: 12px 20px;
-    background: rgba(255, 255, 255, 0.8);
-    border: none; /* Removed border */
-    border-radius: 10px;
-    font-size: 1rem;
-    font-weight: 700; /* Bolder */
-    color: #1a1a1a; /* Darker */
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.tab-btn:hover {
-    background: var(--gold);
-    color: white;
-    transform: translateY(-2px);
-}
-
-.tab-btn.active {
-    background: var(--gold);
-    color: white;
-    box-shadow: 0 4px 15px rgba(218, 165, 32, 0.4);
-}
-
-/* Login Tab Content */
-.login-tab-content {
-    display: none;
-}
-
-.login-tab-content.active {
-    display: block;
-    animation: fadeIn 0.4s ease;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 700; /* Bolder */
-    color: #1a1a1a; /* Darker */
-}
-
-.form-group input {
-    width: 100%;
-    padding: 12px 15px;
-    border: 2px solid rgba(0, 0, 0, 0.2); /* Darker border */
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 600; /* Bold */
-    transition: all 0.3s ease;
-    background: rgba(255, 255, 255, 0.95);
-    color: #1a1a1a; /* Darker text */
-}
-
-.form-group input:focus {
-    outline: none;
-    border-color: var(--gold);
-    box-shadow: 0 0 10px rgba(218, 165, 32, 0.3);
-}
-
-.btn-submit {
-    width: 100%;
-    padding: 14px 20px;
-    background: linear-gradient(135deg, var(--gold) 0%, var(--brown) 100%);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 1.1rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(218, 165, 32, 0.3);
-}
-
-.btn-submit:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(218, 165, 32, 0.5);
-}
-
-/* Language Selection - Fixed Top Right */
-.language-selection-floating {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    display: flex;
-    gap: 8px;
-    z-index: 1000;
-    align-items: center;
-}
-
-.lang-btn-float {
-    min-width: 70px;
-    height: 45px;
-    padding: 8px 12px;
-    background: rgba(255, 255, 255, 0.95);
-    border: 2px solid var(--gold);
-    border-radius: 10px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 2000;
     align-items: center;
     justify-content: center;
-    gap: 2px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease;
 }
 
-.lang-btn-float .flag {
-    font-size: 1.4rem;
-    line-height: 1;
+.registration-overlay.active {
+    display: flex;
 }
 
-.lang-btn-float .lang-label {
-    font-size: 0.7rem;
-    font-weight: 700;
-    color: #1a1a1a;
-    line-height: 1;
-}
-
-.lang-btn-float:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(218, 165, 32, 0.4);
-    background: rgba(255, 255, 255, 1);
-}
-
-.lang-btn-float.selected {
-    background: var(--gold);
-    border-color: var(--brown);
-    box-shadow: 0 0 20px rgba(218, 165, 32, 0.6);
-}
-
-.lang-btn-float.selected .lang-label {
-    color: white;
-}
-
-/* Footer */
-.floating-footer {
-    text-align: center;
-    color: var(--brown);
-    font-size: 0.9rem;
-    margin-top: 30px;
-    opacity: 0.8;
-}
-
-/* Animations */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
 }
 
-/* Mobile Responsive */
+/* Overlay Content */
+.overlay-content {
+    background: var(--white);
+    border-radius: 15px;
+    padding: 40px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Close Button */
+.close-overlay {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 35px;
+    height: 35px;
+    border: none;
+    background: var(--dark-brown);
+    color: var(--white);
+    font-size: 1.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.close-overlay:hover {
+    background: var(--brown);
+    transform: rotate(90deg);
+}
+
+/* Overlay Title */
+.overlay-title {
+    font-size: 2rem;
+    color: var(--dark-brown);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Form Fields */
+.form-field {
+    margin-bottom: 20px;
+}
+
+.form-field label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--dark-brown);
+}
+
+.form-field input,
+.form-field select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--beige);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-field input:focus,
+.form-field select:focus {
+    outline: none;
+    border-color: var(--gold);
+}
+
+/* Privacy Notice */
+.privacy-notice {
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+    margin: 20px 0;
+    padding: 15px;
+    background: #f9f9f9;
+    border-left: 4px solid var(--gold);
+    border-radius: 5px;
+}
+
+/* Form Actions */
+.form-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn-register,
+.btn-cancel {
+    flex: 1;
+    padding: 14px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-register {
+    background: var(--gold);
+    color: var(--white);
+}
+
+.btn-register:hover {
+    background: var(--dark-brown);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-cancel {
+    background: #ccc;
+    color: #333;
+}
+
+.btn-cancel:hover {
+    background: #aaa;
+}
+
+/* Password Display */
+.password-display {
+    text-align: center;
+}
+
+.password-display h3 {
+    color: var(--dark-brown);
+    margin-bottom: 15px;
+}
+
+.password-box {
+    background: var(--beige);
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    border: 2px solid var(--gold);
+}
+
+.password-box span {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--dark-brown);
+    font-family: 'Courier New', monospace;
+}
+
+.password-hint {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.btn-continue {
+    padding: 14px 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    background: var(--gold);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-continue:hover {
+    background: var(--dark-brown);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* ==================== MAIN APP (After Login) ==================== */
+.main-app {
+    width: 100%;
+    min-height: 100vh;
+    background: var(--beige);
+}
+
+.app-header {
+    background: var(--dark-brown);
+    color: var(--white);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.app-logo {
+    width: 50px;
+    height: auto;
+}
+
+.user-info button {
+    padding: 8px 16px;
+    background: var(--gold);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.app-content {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ==================== RESPONSIVE ==================== */
 @media (max-width: 768px) {
-    .login-page {
-        padding: 20px 10px;
-    }
-    
-    .floating-section {
-        width: 95%;
-        padding: 20px 25px;
-    }
-    
-    .floating-title {
-        font-size: 1.5rem;
-    }
-    
-    .floating-text {
-        font-size: 0.9rem;
-    }
-    
-    .floating-verse {
-        font-size: 0.95rem;
-    }
-    
-    .verse-icon-large {
+    .main-title {
         font-size: 2rem;
     }
     
-    .login-form-section {
-        width: 95%;
+    .main-claim {
+        font-size: 1.1rem;
     }
     
-    .background-logo {
-        width: 90vw;
+    .main-logo {
+        width: 150px;
     }
     
-    /* Mobile language buttons - top right */
-    .language-selection-floating {
-        top: 15px;
-        right: 10px;
-        gap: 5px;
+    .overlay-content {
+        padding: 30px 20px;
     }
     
-    .lang-btn-float {
-        min-width: 55px;
-        height: 40px;
-        padding: 6px 8px;
+    .form-actions {
+        flex-direction: column;
     }
-    
-    .lang-btn-float .flag {
-        font-size: 1.2rem;
-    }
-    
-    .lang-btn-float .lang-label {
-        font-size: 0.65rem;
-    }
-}
-
-/* Main App Styles (keeping existing) */
-.main-app {
-    display: none;
-}
-
-.main-app.active {
-    display: block;
 }
