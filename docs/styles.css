@@ -44,9 +44,9 @@ body {
             rgba(245, 245, 220, 0.3) 65%,  /* Beige overlay - increased */
             rgba(139, 69, 19, 0.4) 100%    /* Braun overlay - increased */
         ),
-        /* Background image from repository (smaller size) */
+        /* Background image from repository (full coverage) */
         url('hintergrund-bild.png');
-    background-size: 80px 80px, 80px 80px, 100% 100%, 40%;
+    background-size: 80px 80px, 80px 80px, 100% 100%, cover;
     background-position: center, center, center, center;
     background-repeat: repeat, repeat, no-repeat, no-repeat;
     background-attachment: fixed;
