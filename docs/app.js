@@ -38,7 +38,7 @@ function updateTranslations() {
 }
 
 // Select language
-function selectLanguage(lang) {
+window.selectLanguage = function(lang) {
     currentLanguage = lang;
     localStorage.setItem('bibleStudyLang', lang);
     
@@ -76,7 +76,7 @@ function checkExistingUser() {
 }
 
 // Show registration overlay
-function showRegistrationOverlay() {
+window.showRegistrationOverlay = function() {
     const overlay = document.getElementById('registration-overlay');
     overlay.classList.add('active');
     
@@ -88,7 +88,7 @@ function showRegistrationOverlay() {
 }
 
 // Close registration overlay
-function closeRegistrationOverlay() {
+window.closeRegistrationOverlay = function() {
     const overlay = document.getElementById('registration-overlay');
     overlay.classList.remove('active');
     
@@ -109,7 +109,7 @@ function generatePassword() {
 }
 
 // Handle registration
-function handleRegistration(event) {
+window.handleRegistration = function(event) {
     event.preventDefault();
     
     const formData = {
@@ -138,7 +138,7 @@ function handleRegistration(event) {
 }
 
 // Continue to app after seeing password
-function continueToApp() {
+window.continueToApp = function() {
     const currentUser = localStorage.getItem('currentUser');
     const userData = JSON.parse(localStorage.getItem('userData_' + currentUser));
     
@@ -166,7 +166,7 @@ function showMainApp(userData) {
 }
 
 // Logout
-function logout() {
+window.logout = function() {
     if (confirm('Möchten Sie sich wirklich abmelden?')) {
         localStorage.removeItem('currentUser');
         location.reload();
