@@ -30,21 +30,24 @@ body {
     align-items: center;
     justify-content: center;
     position: relative;
-    /* Multi-layer Christian background with logo integration */
+    /* Multi-layer Christian background with actual background image */
     background: 
-        /* Cross patterns */
-        linear-gradient(45deg, transparent 48%, rgba(218, 165, 32, 0.05) 50%, transparent 52%),
-        linear-gradient(-45deg, transparent 48%, rgba(139, 92, 246, 0.05) 50%, transparent 52%),
-        /* Radial divine light */
-        radial-gradient(circle at center, rgba(218, 165, 32, 0.2) 0%, transparent 70%),
-        /* Base gradient matching logo colors */
+        /* Cross patterns overlay */
+        linear-gradient(45deg, transparent 48%, rgba(218, 165, 32, 0.03) 50%, transparent 52%),
+        linear-gradient(-45deg, transparent 48%, rgba(139, 92, 246, 0.03) 50%, transparent 52%),
+        /* Subtle gradient overlay for better text readability */
         linear-gradient(135deg, 
-            #87CEEB 0%,   /* Himmelblau */
-            #DAA520 35%,  /* Goldgelb */
-            #F5F5DC 65%,  /* Beige */
-            #8B4513 100%  /* Braun */
-        );
-    background-size: 80px 80px, 80px 80px, 100% 100%, 100% 100%;
+            rgba(135, 206, 235, 0.3) 0%,   /* Himmelblau overlay */
+            rgba(218, 165, 32, 0.2) 35%,   /* Goldgelb overlay */
+            rgba(245, 245, 220, 0.2) 65%,  /* Beige overlay */
+            rgba(139, 69, 19, 0.3) 100%    /* Braun overlay */
+        ),
+        /* Background image from repository */
+        url('hintergrund-bild.png');
+    background-size: 80px 80px, 80px 80px, 100% 100%, cover;
+    background-position: center, center, center, center;
+    background-repeat: repeat, repeat, no-repeat, no-repeat;
+    background-attachment: fixed;
 }
 
 /* Language Selector */
