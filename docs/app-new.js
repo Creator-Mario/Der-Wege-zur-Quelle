@@ -266,79 +266,130 @@ const lessonContent = {
     de: {
         "1-1": {
             title: "Ursprung der Bibel",
-            introduction: `Die Frage nach dem Ursprung der Bibel ist grundlegend für jede theologische Lehre, Predigt und Form christlicher Spiritualität. Alles, was Christen über Gott, Erlösung, Ethik, Gemeinde und Hoffnung wissen, wurzelt in der Schrift. Daher ist die Kernfrage:
+            introduction: `Der Ursprung der Bibel bestimmt ihre Autorität und ihre Rolle im Glauben. Diese Lektion gibt eine vollständige Einführung in Offenbarung, Inspiration, Textüberlieferung, Kanonbildung und die Einheit der Schrift.
 
-**Wie kam Gottes Wort zu uns, und warum können wir dieser Schrift vertrauen?**
-
-Wenn die Bibel nur ein menschliches Werk wäre, wäre sie relativ, kulturell bedingt und ohne absolute Autorität. Stellt man jedoch fest, dass sie göttlichen Ursprungs ist, besitzt sie höchste, universale und zeitlose Autorität.`,
+Die Bibel ist nicht einfach ein religiöses Buch unter vielen – sie ist Gottes Wort an die Menschheit. Ihre Entstehung, Überlieferung und Bewahrung zeigen uns, wie Gott durch die Geschichte hindurch zu uns spricht.`,
             sections: [
                 {
-                    heading: "Bedeutung des Themas in Geschichte und Gegenwart",
-                    content: `**Historische Bedeutung:**
-- Das Volk Israel verstand die heiligen Schriften als göttliche Offenbarung.
-- Jesus und die Apostel zitierten das Alte Testament als autoritative Quelle.
-- Die frühe Kirche bewahrte die apostolischen Schriften sorgfältig.
-- Reformation und Erweckungsbewegungen betonten „sola Scriptura".
+                    heading: "1. Offenbarung",
+                    content: `**Allgemeine Offenbarung:**
+Die Schöpfung zeigt Gottes Existenz und Macht.
 
-**Bedeutung heute:**
-In Zeiten von Skepsis, Bibelkritik, moralischem Relativismus und theologischer Verwirrung braucht die Gemeinde Klarheit über den Ursprung und die Autorität der Bibel.`
+> **Psalm 19,1-2:** "Die Himmel erzählen die Ehre Gottes, und die Ausdehnung verkündigt seiner Hände Werk. Ein Tag berichtet es dem anderen, und eine Nacht meldet der anderen die Kunde davon."
+
+Die Natur offenbart Gottes Herrlichkeit, Macht und Weisheit. Jeder Mensch kann durch die Schöpfung erkennen, dass es einen Schöpfer gibt.
+
+**Besondere Offenbarung:**
+Gott spricht direkt durch Propheten, Christus und die Schrift.
+
+> **Hebräer 1,1-2:** "Nachdem Gott vielfältig und auf vielerlei Weise ehemals zu den Vätern geredet hat in den Propheten, hat er am Ende dieser Tage zu uns geredet im Sohn..."
+
+Während die allgemeine Offenbarung Gottes Existenz zeigt, offenbart die besondere Offenbarung seinen Willen, seinen Plan und seinen Charakter.`
                 },
                 {
-                    heading: "Warum Gott den Weg der Schrift wählte",
-                    content: `**1. Dauerhaftigkeit:** Ein gesprochenes Wort verfliegt, ein geschriebenes Wort bleibt bestehen.
+                    heading: "2. Inspiration",
+                    content: `**Biblische Grundlagen:**
 
-**2. Verbindlichkeit:** Ein schriftlicher Vertrag ist verbindlicher als eine mündliche Zusage.
+> **2. Timotheus 3,16-17:** "Alle Schrift ist von Gott eingegeben und nütze zur Lehre, zur Überführung, zur Zurechtweisung, zur Unterweisung in der Gerechtigkeit, auf daß der Mensch Gottes vollkommen sei, zu jedem guten Werke völlig geschickt."
 
-**3. Schutz vor Verfälschung:** Schriftliche Fixierung schützt die Wahrheit vor Veränderung.
+> **2. Petrus 1,20-21:** "Indem ihr dies zuerst wisset, daß keine Weissagung der Schrift von eigener Auslegung ist. Denn die Weissagung wurde niemals durch den Willen des Menschen hervorgebracht, sondern heilige Männer Gottes redeten, getrieben vom Heiligen Geist."
 
-**4. Zugang für alle Generationen:** Die Schrift ermöglicht Menschen aller Zeiten, Gottes Reden zu hören.`
+**Wie Inspiration funktioniert:**
+- **Verbal-inspirierte Wahrheit:** Gott inspirierte nicht nur Gedanken, sondern leitete auch die Wortwahl
+- **Persönlicher Stil bleibt erhalten:** Jeder Autor behält seinen individuellen Schreibstil
+- **Der Heilige Geist führt sicher zum Ziel:** Der Geist Gottes leitete die Autoren, sodass sie genau das schrieben, was Gott mitteilen wollte
+
+Die Inspiration bedeutet, dass Gott die menschlichen Autoren so leitete, dass sie ohne Fehler aufschrieben, was Er ihnen mitteilte – und zwar in ihren eigenen Worten und ihrem eigenen Stil.`
                 },
                 {
-                    heading: "Anschauliche Analogien für den Ursprung des Wortes Gottes",
-                    content: `**Der königliche Erlass:** Ein königlicher Erlass trägt dieselbe Autorität wie die Stimme des Königs. So verhält es sich mit der Bibel.
+                    heading: "3. Überlieferung",
+                    content: `**Manuskripte:**
+Die Bibel ist das bestüberlieferte Werk der Antike.
 
-**Die Landkarte des Lebens:** Eine Karte zeigt sichere Wege und Gefahren. Die Bibel leitet den Menschen geistlich sicher.
+- **Tausende griechische NT-Handschriften:** Über 5.800 griechische Manuskripte des Neuen Testaments
+- **Masoretischer Text des AT:** Sorgfältig überlieferter hebräischer Text
+- **Qumran bestätigt Texttreue:** Die Schriftrollenfunde am Toten Meer bestätigen die Genauigkeit der Überlieferung
 
-**Das Orchester:** Viele Instrumente (Autoren), ein Dirigent (Heiliger Geist) – Vielfalt im Stil, Einheit im Inhalt.
+**Texttreue:**
 
-**Der Sternenhimmel (Psalm 19):** Die Schöpfung offenbart Gottes Größe, die Schrift seinen Willen.`
+> **Jesaja 40,8:** "Das Gras ist verdorrt, die Blume ist abgefallen; aber das Wort unseres Gottes bleibt in Ewigkeit."
+
+> **Matthäus 24,35:** "Der Himmel und die Erde werden vergehen, aber meine Worte werden nicht vergehen."
+
+**Vergleichstabelle:**
+
+| Thema | Altes Testament | Neues Testament |
+|-------|-----------------|-----------------|
+| Manuskripte | Masoretisch, Qumran | 5.800+ Griechische Handschriften |
+| Textvarianten | Sehr gering | Meist orthographisch/unwichtig |
+| Zeitabstand | Ca. 1000 Jahre | Ca. 25-300 Jahre |
+
+Die Texttreue der Bibel übertrifft alle anderen antiken Werke bei weitem.`
                 },
                 {
-                    heading: "Typische Missverständnisse und Klarstellungen",
-                    content: `**"Menschen schrieben – also Menschenwort":**
-Menschen schrieben, aber Gott leitete sie. Die Schrift ist sowohl göttlich als auch menschlich.
+                    heading: "4. Kanonbildung",
+                    content: `Der Kanon wurde erkannt, nicht erfunden. Die Gemeinde hat nicht entschieden, welche Bücher göttlich sind, sondern hat erkannt, welche Bücher göttliche Autorität besitzen.
 
-**"Unterschiedliche Stile = unterschiedliche Meinungen":**
-Stile spiegeln Persönlichkeit, nicht Widerspruch.
+**Kriterien für die Kanonbildung:**
+- **Apostolisch/Prophetisch:** Von einem Apostel oder Propheten geschrieben oder autorisiert
+- **Übereinstimmung der Lehre:** Stimmt mit der bereits anerkannten Lehre überein
+- **Gebrauch in Gemeinden:** Wurde bereits in den Gemeinden gelesen und als autoritativ anerkannt
+- **Geistliche Autorität:** Trägt das Zeugnis des Heiligen Geistes in sich
 
-**"Der Text wurde sicher verändert":**
-Die Bibel ist das bestbezeugte Schriftwerk der Antike.`
+Der Heilige Geist wirkte in der Gemeinde, um die inspirierten Schriften zu erkennen und von menschlichen Schriften zu unterscheiden.`
                 },
                 {
-                    heading: "Methodische Zugänge",
-                    content: `- **Biblisch-theologisch:** Was sagt die Schrift über sich selbst?
-- **Historisch:** Wie entstanden Texte und Manuskripte?
-- **Systematisch-theologisch:** Inspiration, Inerranz, Autorität.
-- **Hermeneutisch:** Wie interpretiert man ein inspiriertes Dokument?
-- **Praktisch-theologisch:** Konsequenzen für Lehre, Predigt und Leben.`
+                    heading: "5. Einheit der Bibel",
+                    content: `Die Bibel ist eine zusammenhängende Heilsgeschichte, geschrieben über 1.500 Jahre von mehr als 40 Autoren – und doch mit einer einheitlichen Botschaft.
+
+**Beispiele der Einheit:**
+- **Opfersystem → Christus:** Alle alttestamentlichen Opfer weisen auf das eine perfekte Opfer Christi hin
+- **Alter Bund → Neuer Bund:** Gott erfüllt seinen Bund durch Jesus Christus
+- **König David → Messias:** David war ein Vorschatten des kommenden Königs Jesus
+
+**Strukturübersicht:**
+- AT verheißt → NT erfüllt
+- Opfer → Kreuz
+- Gesetz → Evangelium
+- Irdischer König → König der Könige
+
+Diese Einheit zeigt, dass hinter der Bibel ein göttlicher Plan und ein göttlicher Autor steht – der Heilige Geist.`
+                },
+                {
+                    heading: "6. Praktische Bedeutung",
+                    content: `Was bedeutet der göttliche Ursprung der Bibel für uns heute?
+
+- **Höchste Autorität im Glauben:** Die Bibel ist die oberste Richtschnur für Lehre und Leben
+- **Orientierung für den Alltag:** Sie gibt Weisheit für tägliche Entscheidungen
+- **Schutz vor Irrtum:** Sie bewahrt uns vor falschen Lehren und Selbsttäuschung
+- **Grundlage für christliche Ethik:** Unser moralisches Handeln gründet auf Gottes Wort
+- **Trost und Hoffnung:** In Gottes unveränderlichem Wort finden wir Halt und Zuversicht
+- **Werkzeug zur Verkündigung:** Durch die Bibel spricht Gott zu Menschen aller Zeiten und Kulturen
+
+Der Ursprung der Bibel macht sie nicht zu einem Relikt der Vergangenheit, sondern zu Gottes lebendiger Stimme für die Gegenwart.`
                 }
             ],
             learningGoals: [
-                "Den Ursprung der Bibel erklären können",
-                "Offenbarung und Inspiration unterscheiden",
-                "Textüberlieferung und Kanonbildung verstehen",
-                "Die Einheit der Schrift begründen können"
+                "Den Ursprung der Bibel durch Offenbarung und Inspiration erklären können",
+                "Die Unterschiede zwischen allgemeiner und besonderer Offenbarung verstehen",
+                "Die Zuverlässigkeit der Textüberlieferung darlegen können",
+                "Die Kriterien der Kanonbildung kennen und die Einheit der Schrift begründen"
             ],
             reflectionQuestions: [
-                "Warum sollte Gott ein Buch entstehen lassen?",
-                "Was unterscheidet die Bibel von anderen religiösen Texten?",
-                "Wie kann ein Text göttlich und menschlich sein?",
-                "Wie wissen wir, dass der Text zuverlässig überliefert wurde?"
+                "Wie begründet die Bibel ihre eigene Autorität?",
+                "Welche Offenbarungsart (allgemein oder besonders) spricht dich persönlich an und warum?",
+                "Warum war die Kanonbildung notwendig und wie können wir sicher sein, dass die richtigen Bücher ausgewählt wurden?",
+                "Was bedeutet es für deinen Alltag, dass Gottes Wort \"nicht vergeht\"?"
             ],
-            practicalApplication: `- Gottes Wort gibt Orientierung in einer moralisch chaotischen Welt.
-- Die Schrift gibt Halt und Sicherheit.
-- Sie schützt vor Irrlehre und Selbsttäuschung.
-- Sie formt Charakter und Glauben.`
+            practicalApplication: `**Für deinen Glaubensalltag:**
+
+1. **Tägliche Bibellese:** Erkenne die Bibel als Gottes persönliche Botschaft an dich
+2. **Prüfung von Lehren:** Verwende die Schrift als Maßstab für alle geistlichen Lehren
+3. **Entscheidungen treffen:** Suche in Gottes Wort nach Weisheit und Führung
+4. **Weitergabe:** Teile die Gewissheit über Gottes zuverlässiges Wort mit anderen
+5. **Gebet:** Danke Gott dafür, dass Er sein Wort bewahrt und zu uns sprechen lässt
+
+Die Bibel ist kein gewöhnliches Buch – sie ist Gottes Stimme. Behandle sie entsprechend mit Ehrfurcht, Studium und Gehorsam.`
         }
     },
     en: {
