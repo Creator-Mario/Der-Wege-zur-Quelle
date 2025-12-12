@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Die Bibel – Der Weg zur Quelle</title>
+    <link rel="stylesheet" href="styles-new.css">
+</head>
+<body>
+    <!-- Branding Page -->
+    <div id="page-branding" class="page active">
+        <!-- Admin Button (Top Left) -->
+        <div class="admin-selector">
+            <button class="lang-btn" onclick="showAdminLogin()" id="btn-admin">Admin Login</button>
+        </div>
+        
+        <!-- Language Selector -->
+        <div class="lang-selector">
+            <button class="lang-btn active" onclick="changeLang('de')" data-lang="de" title="Deutsch">🇩🇪 DE</button>
+            <button class="lang-btn" onclick="changeLang('en')" data-lang="en" title="English">🇬🇧 EN</button>
+            <button class="lang-btn" onclick="changeLang('id')" data-lang="id" title="Indonesian">🇮🇩 ID</button>
+        </div>
+
+        <!-- Content -->
+        <div class="content-wrapper">
+            <img src="logo.png" alt="Logo" class="logo-main">
+            
+            <h1 class="title-main">
+                <div class="title-line">Die Bibel</div>
+                <div class="title-line">Der Weg zur Quelle</div>
+            </h1>
+            
+            <div class="verse-box">
+                <div class="verse-ref" id="verse-ref">2. Timotheus 3,16-17</div>
+                <div class="verse-text" id="verse-text">Alle Schrift ist von Gott eingegeben und nütze zur Lehre, zur Überführung, zur Zurechtweisung, zur Unterweisung in der Gerechtigkeit, auf daß der Mensch Gottes vollkommen sei, zu jedem guten Werke völlig geschickt.</div>
+            </div>
+            
+            <button class="btn-primary" onclick="showRegister()" id="btn-entry">Anmelden / Registrieren</button>
+        </div>
+    </div>
+
+    <!-- Admin Login Page -->
+    <div id="page-admin" class="page">
+        <div class="register-box">
+            <button class="btn-close" onclick="showBranding()">✕</button>
+            
+            <h2 id="admin-title">Admin Login</h2>
+            
+            <form id="form-admin" onsubmit="return submitAdminLogin(event);">
+                <input type="text" id="admin-username" placeholder="Benutzername" required>
+                <input type="password" id="admin-password" placeholder="Passwort" required>
+                
+                <div id="admin-error" class="error-message" style="display: none;"></div>
+                
+                <div class="btn-group">
+                    <button type="submit" class="btn-submit" id="btn-admin-submit">Anmelden</button>
+                    <button type="button" class="btn-cancel" onclick="showBranding()" id="btn-admin-cancel">Abbrechen</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Registration Page -->
+    <div id="page-register" class="page">
+        <div class="register-box">
+            <button class="btn-close" onclick="showBranding()">✕</button>
+            
+            <h2 id="register-title">Registrierung</h2>
+            
+            <form id="form-register" onsubmit="return submitRegister(event);">
+                <input type="text" id="input-firstname" placeholder="Vorname" required>
+                <input type="text" id="input-lastname" placeholder="Nachname" required>
+                <input type="date" id="input-dob" required>
+                <input type="email" id="input-email" placeholder="E-Mail" required>
+                <input type="text" id="input-location" placeholder="Wohnort / Land" required>
+                <select id="input-lang" required>
+                    <option value="de">Deutsch</option>
+                    <option value="en">English</option>
+                    <option value="id">Indonesia</option>
+                </select>
+                
+                <p class="privacy-note" id="privacy-note">Diese Daten werden ausschließlich für dein persönliches Zertifikat genutzt.</p>
+                
+                <div class="btn-group">
+                    <button type="submit" class="btn-submit" id="btn-submit">Registrieren</button>
+                    <button type="button" class="btn-cancel" onclick="showBranding()" id="btn-cancel">Abbrechen</button>
+                </div>
+            </form>
+            
+            <!-- Password Display -->
+            <div id="password-result" class="password-result" style="display: none;">
+                <h3 id="password-title">Ihr Passwort</h3>
+                <div class="password-display" id="password-value"></div>
+                <p id="password-hint">Bitte notieren Sie dieses Passwort.</p>
+                <button class="btn-continue" onclick="showApp()" id="btn-continue">Weiter zur App</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App Page -->
+    <div id="page-app" class="page">
+        <div class="app-container">
+            <div class="app-header">
+                <img src="logo.png" alt="Logo" class="logo-small">
+                <h2 id="app-title">Bibelstudie</h2>
+                <div class="user-section">
+                    <span id="user-display"></span>
+                    <button onclick="doLogout()" id="btn-logout">Abmelden</button>
+                </div>
+            </div>
+            <div class="app-content">
+                <!-- Curriculum Overview -->
+                <div id="curriculum-overview">
+                    <h3 id="app-welcome">Willkommen zur Bibelstudie-App!</h3>
+                    <div class="curriculum-container" id="curriculum-content">
+                        <!-- Chapters will be rendered here by JavaScript -->
+                    </div>
+                </div>
+                
+                <!-- Lesson View -->
+                <div id="lesson-view" style="display: none;">
+                    <!-- Lesson content will be rendered here by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app-new.js"></script>
+</body>
+</html>

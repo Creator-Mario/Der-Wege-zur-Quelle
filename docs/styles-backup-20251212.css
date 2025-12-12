@@ -1,0 +1,502 @@
+/* Two-Layer Design - Die Bibel App */
+/* Color Scheme matching Logo: Himmelblau → Goldgelb → Beige → Braun */
+
+:root {
+    --sky-blue: #87CEEB;
+    --gold: #DAA520;
+    --beige: #F5F5DC;
+    --brown: #8B4513;
+    --dark-brown: #654321;
+    --white: #FFFFFF;
+    --text-shadow: rgba(0, 0, 0, 0.7);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+}
+
+/* ==================== LAYER 1: BRANDING ==================== */
+.branding-layer {
+    width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    /* Multi-layer Christian background with actual background image */
+    background: 
+        /* Cross patterns overlay */
+        linear-gradient(45deg, transparent 48%, rgba(218, 165, 32, 0.03) 50%, transparent 52%),
+        linear-gradient(-45deg, transparent 48%, rgba(139, 92, 246, 0.03) 50%, transparent 52%),
+        /* Subtle gradient overlay for better text readability */
+        linear-gradient(135deg, 
+            rgba(135, 206, 235, 0.4) 0%,   /* Himmelblau overlay - increased for better contrast */
+            rgba(218, 165, 32, 0.3) 35%,   /* Goldgelb overlay - increased */
+            rgba(245, 245, 220, 0.3) 65%,  /* Beige overlay - increased */
+            rgba(139, 69, 19, 0.4) 100%    /* Braun overlay - increased */
+        ),
+        /* Background image from repository (full coverage) */
+        url('hintergrund-bild.png');
+    background-size: 80px 80px, 80px 80px, 100% 100%, cover;
+    background-position: center, center, center, center;
+    background-repeat: repeat, repeat, no-repeat, no-repeat;
+    background-attachment: fixed;
+}
+
+/* Language Selector */
+.lang-selector {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    gap: 10px;
+}
+
+.lang-btn {
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.lang-btn:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.lang-btn.selected {
+    background: var(--gold);
+    box-shadow: 0 4px 15px rgba(218, 165, 32, 0.5);
+}
+
+/* Branding Content */
+.branding-content {
+    text-align: center;
+    padding: 20px;
+    max-width: 700px;
+}
+
+/* Logo with Pulsing Animation */
+.logo-wrapper {
+    margin-bottom: 20px;
+}
+
+.main-logo {
+    width: 120px;
+    height: auto;
+    animation: logoPulse 4s ease-in-out infinite;
+    filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.3));
+}
+
+@keyframes logoPulse {
+    0%, 100% { 
+        transform: scale(1);
+        opacity: 0.9;
+    }
+    50% { 
+        transform: scale(1.08);
+        opacity: 1;
+    }
+}
+
+/* Title - Two Lines, Black Bold with Light Shadow */
+.main-title {
+    font-family: Georgia, 'Times New Roman', serif;
+    color: #000000;
+    text-shadow: 
+        1px 1px 2px rgba(255, 255, 255, 0.9),
+        0 0 10px rgba(255, 255, 255, 0.7);
+    margin-bottom: 15px;
+    line-height: 1.2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title-line1 {
+    font-size: 2rem;
+    font-weight: 700;
+    display: block;
+}
+
+.title-line2 {
+    font-size: 2rem;
+    font-weight: 700;
+    display: block;
+}
+
+/* Bible Verse Section */
+.bible-verse {
+    max-width: 650px;
+    margin: 15px auto 25px;
+    padding: 10px;
+}
+
+.verse-reference {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #000000;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.9);
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.verse-text {
+    font-size: 0.9rem;
+    color: #000000;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.9);
+    line-height: 1.4;
+    text-align: center;
+    font-style: italic;
+    font-weight: 700;
+}
+
+/* Entry Button - Contrast Color */
+.entry-button {
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white);
+    background: var(--dark-brown);
+    border: 2px solid var(--white);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.entry-button:hover {
+    background: var(--brown);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.entry-button:active {
+    transform: translateY(-1px);
+}
+
+/* ==================== LAYER 2: REGISTRATION OVERLAY ==================== */
+.registration-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.registration-overlay.active {
+    opacity: 1;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Overlay Content */
+.overlay-content {
+    background: var(--white);
+    border-radius: 15px;
+    padding: 40px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Close Button */
+.close-overlay {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 35px;
+    height: 35px;
+    border: none;
+    background: var(--dark-brown);
+    color: var(--white);
+    font-size: 1.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.close-overlay:hover {
+    background: var(--brown);
+    transform: rotate(90deg);
+}
+
+/* Overlay Title */
+.overlay-title {
+    font-size: 2rem;
+    color: var(--dark-brown);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Form Fields */
+.form-field {
+    margin-bottom: 20px;
+}
+
+.form-field label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--dark-brown);
+}
+
+.form-field input,
+.form-field select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--beige);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-field input:focus,
+.form-field select:focus {
+    outline: none;
+    border-color: var(--gold);
+}
+
+/* Privacy Notice */
+.privacy-notice {
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+    margin: 20px 0;
+    padding: 15px;
+    background: #f9f9f9;
+    border-left: 4px solid var(--gold);
+    border-radius: 5px;
+}
+
+/* Form Actions */
+.form-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn-register,
+.btn-cancel {
+    flex: 1;
+    padding: 14px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-register {
+    background: var(--gold);
+    color: var(--white);
+}
+
+.btn-register:hover {
+    background: var(--dark-brown);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-cancel {
+    background: #ccc;
+    color: #333;
+}
+
+.btn-cancel:hover {
+    background: #aaa;
+}
+
+/* Password Display */
+.password-display {
+    text-align: center;
+}
+
+.password-display h3 {
+    color: var(--dark-brown);
+    margin-bottom: 15px;
+}
+
+.password-box {
+    background: var(--beige);
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    border: 2px solid var(--gold);
+}
+
+.password-box span {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--dark-brown);
+    font-family: 'Courier New', monospace;
+}
+
+.password-hint {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.btn-continue {
+    padding: 14px 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    background: var(--gold);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-continue:hover {
+    background: var(--dark-brown);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* ==================== MAIN APP (After Login) ==================== */
+.main-app {
+    width: 100%;
+    min-height: 100vh;
+    background: var(--beige);
+}
+
+.app-header {
+    background: var(--dark-brown);
+    color: var(--white);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.app-logo {
+    width: 50px;
+    height: auto;
+}
+
+.user-info button {
+    padding: 8px 16px;
+    background: var(--gold);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.app-content {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 768px) {
+    .lang-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+    
+    .lang-selector {
+        top: 10px;
+        right: 10px;
+        gap: 5px;
+    }
+    
+    .branding-content {
+        padding: 15px;
+    }
+    
+    .main-logo {
+        width: 80px;
+    }
+    
+    .logo-wrapper {
+        margin-bottom: 10px;
+    }
+    
+    .title-line1,
+    .title-line2 {
+        font-size: 1.5rem;
+    }
+    
+    .main-title {
+        margin-bottom: 10px;
+    }
+    
+    .bible-verse {
+        margin: 10px auto 15px;
+        padding: 8px;
+        max-width: 90%;
+    }
+    
+    .verse-reference {
+        font-size: 0.85rem;
+        margin-bottom: 5px;
+    }
+    
+    .verse-text {
+        font-size: 0.75rem;
+        line-height: 1.3;
+    }
+    
+    .entry-button {
+        padding: 10px 25px;
+        font-size: 0.9rem;
+        border-width: 2px;
+    }
+    
+    .overlay-content {
+        padding: 25px 15px;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+}

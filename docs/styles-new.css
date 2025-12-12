@@ -1,0 +1,658 @@
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background: linear-gradient(135deg, 
+        #87CEEB 0%,
+        #DAA520 35%,
+        #F5F5DC 65%,
+        #8B4513 100%
+    );
+    background-attachment: fixed;
+}
+
+/* Background Image */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('hintergrund-bild.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+/* Page System */
+.page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.page.active {
+    display: flex;
+}
+
+/* Admin Selector (Top Left) */
+.admin-selector {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 100;
+}
+
+/* Language Selector */
+.lang-selector {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    display: flex;
+    gap: 10px;
+}
+
+.lang-btn {
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid #DAA520;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.lang-btn:hover {
+    background: #DAA520;
+    color: white;
+    transform: scale(1.05);
+}
+
+.lang-btn.active {
+    background: #DAA520;
+    color: white;
+}
+
+/* Branding Page */
+.content-wrapper {
+    text-align: center;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.logo-main {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 20px;
+    animation: pulse 4s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px rgba(218, 165, 32, 0.6));
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.9;
+    }
+    50% {
+        transform: scale(1.08);
+        opacity: 1;
+    }
+}
+
+.title-main {
+    font-family: Georgia, serif;
+    font-size: 2rem;
+    color: #000;
+    font-weight: 700;
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);
+    margin-bottom: 20px;
+}
+
+.title-line {
+    display: block;
+    line-height: 1.3;
+}
+
+.verse-box {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.verse-ref {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #000;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+    margin-bottom: 10px;
+}
+
+.verse-text {
+    font-size: 0.9rem;
+    font-weight: 700;
+    font-style: italic;
+    color: #000;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+}
+
+.btn-primary {
+    padding: 12px 30px;
+    background: #654321;
+    color: white;
+    border: 2px solid white;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 20px;
+}
+
+.btn-primary:hover {
+    background: #8B4513;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.error-message {
+    background: #ff4444;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* Registration Page */
+.register-box {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.btn-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+}
+
+.btn-close:hover {
+    color: #000;
+}
+
+.register-box h2 {
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+.register-box input,
+.register-box select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.privacy-note {
+    font-size: 12px;
+    color: #666;
+    font-style: italic;
+    margin: 15px 0;
+    padding: 10px;
+    background: #f9f9f9;
+    border-left: 3px solid #DAA520;
+}
+
+.btn-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-submit,
+.btn-cancel,
+.btn-continue {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-submit,
+.btn-continue {
+    background: #DAA520;
+    color: white;
+}
+
+.btn-submit:hover,
+.btn-continue:hover {
+    background: #B8860B;
+}
+
+.btn-cancel {
+    background: #ccc;
+    color: #333;
+}
+
+.btn-cancel:hover {
+    background: #999;
+}
+
+.password-result {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.password-result h3 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.password-display {
+    background: #F5F5DC;
+    border: 2px solid #DAA520;
+    padding: 15px;
+    margin: 15px 0;
+    font-family: 'Courier New', monospace;
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+    border-radius: 5px;
+}
+
+.password-result p {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.btn-continue {
+    width: 100%;
+}
+
+/* App Page */
+.app-container {
+    width: 100%;
+    height: 100%;
+    background: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.app-header {
+    background: #DAA520;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.logo-small {
+    width: 40px;
+    height: 40px;
+}
+
+.app-header h2 {
+    flex: 1;
+    margin: 0;
+}
+
+.user-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-section button {
+    padding: 8px 15px;
+    background: white;
+    color: #DAA520;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.user-section button:hover {
+    background: #f0f0f0;
+}
+
+.app-content {
+    padding: 30px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.app-content h3 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .logo-main {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .title-main {
+        font-size: 1.5rem;
+    }
+    
+    .verse-ref {
+        font-size: 0.85rem;
+    }
+    
+    .verse-text {
+        font-size: 0.75rem;
+    }
+    
+    .btn-primary {
+        padding: 10px 25px;
+        font-size: 14px;
+    }
+    
+    .lang-btn {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+    
+    .register-box {
+        padding: 20px;
+    }
+    
+    .app-header {
+        padding: 10px 15px;
+    }
+    
+    .app-header h2 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Curriculum Styles */
+.curriculum-container {
+    max-height: calc(100vh - 180px);
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.chapter-card {
+    background: white;
+    border: 2px solid #DAA520;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+}
+
+.chapter-card:hover {
+    box-shadow: 0 4px 12px rgba(218,165,32,0.3);
+}
+
+.chapter-header {
+    padding: 15px 20px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: #000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    transition: background 0.2s ease;
+}
+
+.chapter-header:hover {
+    background: rgba(218,165,32,0.1);
+    border-radius: 8px;
+}
+
+.toggle-icon {
+    color: #DAA520;
+    font-size: 0.9rem;
+    font-weight: bold;
+    min-width: 15px;
+}
+
+.chapter-subtitle {
+    padding: 0 20px 10px 45px;
+    color: #666;
+    font-style: italic;
+    font-size: 0.95rem;
+}
+
+.chapter-content {
+    padding: 0 20px 15px 20px;
+}
+
+.lesson-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0 25px;
+}
+
+.lesson-list li {
+    padding: 10px 15px;
+    margin: 5px 0;
+    background: white;
+    border-left: 3px solid #DAA520;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #333;
+}
+
+.lesson-list li:hover {
+    background: rgba(218,165,32,0.15);
+    transform: translateX(5px);
+    border-left-width: 5px;
+}
+
+/* Lesson View */
+#lesson-view {
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    max-height: calc(100vh - 180px);
+    overflow-y: auto;
+}
+
+.lesson-header {
+    border-bottom: 2px solid #DAA520;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.lesson-header h2 {
+    color: #DAA520;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.lesson-header h3 {
+    color: #333;
+    font-size: 1.2rem;
+}
+
+.lesson-content {
+    padding: 20px 0;
+    line-height: 1.8;
+    color: #333;
+}
+
+.lesson-content p {
+    margin: 15px 0;
+    font-size: 1.1rem;
+}
+
+.btn-back {
+    margin-top: 20px;
+    padding: 12px 30px;
+    background: #DAA520;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-back:hover {
+    background: #C8941A;
+    transform: scale(1.05);
+}
+
+/* Lesson Content Sections */
+.lesson-introduction,
+.lesson-section,
+.lesson-goals,
+.lesson-reflection,
+.lesson-application {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    border-left: 4px solid #DAA520;
+}
+
+.lesson-introduction h4,
+.lesson-section h4,
+.lesson-goals h4,
+.lesson-reflection h4,
+.lesson-application h4 {
+    color: #DAA520;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.lesson-introduction p,
+.lesson-section p,
+.lesson-application p {
+    line-height: 1.8;
+    color: #333;
+    font-size: 1.05rem;
+}
+
+.lesson-goals ul,
+.lesson-reflection ul {
+    margin-left: 25px;
+    line-height: 1.8;
+}
+
+.lesson-goals li,
+.lesson-reflection li {
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 1.05rem;
+}
+
+.lesson-content strong {
+    color: #8B4513;
+    font-weight: bold;
+}
+
+.lesson-content ul {
+    list-style-type: disc;
+}
+
+/* Mobile adjustments for curriculum */
+@media (max-width: 768px) {
+    .curriculum-container {
+        padding: 10px;
+    }
+    
+    .chapter-header {
+        font-size: 1rem;
+        padding: 12px 15px;
+    }
+    
+    .chapter-subtitle {
+        font-size: 0.85rem;
+        padding: 0 15px 8px 40px;
+    }
+    
+    .lesson-list {
+        margin-left: 15px;
+    }
+    
+    .lesson-list li {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+    
+    .lesson-header h2 {
+        font-size: 1.2rem;
+    }
+    
+    .lesson-header h3 {
+        font-size: 1rem;
+    }
+    
+    .lesson-introduction,
+    .lesson-section,
+    .lesson-goals,
+    .lesson-reflection,
+    .lesson-application {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .lesson-introduction h4,
+    .lesson-section h4,
+    .lesson-goals h4,
+    .lesson-reflection h4,
+    .lesson-application h4 {
+        font-size: 1.1rem;
+    }
+    
+    .lesson-introduction p,
+    .lesson-section p,
+    .lesson-application p,
+    .lesson-goals li,
+    .lesson-reflection li {
+        font-size: 0.95rem;
+    }
+}
