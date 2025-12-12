@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Die Bibel – Glauben der Weg zur Quelle</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Layer 1: Branding & Entry -->
+    <div id="branding-layer" class="branding-layer">
+        <!-- Language Selection -->
+        <div class="lang-selector">
+            <button class="lang-btn selected" data-lang="de" onclick="selectLanguage('de')">🇩🇪</button>
+            <button class="lang-btn" data-lang="en" onclick="selectLanguage('en')">🇬🇧</button>
+            <button class="lang-btn" data-lang="id" onclick="selectLanguage('id')">🇮🇩</button>
+        </div>
+
+        <div class="branding-content">
+            <!-- Pulsing Logo -->
+            <div class="logo-wrapper">
+                <img src="logo.png" alt="Logo" class="main-logo">
+            </div>
+            
+            <!-- Title - Two Lines -->
+            <h1 class="main-title">
+                <span class="title-line1">Die Bibel</span>
+                <span class="title-line2">Der Weg zur Quelle</span>
+            </h1>
+            
+            <!-- Bible Verse -->
+            <div class="bible-verse">
+                <p class="verse-reference">2. Timotheus 3,16-17</p>
+                <p class="verse-text">Alle Schrift ist von Gott eingegeben und nütze zur Lehre, zur Überführung, zur Zurechtweisung, zur Unterweisung in der Gerechtigkeit, auf daß der Mensch Gottes vollkommen sei, zu jedem guten Werke völlig geschickt.</p>
+            </div>
+            
+            <!-- Entry Button -->
+            <button class="entry-button" onclick="showRegistrationOverlay()">
+                <span data-i18n="branding.button">Anmelden / Registrieren</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Layer 2: Registration Overlay -->
+    <div id="registration-overlay" class="registration-overlay">
+        <div class="overlay-content">
+            <button class="close-overlay" onclick="closeRegistrationOverlay()">✕</button>
+            
+            <h2 class="overlay-title" data-i18n="registration.title">Registrierung</h2>
+            
+            <form id="registration-form" onsubmit="handleRegistration(event)">
+                <!-- First Name -->
+                <div class="form-field">
+                    <label for="vorname" data-i18n="registration.firstName">Vorname</label>
+                    <input type="text" id="vorname" name="vorname" required>
+                </div>
+                
+                <!-- Last Name -->
+                <div class="form-field">
+                    <label for="nachname" data-i18n="registration.lastName">Nachname</label>
+                    <input type="text" id="nachname" name="nachname" required>
+                </div>
+                
+                <!-- Date of Birth -->
+                <div class="form-field">
+                    <label for="geburtsdatum" data-i18n="registration.dob">Geburtsdatum</label>
+                    <input type="date" id="geburtsdatum" name="geburtsdatum" required>
+                </div>
+                
+                <!-- Email -->
+                <div class="form-field">
+                    <label for="email" data-i18n="registration.email">E-Mail-Adresse</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <!-- Location -->
+                <div class="form-field">
+                    <label for="wohnort" data-i18n="registration.location">Wohnort / Land</label>
+                    <input type="text" id="wohnort" name="wohnort" required>
+                </div>
+                
+                <!-- Language -->
+                <div class="form-field">
+                    <label for="sprache" data-i18n="registration.language">Sprache</label>
+                    <select id="sprache" name="sprache" required>
+                        <option value="de">Deutsch</option>
+                        <option value="en">English</option>
+                        <option value="id">Indonesia</option>
+                    </select>
+                </div>
+                
+                <!-- Privacy Notice -->
+                <p class="privacy-notice" data-i18n="registration.privacy">Diese Daten werden ausschließlich für dein persönliches Zertifikat genutzt und sind nicht übertragbar.</p>
+                
+                <!-- Buttons -->
+                <div class="form-actions">
+                    <button type="submit" class="btn-register" data-i18n="registration.submit">Registrieren</button>
+                    <button type="button" class="btn-cancel" onclick="closeRegistrationOverlay()" data-i18n="registration.cancel">Abbrechen</button>
+                </div>
+            </form>
+            
+            <!-- Password Display (shown after registration) -->
+            <div id="password-display" class="password-display" style="display: none;">
+                <h3 data-i18n="registration.passwordTitle">Ihr Passwort</h3>
+                <p data-i18n="registration.passwordInfo">Ihr automatisch generiertes Passwort lautet:</p>
+                <div class="password-box">
+                    <span id="generated-password"></span>
+                </div>
+                <p class="password-hint" data-i18n="registration.passwordHint">Bitte notieren Sie sich dieses Passwort. Sie können es später ändern.</p>
+                <button class="btn-continue" onclick="continueToApp()" data-i18n="registration.continue">Weiter zur App</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App (Hidden initially) -->
+    <div id="main-app" class="main-app" style="display: none;">
+        <div class="app-header">
+            <img src="logo.png" alt="Logo" class="app-logo">
+            <h2 data-i18n="app.title">Bibelstudie</h2>
+            <div class="user-info">
+                <span id="user-name"></span>
+                <button onclick="logout()" data-i18n="app.logout">Abmelden</button>
+            </div>
+        </div>
+        <div class="app-content">
+            <p data-i18n="app.welcome">Willkommen zur Bibelstudie-App!</p>
+            <p>Hier werden die 12 Kapitel mit 120 Lektionen erscheinen.</p>
+        </div>
+    </div>
+
+    <script src="translations.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
