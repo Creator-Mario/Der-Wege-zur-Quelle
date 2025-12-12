@@ -390,6 +390,133 @@ Der Ursprung der Bibel macht sie nicht zu einem Relikt der Vergangenheit, sonder
 5. **Gebet:** Danke Gott dafür, dass Er sein Wort bewahrt und zu uns sprechen lässt
 
 Die Bibel ist kein gewöhnliches Buch – sie ist Gottes Stimme. Behandle sie entsprechend mit Ehrfurcht, Studium und Gehorsam.`
+        },
+        "1-2": {
+            title: "Inspiration & Offenbarung",
+            introduction: `Diese Lektion vertieft die Themen Offenbarung und Inspiration. Offenbarung beschreibt *wie* Gott sich mitteilt; Inspiration beschreibt *wie* diese Mitteilung zuverlässig zur schriftlichen Bibel wurde.
+
+Die Themen Offenbarung und Inspiration gehören zu den tiefsten Bereichen der theologischen Wissenschaft. Sie berühren die Schnittstelle zwischen dem unendlichen Gott und dem endlichen Menschen.`,
+            sections: [
+                {
+                    heading: "1. Grundlagen der Offenbarung",
+                    content: `**Allgemeine Offenbarung:**
+Gott zeigt sich allen Menschen durch Natur, Geschichte und Gewissen.
+
+> **Psalm 19,1-2:** "Die Himmel erzählen die Ehre Gottes, und die Ausdehnung verkündigt seiner Hände Werk. Ein Tag berichtet es dem anderen, und eine Nacht meldet der anderen die Kunde davon."
+
+> **Römer 1,19-20:** "Gottes unsichtbares Wesen, das ist seine ewige Kraft und Gottheit, wird seit der Schöpfung der Welt an den Werken durch Nachdenken wahrgenommen."
+
+Die Natur offenbart Gottes Herrlichkeit, Macht und Weisheit. Jeder Mensch kann durch die Schöpfung erkennen, dass es einen Schöpfer gibt.
+
+**Besondere Offenbarung:**
+Diese Offenbarung ist direkt, klar und heilbringend – sie macht Gottes Willen erkennbar.
+
+**Formen der besonderen Offenbarung:**
+- Propheten
+- Wunder
+- Träume & Visionen
+- Jesus Christus
+- Die Schrift
+
+> **Hebräer 1,1-2:** "Nachdem Gott vielfältig und auf vielerlei Weise ehemals zu den Vätern geredet hat in den Propheten, hat er am Ende dieser Tage zu uns geredet im Sohn."
+
+Während die allgemeine Offenbarung Gottes Existenz zeigt, offenbart die besondere Offenbarung seinen Willen, seinen Heilsplan und seinen Charakter.`
+                },
+                {
+                    heading: "2. Inspiration",
+                    content: `**Definition & Bedeutung:**
+Inspiration bedeutet: *Gott leitete die biblischen Schreiber so, dass das Ergebnis Gottes Wort ist.*
+
+Die Bibel ist also sowohl göttlich als auch menschlich – göttlich in ihrer Autorität, menschlich in ihrer Ausdrucksweise.
+
+**Biblische Grundlagen:**
+
+> **2. Timotheus 3,16-17:** "Alle Schrift ist von Gott eingegeben und nütze zur Lehre, zur Überführung, zur Zurechtweisung, zur Unterweisung in der Gerechtigkeit, auf daß der Mensch Gottes vollkommen sei, zu jedem guten Werke völlig geschickt."
+
+> **2. Petrus 1,20-21:** "Indem ihr dies zuerst wisset, daß keine Weissagung der Schrift von eigener Auslegung ist. Denn die Weissagung wurde niemals durch den Willen des Menschen hervorgebracht, sondern heilige Männer Gottes redeten, getrieben vom Heiligen Geist."
+
+**Modelle der Inspiration:**
+
+| Modell | Schwerpunkt | Stärke | Schwäche |
+|--------|-------------|--------|----------|
+| Verbal | Worte werden geführt | Höchste Genauigkeit | Kann mechanisch wirken |
+| Dynamisch | Gedanken werden geleitet | Natürliche Sprache | Weniger präzise |
+| Organisch | Gott wirkt durch Persönlichkeit | Biblisch ausgewogen | Komplex in Erklärung |
+
+**Wie Inspiration funktioniert:**
+Gott übergeht die Persönlichkeiten nicht, sondern gebraucht sie. Der Heilige Geist leitete die Autoren, sodass sie genau das schrieben, was Gott mitteilen wollte – in ihren eigenen Worten und ihrem eigenen Stil.`
+                },
+                {
+                    heading: "3. Beispiele der Inspiration in der Bibel",
+                    content: `Die Bibel zeigt verschiedene Weisen, wie Gott durch Menschen sprach:
+
+**Mose** empfängt direkte Worte Gottes am brennenden Dornbusch und auf dem Berg Sinai.
+
+**David** schreibt Psalmen unter geistlicher Leitung – persönliche Gebete, die zu Gottes Wort wurden.
+
+**Jeremia** diktiert seinem Schreiber Baruch die Worte Gottes, die dieser aufschreibt.
+
+**Lukas** forscht historisch und sammelt Augenzeugenberichte – und doch unter Führung des Heiligen Geistes.
+
+**Paulus** nutzt Logik, Rhetorik und theologische Argumentation – geführt vom Geist Gottes.
+
+Diese Vielfalt zeigt: Gott spricht durch verschiedene Mittel, aber immer zuverlässig und autoritativ.`
+                },
+                {
+                    heading: "4. Fehlannahmen über Inspiration",
+                    content: `**Irrtum: "Inspiration bedeutet mechanisches Diktat."**
+**Korrektur:** Der Stil der Autoren bleibt klar erkennbar. Paulus schreibt anders als Johannes, Jesaja anders als Hesekiel.
+
+**Irrtum: "Nur die Ideen sind inspiriert, nicht die Worte."**
+**Korrektur:** Die Bibel bezeugt ausdrücklich, dass die *Worte* inspiriert sind (2. Tim 3,16; 2. Petr 1,21).
+
+**Irrtum: "Inspiration gilt nur für geistliche Texte."**
+**Korrektur:** Auch historische Berichte, Chroniken, Genealogien und Zahlen sind inspiriert und dienen Gottes Zweck.
+
+**Irrtum: "Inspiration heißt, dass die Autoren alles verstanden."**
+**Korrektur:** Manche Propheten verstanden ihre eigenen Weissagungen nicht vollständig (1. Petr 1,10-12), aber sie schrieben dennoch Gottes Wort.`
+                },
+                {
+                    heading: "5. Wirkung der Inspiration",
+                    content: `Was bewirkt die Inspiration der Schrift?
+
+**Irrtumslosigkeit im ursprünglichen Text:**
+Der ursprüngliche Text der Bibel enthält keine Fehler in dem, was er lehrt.
+
+**Einheit der Schrift:**
+Trotz vieler Autoren und Jahrhunderte spricht die Bibel mit einer Stimme.
+
+**Autorität der Bibel:**
+Die Bibel hat höchste Autorität in allen Fragen des Glaubens und Lebens.
+
+**Kraft zur Veränderung:**
+
+> **Hebräer 4,12:** "Denn das Wort Gottes ist lebendig und wirksam und schärfer als jedes zweischneidige Schwert, und durchdringend bis zur Scheidung von Seele und Geist, sowohl der Gelenke als auch des Markes, und ein Richter der Gedanken und Gesinnungen des Herzens."
+
+Die Bibel ist nicht nur Information – sie hat die Kraft, Leben zu verändern, Herzen zu erneuern und Menschen zu heilen.`
+                }
+            ],
+            learningGoals: [
+                "Die Unterschiede zwischen allgemeiner und besonderer Offenbarung verstehen",
+                "Die verschiedenen Inspirationsmodelle kennen und bewerten können",
+                "Erklären können, wie göttliche Autorität und menschlicher Stil zusammenwirken",
+                "Fehlannahmen über Inspiration identifizieren und korrigieren"
+            ],
+            reflectionQuestions: [
+                "Welche Offenbarungsart (allgemein oder besonders) ist für dich besonders bedeutend und warum?",
+                "Welches Inspirationsmodell erscheint dir am biblischsten und warum?",
+                "Warum braucht ein inspiriertes Buch eine feststehende Autorität?",
+                "Wie würdest du Inspiration einem Außenstehenden erklären?"
+            ],
+            practicalApplication: `**Für deinen Glaubensalltag:**
+
+1. **Vertraue der Bibel vollständig:** Sie ist Gottes zuverlässiges Wort, nicht nur menschliche Meinung
+2. **Studiere sie gründlich:** Da jedes Wort inspiriert ist, lohnt es sich, tief zu graben
+3. **Prüfe Lehren daran:** Verwende die Schrift als Maßstab für alle geistlichen Aussagen
+4. **Rechne mit ihrer Kraft:** Gottes Wort wirkt – erwarte Veränderung durch das Studium
+5. **Teile sie mit anderen:** Ein inspiriertes Buch verdient es, weitergegeben zu werden
+
+Die Inspiration der Bibel gibt dir Gewissheit: Wenn du die Bibel liest, hörst du Gottes Stimme.`
         }
     },
     en: {
