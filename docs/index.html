@@ -31,6 +31,28 @@
             </div>
             
             <button class="btn-primary" onclick="showRegister()" id="btn-entry">Anmelden / Registrieren</button>
+            <button class="btn-admin" onclick="showAdminLogin()" id="btn-admin">Admin Login</button>
+        </div>
+    </div>
+
+    <!-- Admin Login Page -->
+    <div id="page-admin" class="page">
+        <div class="register-box">
+            <button class="btn-close" onclick="showBranding()">✕</button>
+            
+            <h2 id="admin-title">Admin Login</h2>
+            
+            <form id="form-admin" onsubmit="return submitAdminLogin(event);">
+                <input type="text" id="admin-username" placeholder="Benutzername" required>
+                <input type="password" id="admin-password" placeholder="Passwort" required>
+                
+                <div id="admin-error" class="error-message" style="display: none;"></div>
+                
+                <div class="btn-group">
+                    <button type="submit" class="btn-submit" id="btn-admin-submit">Anmelden</button>
+                    <button type="button" class="btn-cancel" onclick="showBranding()" id="btn-admin-cancel">Abbrechen</button>
+                </div>
+            </form>
         </div>
     </div>
 

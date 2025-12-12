@@ -4,6 +4,10 @@ const translations = {
         verseRef: "2. Timotheus 3,16-17",
         verseText: "Alle Schrift ist von Gott eingegeben und nütze zur Lehre, zur Überführung, zur Zurechtweisung, zur Unterweisung in der Gerechtigkeit, auf daß der Mensch Gottes vollkommen sei, zu jedem guten Werke völlig geschickt.",
         btnEntry: "Anmelden / Registrieren",
+        btnAdmin: "Admin Login",
+        adminTitle: "Admin Login",
+        adminSubmit: "Anmelden",
+        adminCancel: "Abbrechen",
         registerTitle: "Registrierung",
         privacyNote: "Diese Daten werden ausschließlich für dein persönliches Zertifikat genutzt.",
         btnSubmit: "Registrieren",
@@ -19,6 +23,10 @@ const translations = {
         verseRef: "2 Timothy 3:16-17",
         verseText: "All Scripture is given by inspiration of God, and is profitable for doctrine, for reproof, for correction, for instruction in righteousness, that the man of God may be complete, thoroughly equipped for every good work.",
         btnEntry: "Login / Register",
+        btnAdmin: "Admin Login",
+        adminTitle: "Admin Login",
+        adminSubmit: "Login",
+        adminCancel: "Cancel",
         registerTitle: "Registration",
         privacyNote: "This data will be used exclusively for your personal certificate.",
         btnSubmit: "Register",
@@ -34,6 +42,10 @@ const translations = {
         verseRef: "2 Timotius 3:16-17",
         verseText: "Segala tulisan yang diilhamkan Allah memang bermanfaat untuk mengajar, untuk menyatakan kesalahan, untuk memperbaiki kelakuan dan untuk mendidik orang dalam kebenaran. Dengan demikian tiap-tiap manusia kepunyaan Allah diperlengkapi untuk setiap perbuatan baik.",
         btnEntry: "Masuk / Daftar",
+        btnAdmin: "Login Admin",
+        adminTitle: "Login Admin",
+        adminSubmit: "Masuk",
+        adminCancel: "Batal",
         registerTitle: "Pendaftaran",
         privacyNote: "Data ini akan digunakan secara eksklusif untuk sertifikat pribadi Anda.",
         btnSubmit: "Daftar",
@@ -50,6 +62,10 @@ const translations = {
 // Current language
 let currentLang = 'de';
 
+// Admin credentials
+const ADMIN_USER = 'Mario Denzer';
+const ADMIN_PASSWORD = 'Der Weg';
+
 // Initialize
 document.addEventListener('DOMContentLoaded', function() {
     console.log('App initialized');
@@ -61,6 +77,7 @@ function showBranding() {
     console.log('Showing branding page');
     document.getElementById('page-branding').classList.add('active');
     document.getElementById('page-register').classList.remove('active');
+    document.getElementById('page-admin').classList.remove('active');
     document.getElementById('page-app').classList.remove('active');
 }
 
@@ -68,6 +85,7 @@ function showRegister() {
     console.log('Showing register page');
     document.getElementById('page-branding').classList.remove('active');
     document.getElementById('page-register').classList.add('active');
+    document.getElementById('page-admin').classList.remove('active');
     document.getElementById('page-app').classList.remove('active');
     
     // Reset form
@@ -75,10 +93,23 @@ function showRegister() {
     document.getElementById('password-result').style.display = 'none';
 }
 
+function showAdminLogin() {
+    console.log('Showing admin login page');
+    document.getElementById('page-branding').classList.remove('active');
+    document.getElementById('page-register').classList.remove('active');
+    document.getElementById('page-admin').classList.add('active');
+    document.getElementById('page-app').classList.remove('active');
+    
+    // Reset form
+    document.getElementById('form-admin').reset();
+    document.getElementById('admin-error').style.display = 'none';
+}
+
 function showApp() {
     console.log('Showing app page');
     document.getElementById('page-branding').classList.remove('active');
     document.getElementById('page-register').classList.remove('active');
+    document.getElementById('page-admin').classList.remove('active');
     document.getElementById('page-app').classList.add('active');
 }
 
@@ -108,6 +139,10 @@ function updateTranslations() {
         'verse-ref': t.verseRef,
         'verse-text': t.verseText,
         'btn-entry': t.btnEntry,
+        'btn-admin': t.btnAdmin,
+        'admin-title': t.adminTitle,
+        'btn-admin-submit': t.adminSubmit,
+        'btn-admin-cancel': t.adminCancel,
         'register-title': t.registerTitle,
         'privacy-note': t.privacyNote,
         'btn-submit': t.btnSubmit,
@@ -180,10 +215,47 @@ function generatePassword() {
     return password;
 }
 
+// Admin Login
+function submitAdminLogin(event) {
+    event.preventDefault();
+    console.log('Admin login submitted');
+    
+    const username = document.getElementById('admin-username').value;
+    const password = document.getElementById('admin-password').value;
+    
+    // Check credentials
+    if (username === ADMIN_USER && password === ADMIN_PASSWORD) {
+        // Login successful
+        console.log('Admin login successful');
+        
+        // Save admin session
+        localStorage.setItem('currentUser', 'admin');
+        localStorage.setItem('isAdmin', 'true');
+        
+        // Update user display
+        document.getElementById('user-display').textContent = 'Admin: ' + username;
+        
+        // Go to app
+        showApp();
+    } else {
+        // Login failed
+        console.log('Admin login failed');
+        const errorMsg = document.getElementById('admin-error');
+        errorMsg.textContent = currentLang === 'de' ? 'Benutzername oder Passwort falsch' : 
+                              currentLang === 'en' ? 'Username or password incorrect' : 
+                              'Nama pengguna atau kata sandi salah';
+        errorMsg.style.display = 'block';
+    }
+    
+    return false;
+}
+
 // Logout
 function doLogout() {
     console.log('Logging out');
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('isAdmin');
     document.getElementById('form-register').reset();
+    document.getElementById('form-admin').reset();
     showBranding();
 }
