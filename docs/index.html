@@ -9,6 +9,11 @@
 <body>
     <!-- Branding Page -->
     <div id="page-branding" class="page active">
+        <!-- Admin Button (Top Left) -->
+        <div class="admin-selector">
+            <button class="lang-btn" onclick="showAdminLogin()" id="btn-admin">Admin Login</button>
+        </div>
+        
         <!-- Language Selector -->
         <div class="lang-selector">
             <button class="lang-btn active" onclick="changeLang('de')">🇩🇪 DE</button>
@@ -31,7 +36,6 @@
             </div>
             
             <button class="btn-primary" onclick="showRegister()" id="btn-entry">Anmelden / Registrieren</button>
-            <button class="btn-admin" onclick="showAdminLogin()" id="btn-admin">Admin Login</button>
         </div>
     </div>
 
