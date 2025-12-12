@@ -77,8 +77,18 @@ function checkExistingUser() {
 
 // Show registration overlay
 window.showRegistrationOverlay = function() {
+    console.log('showRegistrationOverlay called');
     const overlay = document.getElementById('registration-overlay');
-    overlay.classList.add('active');
+    if (!overlay) {
+        console.error('Overlay element not found');
+        return;
+    }
+    
+    console.log('Adding active class to overlay');
+    overlay.style.display = 'flex';
+    setTimeout(() => {
+        overlay.classList.add('active');
+    }, 10);
     
     // Set language dropdown to current language
     const sprachSelect = document.getElementById('sprache');
@@ -89,13 +99,25 @@ window.showRegistrationOverlay = function() {
 
 // Close registration overlay
 window.closeRegistrationOverlay = function() {
+    console.log('closeRegistrationOverlay called');
     const overlay = document.getElementById('registration-overlay');
+    if (!overlay) {
+        console.error('Overlay element not found');
+        return;
+    }
+    
     overlay.classList.remove('active');
+    setTimeout(() => {
+        overlay.style.display = 'none';
+    }, 300);
     
     // Reset form
-    document.getElementById('registration-form').reset();
-    document.getElementById('password-display').style.display = 'none';
-    document.getElementById('registration-form').style.display = 'block';
+    const form = document.getElementById('registration-form');
+    const passwordDisplay = document.getElementById('password-display');
+    
+    if (form) form.reset();
+    if (passwordDisplay) passwordDisplay.style.display = 'none';
+    if (form) form.style.display = 'block';
 }
 
 // Generate secure password

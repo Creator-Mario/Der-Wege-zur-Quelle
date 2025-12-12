@@ -202,11 +202,12 @@ body {
     z-index: 2000;
     align-items: center;
     justify-content: center;
-    animation: fadeIn 0.3s ease;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .registration-overlay.active {
-    display: flex;
+    opacity: 1;
 }
 
 @keyframes fadeIn {
