@@ -261,6 +261,108 @@ function doLogout() {
 }
 
 // Curriculum Data Structure
+// Lesson Content Data
+const lessonContent = {
+    de: {
+        "1-1": {
+            title: "Ursprung der Bibel",
+            introduction: `Die Frage nach dem Ursprung der Bibel ist grundlegend für jede theologische Lehre, Predigt und Form christlicher Spiritualität. Alles, was Christen über Gott, Erlösung, Ethik, Gemeinde und Hoffnung wissen, wurzelt in der Schrift. Daher ist die Kernfrage:
+
+**Wie kam Gottes Wort zu uns, und warum können wir dieser Schrift vertrauen?**
+
+Wenn die Bibel nur ein menschliches Werk wäre, wäre sie relativ, kulturell bedingt und ohne absolute Autorität. Stellt man jedoch fest, dass sie göttlichen Ursprungs ist, besitzt sie höchste, universale und zeitlose Autorität.`,
+            sections: [
+                {
+                    heading: "Bedeutung des Themas in Geschichte und Gegenwart",
+                    content: `**Historische Bedeutung:**
+- Das Volk Israel verstand die heiligen Schriften als göttliche Offenbarung.
+- Jesus und die Apostel zitierten das Alte Testament als autoritative Quelle.
+- Die frühe Kirche bewahrte die apostolischen Schriften sorgfältig.
+- Reformation und Erweckungsbewegungen betonten „sola Scriptura".
+
+**Bedeutung heute:**
+In Zeiten von Skepsis, Bibelkritik, moralischem Relativismus und theologischer Verwirrung braucht die Gemeinde Klarheit über den Ursprung und die Autorität der Bibel.`
+                },
+                {
+                    heading: "Warum Gott den Weg der Schrift wählte",
+                    content: `**1. Dauerhaftigkeit:** Ein gesprochenes Wort verfliegt, ein geschriebenes Wort bleibt bestehen.
+
+**2. Verbindlichkeit:** Ein schriftlicher Vertrag ist verbindlicher als eine mündliche Zusage.
+
+**3. Schutz vor Verfälschung:** Schriftliche Fixierung schützt die Wahrheit vor Veränderung.
+
+**4. Zugang für alle Generationen:** Die Schrift ermöglicht Menschen aller Zeiten, Gottes Reden zu hören.`
+                },
+                {
+                    heading: "Anschauliche Analogien für den Ursprung des Wortes Gottes",
+                    content: `**Der königliche Erlass:** Ein königlicher Erlass trägt dieselbe Autorität wie die Stimme des Königs. So verhält es sich mit der Bibel.
+
+**Die Landkarte des Lebens:** Eine Karte zeigt sichere Wege und Gefahren. Die Bibel leitet den Menschen geistlich sicher.
+
+**Das Orchester:** Viele Instrumente (Autoren), ein Dirigent (Heiliger Geist) – Vielfalt im Stil, Einheit im Inhalt.
+
+**Der Sternenhimmel (Psalm 19):** Die Schöpfung offenbart Gottes Größe, die Schrift seinen Willen.`
+                },
+                {
+                    heading: "Typische Missverständnisse und Klarstellungen",
+                    content: `**"Menschen schrieben – also Menschenwort":**
+Menschen schrieben, aber Gott leitete sie. Die Schrift ist sowohl göttlich als auch menschlich.
+
+**"Unterschiedliche Stile = unterschiedliche Meinungen":**
+Stile spiegeln Persönlichkeit, nicht Widerspruch.
+
+**"Der Text wurde sicher verändert":**
+Die Bibel ist das bestbezeugte Schriftwerk der Antike.`
+                },
+                {
+                    heading: "Methodische Zugänge",
+                    content: `- **Biblisch-theologisch:** Was sagt die Schrift über sich selbst?
+- **Historisch:** Wie entstanden Texte und Manuskripte?
+- **Systematisch-theologisch:** Inspiration, Inerranz, Autorität.
+- **Hermeneutisch:** Wie interpretiert man ein inspiriertes Dokument?
+- **Praktisch-theologisch:** Konsequenzen für Lehre, Predigt und Leben.`
+                }
+            ],
+            learningGoals: [
+                "Den Ursprung der Bibel erklären können",
+                "Offenbarung und Inspiration unterscheiden",
+                "Textüberlieferung und Kanonbildung verstehen",
+                "Die Einheit der Schrift begründen können"
+            ],
+            reflectionQuestions: [
+                "Warum sollte Gott ein Buch entstehen lassen?",
+                "Was unterscheidet die Bibel von anderen religiösen Texten?",
+                "Wie kann ein Text göttlich und menschlich sein?",
+                "Wie wissen wir, dass der Text zuverlässig überliefert wurde?"
+            ],
+            practicalApplication: `- Gottes Wort gibt Orientierung in einer moralisch chaotischen Welt.
+- Die Schrift gibt Halt und Sicherheit.
+- Sie schützt vor Irrlehre und Selbsttäuschung.
+- Sie formt Charakter und Glauben.`
+        }
+    },
+    en: {
+        "1-1": {
+            title: "Origin of the Bible",
+            introduction: "Content will be translated soon...",
+            sections: [],
+            learningGoals: [],
+            reflectionQuestions: [],
+            practicalApplication: ""
+        }
+    },
+    id: {
+        "1-1": {
+            title: "Asal Usul Alkitab",
+            introduction: "Konten akan diterjemahkan segera...",
+            sections: [],
+            learningGoals: [],
+            reflectionQuestions: [],
+            practicalApplication: ""
+        }
+    }
+};
+
 const curriculumData = {
     de: [
         {
@@ -942,17 +1044,81 @@ function openLesson(chapterId, lessonNum, chapterTitle, lessonTitle) {
     overviewDiv.style.display = 'none';
     lessonDiv.style.display = 'block';
     
-    const contentText = currentLang === 'de' ? 'Inhalt folgt bald...' :
-                        currentLang === 'en' ? 'Content coming soon...' :
-                        'Konten segera hadir...';
+    // Get lesson content
+    const lessonKey = `${chapterId}-${lessonNum}`;
+    const content = lessonContent[currentLang] && lessonContent[currentLang][lessonKey];
+    
+    let contentHTML = '';
+    
+    if (content) {
+        // Build content with all sections
+        contentHTML = `
+            <div class="lesson-introduction">
+                <h4>${currentLang === 'de' ? 'Einleitung' : currentLang === 'en' ? 'Introduction' : 'Pendahuluan'}</h4>
+                <p>${content.introduction.replace(/\n/g, '<br>')}</p>
+            </div>
+        `;
+        
+        // Add sections
+        if (content.sections && content.sections.length > 0) {
+            content.sections.forEach(section => {
+                contentHTML += `
+                    <div class="lesson-section">
+                        <h4>${section.heading}</h4>
+                        <p>${section.content.replace(/\n/g, '<br>')}</p>
+                    </div>
+                `;
+            });
+        }
+        
+        // Add learning goals
+        if (content.learningGoals && content.learningGoals.length > 0) {
+            contentHTML += `
+                <div class="lesson-goals">
+                    <h4>${currentLang === 'de' ? 'Lernziele' : currentLang === 'en' ? 'Learning Goals' : 'Tujuan Pembelajaran'}</h4>
+                    <ul>
+                        ${content.learningGoals.map(goal => `<li>${goal}</li>`).join('')}
+                    </ul>
+                </div>
+            `;
+        }
+        
+        // Add reflection questions
+        if (content.reflectionQuestions && content.reflectionQuestions.length > 0) {
+            contentHTML += `
+                <div class="lesson-reflection">
+                    <h4>${currentLang === 'de' ? 'Reflexionsfragen' : currentLang === 'en' ? 'Reflection Questions' : 'Pertanyaan Refleksi'}</h4>
+                    <ul>
+                        ${content.reflectionQuestions.map(q => `<li>${q}</li>`).join('')}
+                    </ul>
+                </div>
+            `;
+        }
+        
+        // Add practical application
+        if (content.practicalApplication) {
+            contentHTML += `
+                <div class="lesson-application">
+                    <h4>${currentLang === 'de' ? 'Praktische Anwendung' : currentLang === 'en' ? 'Practical Application' : 'Aplikasi Praktis'}</h4>
+                    <p>${content.practicalApplication.replace(/\n/g, '<br>')}</p>
+                </div>
+            `;
+        }
+    } else {
+        // Fallback content
+        const contentText = currentLang === 'de' ? 'Inhalt folgt bald...' :
+                            currentLang === 'en' ? 'Content coming soon...' :
+                            'Konten segera hadir...';
+        contentHTML = `<p>${contentText}</p>`;
+    }
     
     lessonDiv.innerHTML = `
         <div class="lesson-header">
-            <h2>Kapitel ${chapterId}: ${chapterTitle}</h2>
-            <h3>Lektion ${lessonNum}: ${lessonTitle}</h3>
+            <h2>${currentLang === 'de' ? 'Kapitel' : currentLang === 'en' ? 'Chapter' : 'Bab'} ${chapterId}: ${chapterTitle}</h2>
+            <h3>${currentLang === 'de' ? 'Lektion' : currentLang === 'en' ? 'Lesson' : 'Pelajaran'} ${lessonNum}: ${lessonTitle}</h3>
         </div>
         <div class="lesson-content">
-            <p>${contentText}</p>
+            ${contentHTML}
         </div>
         <button class="btn-back" onclick="closeLesson()">${currentLang === 'de' ? 'Zurück zur Übersicht' : currentLang === 'en' ? 'Back to Overview' : 'Kembali ke Ikhtisar'}</button>
     `;

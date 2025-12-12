@@ -544,6 +544,60 @@ body::before {
     transform: scale(1.05);
 }
 
+/* Lesson Content Sections */
+.lesson-introduction,
+.lesson-section,
+.lesson-goals,
+.lesson-reflection,
+.lesson-application {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    border-left: 4px solid #DAA520;
+}
+
+.lesson-introduction h4,
+.lesson-section h4,
+.lesson-goals h4,
+.lesson-reflection h4,
+.lesson-application h4 {
+    color: #DAA520;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.lesson-introduction p,
+.lesson-section p,
+.lesson-application p {
+    line-height: 1.8;
+    color: #333;
+    font-size: 1.05rem;
+}
+
+.lesson-goals ul,
+.lesson-reflection ul {
+    margin-left: 25px;
+    line-height: 1.8;
+}
+
+.lesson-goals li,
+.lesson-reflection li {
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 1.05rem;
+}
+
+.lesson-content strong {
+    color: #8B4513;
+    font-weight: bold;
+}
+
+.lesson-content ul {
+    list-style-type: disc;
+}
+
 /* Mobile adjustments for curriculum */
 @media (max-width: 768px) {
     .curriculum-container {
@@ -575,5 +629,30 @@ body::before {
     
     .lesson-header h3 {
         font-size: 1rem;
+    }
+    
+    .lesson-introduction,
+    .lesson-section,
+    .lesson-goals,
+    .lesson-reflection,
+    .lesson-application {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .lesson-introduction h4,
+    .lesson-section h4,
+    .lesson-goals h4,
+    .lesson-reflection h4,
+    .lesson-application h4 {
+        font-size: 1.1rem;
+    }
+    
+    .lesson-introduction p,
+    .lesson-section p,
+    .lesson-application p,
+    .lesson-goals li,
+    .lesson-reflection li {
+        font-size: 0.95rem;
     }
 }
